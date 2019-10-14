@@ -12,6 +12,7 @@ public class BumpComponent : MonoBehaviour
     // }
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag.CompareTo("Player") == 0) {
+            Debug.Log(transform.up);
             other.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * ejectionForce);
         }
     }

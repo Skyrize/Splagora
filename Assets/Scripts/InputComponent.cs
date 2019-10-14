@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour
+public class InputComponent : MonoBehaviour
 {
     [Header("Inputs")]
     public string xAxis;

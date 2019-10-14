@@ -8,14 +8,16 @@ public class MovementComponent : MonoBehaviour
     public float speed = 1;
     public bool canMove = true;
 
-    private PlayerController controller;
+    private InputComponent controller;
     private Rigidbody rb;
+    private Vector3 vel = Vector3.zero;
+
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<PlayerController>();
+        controller = GetComponent<InputComponent>();
         if (!controller)
-            throw new MissingComponentException("No PlayerController on " + name);
+            throw new MissingComponentException("No InputComponent on " + name);
         rb = GetComponent<Rigidbody>();
         if (!rb)
             throw new MissingComponentException("No Rigidbody on " + name);
@@ -25,7 +27,7 @@ public class MovementComponent : MonoBehaviour
     {
         if (canMove) {
             transform.LookAt(transform.position + controller.direction);
-            rb.velocity = controller.direction * speed + new Vector3(0, rb.velocity.y, 0);
+            rb.MovePosition(transform.position + controller.direction * speed * Time.fixedDeltaTime);
         }
     }
 
