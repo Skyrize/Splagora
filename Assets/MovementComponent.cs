@@ -6,6 +6,8 @@ public class MovementComponent : MonoBehaviour
 {
     [Header("Attributes")]
     public float speed = 1;
+    public bool canMove = true;
+
     private PlayerController controller;
     private Rigidbody rb;
     // Start is called before the first frame update
@@ -21,7 +23,10 @@ public class MovementComponent : MonoBehaviour
 
     private void Move()
     {
-        rb.velocity = controller.direction * speed;
+        if (canMove) {
+            transform.LookAt(transform.position + controller.direction);
+            rb.velocity = controller.direction * speed + new Vector3(0, rb.velocity.y, 0);
+        }
     }
 
     private void FixedUpdate() {
