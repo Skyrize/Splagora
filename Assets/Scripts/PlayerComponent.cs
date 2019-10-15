@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerComponent : MonoBehaviour
 {
     private MovementComponent movement;
-    public void getBumped()
+
+    public void Jump()
     {
-        movement.canMove = false;
+        
     }
 
     // Start is called before the first frame update

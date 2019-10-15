@@ -6,33 +6,52 @@ public class MovementComponent : MonoBehaviour
 {
     [Header("Attributes")]
     public float speed = 1;
-    public bool canMove = true;
+    public float resistance = 1;
+    public float gravityScale = 0.5f;
 
-    private InputComponent controller;
-    private Rigidbody rb;
-    private Vector3 vel = Vector3.zero;
+    private InputComponent input;
+    private CharacterController controller;
+    private Vector3 motion = Vector3.zero;
+    private Vector3 externalForce = Vector3.zero;
+    private float gravity = 0;
+
+    public void AddForce(Vector3 force)
+    {
+        externalForce += force;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<InputComponent>();
-        if (!controller)
+        input = GetComponent<InputComponent>();
+        if (!input)
             throw new MissingComponentException("No InputComponent on " + name);
-        rb = GetComponent<Rigidbody>();
-        if (!rb)
-            throw new MissingComponentException("No Rigidbody on " + name);
+        controller = GetComponent<CharacterController>();
+        if (!controller)
+            throw new MissingComponentException("No CharacterController on " + name);
     }
 
     private void Move()
     {
-        if (canMove) {
-            transform.LookAt(transform.position + controller.direction);
-            rb.MovePosition(transform.position + controller.direction * speed * Time.fixedDeltaTime);
+        transform.LookAt(transform.position + input.direction);
+        motion = input.direction * speed;
+        gravity += Physics.gravity.y * Time.fixedDeltaTime * gravityScale;
+        controller.Move(motion * Time.fixedDeltaTime + Vector3.up * gravity);
+        if (controller.isGrounded)
+            gravity = 0;
+    }
+
+    private void ApplyExternalForces()
+    {
+        if (externalForce.magnitude > 0.2f) {
+            controller.Move((externalForce + Physics.gravity) * Time.fixedDeltaTime);
+            externalForce = Vector3.Lerp(externalForce, Vector3.zero, resistance * Time.fixedDeltaTime);
         }
     }
 
     private void FixedUpdate() {
         Move();
+        ApplyExternalForces();
     }
 
 }
