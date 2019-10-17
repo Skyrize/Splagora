@@ -30,10 +30,12 @@ public class JumpComponent : MonoBehaviour
 
     public void Jump(Vector3 direction)
     {
-            Debug.Log("Can't jump .. because " + controller.isGrounded);
+           
         if (controller.isGrounded) {
             Debug.Log("JUUUUMP");
             movement.Propulse(direction * jumpForce);
+        } else {
+            Debug.Log("Can't jump .. because " + controller.isGrounded);
         }
     }
 

@@ -13,7 +13,7 @@ public class MovementComponent : MonoBehaviour
     private CharacterController controller;
     private Vector3 motion = Vector3.zero;
     private Vector3 externalForce = Vector3.zero;
-    private float gravity = 0;
+    private Vector3 gravity = Vector3.zero;
 
     public void Propulse(Vector3 force)
     {
@@ -33,10 +33,9 @@ public class MovementComponent : MonoBehaviour
 
     private void ApplyGravity()
     {
-        gravity += Physics.gravity.y * gravityScale;
+        gravity += Physics.gravity * gravityScale;
         if (controller.isGrounded)
-            gravity = Physics.gravity.y * gravityScale;
-        controller.Move(Vector3.up * gravity* Time.fixedDeltaTime);
+            gravity = Physics.gravity * gravityScale;
     }
 
     private void Turn()
@@ -47,28 +46,26 @@ public class MovementComponent : MonoBehaviour
     private void Move()
     {
         motion = input.direction * speed;
-        controller.Move(motion * Time.fixedDeltaTime);
+        controller.Move((motion + gravity + externalForce) * Time.fixedDeltaTime);
     }
 
-    private void ApplyExternalForces()
+    private void ReduceExternalForces()
     {
         if (externalForce.magnitude > 0.1f) {
+            externalForce = Vector3.Lerp(externalForce, Vector3.zero, resistance * Time.fixedDeltaTime);
             if (controller.isGrounded) {
-                Debug.Log("grounded and force = 0");
                 externalForce = Vector3.zero;
             }
-            controller.Move(externalForce * Time.fixedDeltaTime);
-            externalForce = Vector3.Lerp(externalForce, Vector3.zero, resistance * Time.fixedDeltaTime);
         } else {
             externalForce = Vector3.zero;
         }
     }
 
     private void FixedUpdate() {
-        ApplyGravity();
-        ApplyExternalForces();
-        Move();
         Turn();
+        ApplyGravity();
+        Move();
+        ReduceExternalForces();
     }
 
 }
