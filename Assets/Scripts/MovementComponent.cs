@@ -15,9 +15,9 @@ public class MovementComponent : MonoBehaviour
     private Vector3 externalForce = Vector3.zero;
     private float gravity = 0;
 
-    public void AddForce(Vector3 force)
+    public void Propulse(Vector3 force)
     {
-        externalForce += force;
+        externalForce = force;
     }
 
     // Start is called before the first frame update
@@ -31,27 +31,44 @@ public class MovementComponent : MonoBehaviour
             throw new MissingComponentException("No CharacterController on " + name);
     }
 
-    private void Move()
+    private void ApplyGravity()
+    {
+        gravity += Physics.gravity.y * gravityScale;
+        if (controller.isGrounded)
+            gravity = Physics.gravity.y * gravityScale;
+        controller.Move(Vector3.up * gravity* Time.fixedDeltaTime);
+    }
+
+    private void Turn()
     {
         transform.LookAt(transform.position + input.direction);
+    }
+
+    private void Move()
+    {
         motion = input.direction * speed;
-        gravity += Physics.gravity.y * Time.fixedDeltaTime * gravityScale;
-        controller.Move(motion * Time.fixedDeltaTime + Vector3.up * gravity);
-        if (controller.isGrounded)
-            gravity = 0;
+        controller.Move(motion * Time.fixedDeltaTime);
     }
 
     private void ApplyExternalForces()
     {
-        if (externalForce.magnitude > 0.2f) {
-            controller.Move((externalForce + Physics.gravity) * Time.fixedDeltaTime);
+        if (externalForce.magnitude > 0.1f) {
+            if (controller.isGrounded) {
+                Debug.Log("grounded and force = 0");
+                externalForce = Vector3.zero;
+            }
+            controller.Move(externalForce * Time.fixedDeltaTime);
             externalForce = Vector3.Lerp(externalForce, Vector3.zero, resistance * Time.fixedDeltaTime);
+        } else {
+            externalForce = Vector3.zero;
         }
     }
 
     private void FixedUpdate() {
-        Move();
+        ApplyGravity();
         ApplyExternalForces();
+        Move();
+        Turn();
     }
 
 }
