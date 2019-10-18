@@ -50,6 +50,7 @@ public class WallAnimationEditor : Editor
 
     void OnEnable()
     {
+
         // Setup the SerializedProperties.
         TimeWave = serializedObject.FindProperty("TimeWave");
         Latence = serializedObject.FindProperty("LatenceSwitchTexture");
@@ -70,10 +71,8 @@ public class WallAnimationEditor : Editor
         SwitchTexture = serializedObject.FindProperty("SwitchTexture");
         allTexture = serializedObject.FindProperty("AllTextureStyle");
         speedSwitchTexture = serializedObject.FindProperty("SpeedSwitch");
-
-
-
     }
+
     public override void OnInspectorGUI()
     {
         
@@ -85,16 +84,28 @@ public class WallAnimationEditor : Editor
         titleStyle.normal.textColor = Color.blue;
         RectOffset bdr;
         bdr = titleStyle.border;
-        GUI.Label(new Rect(bdr.horizontal, bdr.vertical, 100, 30), "AA");
-        //Create Title
-        EditorGUILayout.LabelField("Tool for wave on wall animation", titleStyle);
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
+        //GUI.Label(new Rect(bdr.horizontal, bdr.vertical, 100, 30), "AA");
 
-        //Simple float assign
-        EditorGUILayout.Slider(TimeWave, 0.4f, 2, new GUIContent("Time during wave:"));
-        EditorGUILayout.Space();
-        EditorGUILayout.Slider(Latence, 0, 1, new GUIContent("Latence to ComeBack"));
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        {
+            //Create Title
+            EditorGUILayout.LabelField("Tool for wave on wall animation", titleStyle);
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+
+            //Simple float assign
+            EditorGUILayout.Slider(TimeWave, 0.4f, 2, new GUIContent("Time during wave:"));
+
+            Rect customField = EditorGUILayout.GetControlRect(false, 200f);
+            //GUILayout.Label("AA");
+            GUI.Label(customField, "AA", EditorStyles.textField);
+
+            EditorGUILayout.Space();
+            EditorGUILayout.Slider(Latence, 0, 1, new GUIContent("Latence to ComeBack"));
+        }
+        EditorGUILayout.EndVertical();
+
+
         EditorGUILayout.Space();
 
         //Get Value Amplitude
@@ -130,7 +141,7 @@ public class WallAnimationEditor : Editor
         ChangeRotation.boolValue=rot;
 
 
-        if (rot)
+        if (rot )
         {
             EditorGUILayout.Slider(TimeRotation, 0.1f, 1, new GUIContent("Rotation time:"));
             switch (DegreeRotation.floatValue)
