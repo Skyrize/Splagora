@@ -7,58 +7,41 @@ public class JumpComponent : MonoBehaviour
 {
     [Header("Attributes")]
     public float jumpForce = 7;
-    public LayerMask groundLayers;
+    // public LayerMask groundLayers;
 
-    [Space]
-    [Header("Events")]
-    public UnityEvent onJump = new UnityEvent();
-    public UnityEvent onLanding = new UnityEvent();
+    // [Space]
+    // [Header("Events")]
+    // public UnityEvent onJump = new UnityEvent();
+    // public UnityEvent onLanding = new UnityEvent();
 
-    public bool isGrounded
-    {
-        get {
-            return Physics.CheckCapsule(col.bounds.center,
-            new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z),
-            col.radius * 0.9f, groundLayers);
-        }
-    }
-
-
-    private CapsuleCollider col;
+    private CharacterController controller;
     private MovementComponent movement;
-    private bool wasInAir = false;
+    // private bool wasInAir = false;
     // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<CapsuleCollider>();
-        if (!col)
-            throw new MissingComponentException("No CapsuleCollider on " + name);
+        controller = GetComponent<CharacterController>();
+        if (!controller)
+            throw new MissingComponentException("No CharacterController on " + name);
         movement = GetComponent<MovementComponent>();
         if (!movement)
             throw new MissingComponentException("No MovementComponent on " + name);
     }
 
-    private void Update()
-    {
-        bool tmp = isGrounded;
-        if (wasInAir == true && tmp == true) {
-            Debug.Log("LAND");
-            onLanding.Invoke();
-        }
-        wasInAir = !tmp;
-    }
-
     public void Jump(Vector3 direction)
     {
-        if (isGrounded) {
-            movement.AddForce(direction * jumpForce);
-            onJump.Invoke();
+           
+        if (controller.isGrounded) {
+            Debug.Log("JUUUUMP");
+            movement.Propulse(direction * jumpForce);
+        } else {
+            Debug.Log("Can't jump .. because " + controller.isGrounded);
         }
     }
 
     public void QuickJump()
     {
-        Jump(Vector3.up);
+        Jump(transform.up);
     }
 
     public void LongJump()

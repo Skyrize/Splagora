@@ -13,11 +13,11 @@ public class MovementComponent : MonoBehaviour
     private CharacterController controller;
     private Vector3 motion = Vector3.zero;
     private Vector3 externalForce = Vector3.zero;
-    private float gravity = 0;
+    private Vector3 gravity = Vector3.zero;
 
-    public void AddForce(Vector3 force)
+    public void Propulse(Vector3 force)
     {
-        externalForce += force;
+        externalForce = force;
     }
 
     // Start is called before the first frame update
@@ -31,27 +31,41 @@ public class MovementComponent : MonoBehaviour
             throw new MissingComponentException("No CharacterController on " + name);
     }
 
-    private void Move()
+    private void ApplyGravity()
     {
-        transform.LookAt(transform.position + input.direction);
-        motion = input.direction * speed;
-        gravity += Physics.gravity.y * Time.fixedDeltaTime * gravityScale;
-        controller.Move(motion * Time.fixedDeltaTime + Vector3.up * gravity);
+        gravity += Physics.gravity * gravityScale;
         if (controller.isGrounded)
-            gravity = 0;
+            gravity = Physics.gravity * gravityScale;
     }
 
-    private void ApplyExternalForces()
+    private void Turn()
     {
-        if (externalForce.magnitude > 0.2f) {
-            controller.Move((externalForce + Physics.gravity) * Time.fixedDeltaTime);
+        transform.LookAt(transform.position + input.direction);
+    }
+
+    private void Move()
+    {
+        motion = input.direction * speed;
+        controller.Move((motion + gravity + externalForce) * Time.fixedDeltaTime);
+    }
+
+    private void ReduceExternalForces()
+    {
+        if (externalForce.magnitude > 0.1f) {
             externalForce = Vector3.Lerp(externalForce, Vector3.zero, resistance * Time.fixedDeltaTime);
+            if (controller.isGrounded) {
+                externalForce = Vector3.zero;
+            }
+        } else {
+            externalForce = Vector3.zero;
         }
     }
 
     private void FixedUpdate() {
+        Turn();
+        ApplyGravity();
         Move();
-        ApplyExternalForces();
+        ReduceExternalForces();
     }
 
 }
