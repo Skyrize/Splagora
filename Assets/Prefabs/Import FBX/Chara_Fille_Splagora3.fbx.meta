@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 83b4c928bc129ea469c00f9875bb1fbb
+guid: bd4007f1fe985044aad3fa77868c7f43
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -27,8 +27,11 @@ ModelImporter:
     400018: polySurface5
     400020: pPlane2
     400022: pPlane3
-    2100000: habits_textures_fille
-    2100002: peau_cheveux_rollers_textures_fille
+    2100000: bleu
+    2100002: peau
+    2100004: blanc
+    2100006: noir
+    2100008: lambert1
     2300000: pCube16
     2300002: pCube17
     2300004: pCube18
