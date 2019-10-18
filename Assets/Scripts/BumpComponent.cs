@@ -13,6 +13,7 @@ public class BumpComponent : MonoBehaviour
         if (other.gameObject.tag.CompareTo("Player") == 0) {
             Debug.Log("Boing");
             other.gameObject.GetComponent<MovementComponent>().Propulse(transform.up * ejectionForce);
+            if(particlebump!=null)
             particlebump.Play();
         }
     }

@@ -13,7 +13,6 @@ public class TriggerAnim : MonoBehaviour
     }
     public void Start()
     {
-        Transition();
     }
     public void Transition()
     {
