@@ -15,6 +15,12 @@ public class MovementComponent : MonoBehaviour
     private Vector3 externalForce = Vector3.zero;
     private Vector3 gravity = Vector3.zero;
 
+    public float velocity {
+        get {
+            return Mathf.Abs(motion.x + externalForce.x);
+        }
+    }
+
     public void Propulse(Vector3 force)
     {
         externalForce = force;
