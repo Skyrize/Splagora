@@ -1,70 +1,15 @@
 fileFormatVersion: 2
-guid: bd4007f1fe985044aad3fa77868c7f43
+guid: efd03938a5a4e9b4d8690bc614e727eb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pCube16
-    100004: pCube17
-    100006: pCube18
-    100008: pCube19
-    100010: pCylinder20
-    100012: pCylinder21
-    100014: polySurface1
-    100016: polySurface2
-    100018: polySurface5
-    100020: pPlane2
-    100022: pPlane3
     400000: //RootNode
-    400002: pCube16
-    400004: pCube17
-    400006: pCube18
-    400008: pCube19
-    400010: pCylinder20
-    400012: pCylinder21
-    400014: polySurface1
-    400016: polySurface2
-    400018: polySurface5
-    400020: pPlane2
-    400022: pPlane3
-    2100000: bleu
-    2100002: peau
-    2100004: blanc
-    2100006: noir
-    2100008: lambert1
-    2300000: pCube16
-    2300002: pCube17
-    2300004: pCube18
-    2300006: pCube19
-    2300008: pCylinder20
-    2300010: pCylinder21
-    2300012: polySurface1
-    2300014: polySurface2
-    2300016: polySurface5
-    2300018: pPlane2
-    2300020: pPlane3
-    3300000: pCube16
-    3300002: pCube17
-    3300004: pCube18
-    3300006: pCube19
-    3300008: pCylinder20
-    3300010: pCylinder21
-    3300012: polySurface1
-    3300014: polySurface2
-    3300016: polySurface5
-    3300018: pPlane2
-    3300020: pPlane3
-    4300000: polySurface2
-    4300002: polySurface1
-    4300004: pCube17
-    4300006: pCube19
-    4300008: pCube18
-    4300010: pCylinder21
-    4300012: pCylinder20
-    4300014: pCube16
-    4300016: polySurface5
-    4300018: pPlane3
-    4300020: pPlane2
+    2100000: habits_textures_fille
+    2100002: peau_cheveux_rollers_textures_fille
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Fille
   externalObjects: {}
   materials:
     importMaterials: 1
