@@ -5685,21 +5685,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2777801561969246510, guid: 682b4c178b696cb46a2851ad4dac5b26,
-        type: 3}
-      propertyPath: resistance
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2777801561969246510, guid: 682b4c178b696cb46a2851ad4dac5b26,
-        type: 3}
-      propertyPath: gravityScale
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 646669881754163001, guid: 682b4c178b696cb46a2851ad4dac5b26,
-        type: 3}
-      propertyPath: jumpForce
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 2777801561969246511, guid: 682b4c178b696cb46a2851ad4dac5b26,
         type: 3}
       propertyPath: downAction

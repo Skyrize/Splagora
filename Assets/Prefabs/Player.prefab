@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  resistance: 1
-  gravityScale: 0.5
+  resistance: 0.5
+  gravityScale: 0.1
 --- !u!114 &2777801561969246511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374cded7456b79d4198bf0b7ba63fd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 7
+  jumpForce: 20
 --- !u!114 &7933935733172666551
 MonoBehaviour:
   m_ObjectHideFlags: 0
