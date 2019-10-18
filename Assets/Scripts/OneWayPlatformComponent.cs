@@ -10,7 +10,7 @@ public class OneWayPlatformComponent : MonoBehaviour
         parentCollider = transform.parent.GetComponent<Collider>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag.Equals("Player")) {
             Physics.IgnoreCollision(parentCollider, other.GetComponent<CharacterController>());
