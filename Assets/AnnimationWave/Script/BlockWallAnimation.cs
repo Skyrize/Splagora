@@ -49,36 +49,21 @@ public class BlockWallAnimation : MonoBehaviour
     private int CurrentStyleMeshIndex = 0;
     private Vector3 startPos;
     private Vector3 startScale;
-    private Sequence WaveAnim = null;
-
     public void Start()
     {
         startPos = transform.position;
         startScale = transform.localScale;
         CountStyleMat = allStyleMaterial.Count;
         CountStyleMesh = allMeshStyle.Count;
-        //AnimationBlock();
-        
-        
     }
 
     //Call when trigger tag "TriggerAnim" hit them , play WaveAnimation
     public void AnimationBlock()
     {
-        if (WaveAnim != null)
-        {
-
-            WaveAnim.Restart();
-            WaveAnim.Play().OnComplete(EndAnimation);
-            return;
-        }
-
         float offsetZ = Random.Range(minWaveOffSetZ, maxWaveOffSetZ);
 
         //Create Animation with tween ( interpolation )
-        WaveAnim = DOTween.Sequence();
-
-        WaveAnim.SetAutoKill(false);
+        Sequence WaveAnim = DOTween.Sequence();
         //Move forward
         WaveAnim.Append(gameObject.transform.DOMove(transform.position + new Vector3(0, 0, -offsetZ), ((TimeWave / 2)+Random.Range(0f, LatenceSwitchTexture))));
         //Rotation at the end of ForwardAnimation
@@ -129,15 +114,11 @@ public class BlockWallAnimation : MonoBehaviour
         }
         //Return pos
         WaveAnim.Append(gameObject.transform.DOMove(transform.position , TimeWave / 2));
-        
         //Snap position next END Anim
-
-    }
-    private void StartAnim()
-    {
         WaveAnim.Play().OnComplete(EndAnimation);
-    }
+        //Debug.Log("AnimationStart");
 
+    }
     private void SwitchTextureWave()
     {
         transform.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", AllTextureStyle[0]);
