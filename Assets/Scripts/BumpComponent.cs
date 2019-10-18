@@ -11,11 +11,9 @@ public class BumpComponent : MonoBehaviour
         
     // }
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag.CompareTo("Player") == 0)
-        {
+        if (other.gameObject.tag.CompareTo("Player") == 0) {
             Debug.Log("Boing");
-            other.gameObject.GetComponent<MovementComponent>().AddForce(transform.up * ejectionForce);
+            other.gameObject.GetComponent<MovementComponent>().Propulse(transform.up * ejectionForce);
         }
-        Debug.Log(other.gameObject.name);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -510,6 +510,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &534785581 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 556393237343057989, guid: 10b20f79be9125342a80234936a55de1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1187532278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &649351049
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +571,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9727b198ee091fd46a02ace594290f67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -868,6 +876,78 @@ PrefabInstance:
     - target: {fileID: 556393237343057990, guid: 10b20f79be9125342a80234936a55de1,
         type: 3}
       propertyPath: m_AllowMSAA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926416, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: replacementShader
+      value: 
+      objectReference: {fileID: 4800000, guid: 21ab3cf486d32d74682582cbe5c1c251, type: 3}
+    - target: {fileID: 139067831776926416, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: background.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926416, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: background.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926416, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: background.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926416, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: targetTexture
+      value: _CameraNormalsTexture
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926419, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: isGlobal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926419, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f3a277f855046f4bb505e3791e6052c,
+        type: 2}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: m_BeforeStackBundles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: m_BeforeStackBundles.Array.data[0].assemblyQualifiedName
+      value: PostProcessOutline, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: volumeTrigger
+      value: 
+      objectReference: {fileID: 534785581}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: antialiasingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: m_ShowToolkit
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
