@@ -35,7 +35,7 @@ MonoBehaviour:
     value: 1
   depthThreshold:
     overrideState: 1
-    value: 0.2
+    value: 3
   normalThreshold:
     overrideState: 1
     value: 0.4
@@ -47,7 +47,7 @@ MonoBehaviour:
     value: 1
   color:
     overrideState: 1
-    value: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
+    value: {r: 0.98589355, g: 0.990566, b: 0.989943, a: 1}
 --- !u!114 &114178475910842986
 MonoBehaviour:
   m_ObjectHideFlags: 3
