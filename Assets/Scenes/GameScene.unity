@@ -870,6 +870,11 @@ PrefabInstance:
       propertyPath: m_AllowMSAA
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 139067831776926418, guid: 10b20f79be9125342a80234936a55de1,
+        type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b20f79be9125342a80234936a55de1, type: 3}
 --- !u!1 &1323172136
