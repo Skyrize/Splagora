@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 556393237343057989}
   - component: {fileID: 556393237343057990}
+  - component: {fileID: 556393237343057991}
+  - component: {fileID: 556393237343057984}
   - component: {fileID: 556393237343057985}
-  - component: {fileID: 25089412286613528}
-  - component: {fileID: 25089412286613529}
-  - component: {fileID: 25089412286613530}
-  m_Layer: 8
+  - component: {fileID: 556393237343057995}
+  - component: {fileID: 556393237343057992}
+  - component: {fileID: 556393237343057988}
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -28,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556393237343057986}
-  m_LocalRotation: {x: 0.25000006, y: 0.25000006, z: -0.06698733, w: 0.9330127}
-  m_LocalPosition: {x: -6.716, y: 7.09, z: -16.65}
+  m_LocalRotation: {x: -0.048134066, y: 0.8091015, z: -0.06693283, w: -0.5818572}
+  m_LocalPosition: {x: 8.297955, y: 2.3606699, z: -0.7412445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: 30, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.276, y: -90.00001, z: 0}
 --- !u!20 &556393237343057990
 Camera:
   m_ObjectHideFlags: 0
@@ -45,7 +47,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.33988965, g: 0.34919012, b: 0.3584906, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -57,8 +59,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.1
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -66,17 +68,33 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!92 &556393237343057991
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556393237343057986}
+  m_Enabled: 1
+--- !u!124 &556393237343057984
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556393237343057986}
+  m_Enabled: 1
 --- !u!81 &556393237343057985
 AudioListener:
   m_ObjectHideFlags: 0
@@ -85,7 +103,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556393237343057986}
   m_Enabled: 1
---- !u!114 &25089412286613528
+--- !u!114 &556393237343057995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556393237343057986}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf843d41a56ca845abc61b1a1cb5dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 1
+--- !u!114 &556393237343057992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,60 +125,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 556393237343057986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 914d865d1e3e9429ba78b8735e5bb2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 556393237343057989}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 2
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 1
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles:
-  - assemblyQualifiedName: PostProcessOutline, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  m_AfterStackBundles: []
---- !u!114 &25089412286613529
+  freeLookEnabled: 1
+  showCursor: 0
+  lookSpeed: 3
+  moveSpeed: 3
+  sprintSpeed: 15
+--- !u!114 &556393237343057988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,30 +142,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 556393237343057986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Script: {fileID: 11500000, guid: cdcd06815c47d30489f70df42db56a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 6f3a277f855046f4bb505e3791e6052c, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
---- !u!114 &25089412286613530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556393237343057986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4b4379c9e29be43abdd227241e9dfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  replacementShader: {fileID: 4800000, guid: 21ab3cf486d32d74682582cbe5c1c251, type: 3}
-  renderTextureFormat: 0
-  filterMode: 0
-  renderTextureDepth: 24
-  cameraClearFlags: 2
-  background: {r: 1, g: 1, b: 1, a: 1}
-  targetTexture: _CameraNormalsTexture
+  frustum:
+    settings:
+      enableVolumes: 1
+      enableVolumesTextureMask: 1
+      enableVolumesNoiseMask: 1
+      enableDirectionalLights: 1
+      enableDirectionalLightsShadows: 1
+      enableSpotLights: 1
+      enableSpotLightsShadows: 1
+      enablePointLights: 1
+      enablePointLightsShadows: 1
+      enableLightsCookies: 1
+      enableOcclusionCulling: 1
+      occlusionCullingAccuracy: 4
+      enableTemporalReprojection: 1
+      temporalReprojectionFactor: 0.9
+      resolution: {x: 160, y: 88, z: 64}
+      farClipPlaneDistance: 25
+      density: 0.5
+      anisotropy: 0.8
+      color: {r: 0.25, g: 0.16615304, b: 0.103470325, a: 1}
+      colorStrength: 0.25
+    _computeMaximumDepthComputeShader: {fileID: 7200000, guid: a5d52c8a306e8b746ab60b306575aa3e,
+      type: 3}
+    _processOcclusionMapShader: {fileID: 4800000, guid: b9b5b0990ea6cfa4d96c89a9c1cec3e9,
+      type: 3}
+    _computeDataComputeShader: {fileID: 7200000, guid: 971d5d94be5bebc44aa6d832c17f5e62,
+      type: 3}
+    _computeAccumulationComputeShader: {fileID: 7200000, guid: 41ac7d79af1f9614ebe54df4f30ac3e0,
+      type: 3}
+  applyAsPostProcess: 1
+  computeMaximumDepthComputeShader: {fileID: 7200000, guid: a5d52c8a306e8b746ab60b306575aa3e,
+    type: 3}
+  processOcclusionMapShader: {fileID: 4800000, guid: b9b5b0990ea6cfa4d96c89a9c1cec3e9,
+    type: 3}
+  computeDataComputeShader: {fileID: 7200000, guid: 971d5d94be5bebc44aa6d832c17f5e62,
+    type: 3}
+  computeAccumulationComputeShader: {fileID: 7200000, guid: 41ac7d79af1f9614ebe54df4f30ac3e0,
+    type: 3}
+  postProcessShader: {fileID: 4800000, guid: 50255fa344dbd814c910fdafc5692b09, type: 3}
+  blueNoiseTexturesArray: {fileID: 18700000, guid: 518b8337a0340444aa49dd0780efa9c2,
+    type: 2}
+  _hasBeenAssigned: 1
