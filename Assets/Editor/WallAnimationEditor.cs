@@ -96,9 +96,9 @@ public class WallAnimationEditor : Editor
             //Simple float assign
             EditorGUILayout.Slider(TimeWave, 0.4f, 2, new GUIContent("Time during wave:"));
 
-            Rect customField = EditorGUILayout.GetControlRect(false, 200f);
+            //Rect customField = EditorGUILayout.GetControlRect(false, 200f);
             //GUILayout.Label("AA");
-            GUI.Label(customField, "AA", EditorStyles.textField);
+            //GUI.Label(customField, "AA", EditorStyles.textField);
 
             EditorGUILayout.Space();
             EditorGUILayout.Slider(Latence, 0, 1, new GUIContent("Latence to ComeBack"));
