@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374cded7456b79d4198bf0b7ba63fd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 20
+  jumpForce: 18
 --- !u!114 &419498646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: efd03938a5a4e9b4d8690bc614e727eb, type: 3}
       propertyPath: m_Name
-      value: PlayerGirl
+      value: SplatRoller
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: efd03938a5a4e9b4d8690bc614e727eb, type: 3}
       propertyPath: m_TagString
