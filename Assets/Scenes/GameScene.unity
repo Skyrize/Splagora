@@ -55417,12 +55417,12 @@ PrefabInstance:
     - target: {fileID: 7217915841176561057, guid: 59f37c2048ef888418567fcb834e4e5a,
         type: 3}
       propertyPath: MinIntervaleSpawn
-      value: 2000
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7217915841176561057, guid: 59f37c2048ef888418567fcb834e4e5a,
         type: 3}
       propertyPath: MaxIntervaleSpawn
-      value: 4000
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5762945354047274871, guid: 59f37c2048ef888418567fcb834e4e5a,
         type: 3}
