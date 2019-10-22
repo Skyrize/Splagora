@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9957,7 +9957,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &437989290 stripped
 GameObject:
@@ -28851,7 +28851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5afcf8bf07857b478b7daf2d2d4cd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementComponent: {fileID: 2141161734}
+  movementComponent: {fileID: 419498647, guid: 18cc74e2d3c27c94bb9bc268ef2b6657, type: 3}
 --- !u!114 &1254362482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44707,7 +44707,7 @@ Transform:
   - {fileID: 1254362480}
   - {fileID: 799122104}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1757297301 stripped
 GameObject:
@@ -55323,18 +55323,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0034751557, y: 0.0069452412, z: 0.0020499986}
   m_Center: {x: 0, y: 0.000000009313226, z: 0}
---- !u!114 &2141161734 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 419498647, guid: 18cc74e2d3c27c94bb9bc268ef2b6657,
-    type: 3}
-  m_PrefabInstance: {fileID: 421080104}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a86a3b50add29144911fb2fd1a530ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2141232289 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 101694, guid: 742b791ea88e8134bb575e7c4600ec96,

@@ -68,7 +68,7 @@ public class SpeedPowerupController : MonoBehaviour
         var powerupBaehaviour = powerupGameObject.GetComponent<SpeedPowerupBehaviour>();
 
         powerupBaehaviour.SetPowerup(powerup);
-        powerupBaehaviour.controller = this;
+        powerupBaehaviour.controller = this ;
         powerupGameObject.transform.position = position;
 
         return powerupGameObject;

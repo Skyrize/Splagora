@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class SpeedPowerupActions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField]
     private MovementComponent movementComponent;
+
+    public void SetMovmentComponent(MovementComponent movementComponent)
+    {
+        this.movementComponent = movementComponent;
+    }
 
     public void HightSpeedStartAction()
     {
+        Debug.Log("Start SpeedPowerUp");
         movementComponent.speed *= 2;
     }
 
     public void HightSpeedEndAction()
     {
-        movementComponent.speed = 8;//movementComponent.defaultSpeed;
+        Debug.Log("End SpeedPowerUp "  + this.movementComponent.tag);
+        movementComponent.speed = 8;
     }
 }

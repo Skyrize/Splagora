@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,8 +31,23 @@ public class SpeedPowerupBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Player1" || other.gameObject.tag == "Player2")
         {
-            ActivatePowerup();
-            gameObject.SetActive(false);
+            try
+            {
+                MovementComponent movementTarget = other.GetComponentInParent<MovementComponent>();
+                controller.GetComponent<SpeedPowerupActions>().SetMovmentComponent(movementTarget);
+                ActivatePowerup();
+                gameObject.SetActive(false);
+            }
+            catch (NullReferenceException)
+            {
+                Debug.LogWarning("The player collider is null");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Unknown error " + e.ToString());
+            }
+
+            
         }
     }
 
