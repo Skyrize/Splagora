@@ -131,6 +131,7 @@ MonoBehaviour:
   speed: 10
   resistance: 0.5
   gravityScale: 0.1
+  airControl: 2
 --- !u!1001 &4994714827267778340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: efd03938a5a4e9b4d8690bc614e727eb, type: 3}
       propertyPath: m_Name
-      value: PlayerGirl
+      value: SplatRoller
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: efd03938a5a4e9b4d8690bc614e727eb, type: 3}
       propertyPath: m_TagString
