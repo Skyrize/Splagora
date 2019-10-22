@@ -28,7 +28,7 @@ public class SpeedPowerupBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player1" || other.gameObject.tag == "Player2")
         {
             ActivatePowerup();
             gameObject.SetActive(false);
