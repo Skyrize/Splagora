@@ -8,6 +8,7 @@ public class MovementComponent : MonoBehaviour
     public float speed = 1;
     public float resistance = 1;
     public float gravityScale = 0.5f;
+    public float airControl = 2;
 
     private InputComponent input;
     private CharacterController controller;
@@ -52,7 +53,14 @@ public class MovementComponent : MonoBehaviour
     private void Move()
     {
         motion = input.direction * speed;
-        controller.Move((motion + gravity + externalForce) * Time.fixedDeltaTime);
+        if (controller.isGrounded) {
+            controller.Move((motion + gravity + externalForce) * Time.fixedDeltaTime);
+        } else {
+            externalForce += motion * Time.fixedDeltaTime * airControl;
+            //externalForce.x = Mathf.Lerp(externalForce.x, 0, motion.magnitude);
+            //(Vector3.Lerp(externalForce, motion, motion.magnitude)
+            controller.Move((externalForce + gravity) * Time.fixedDeltaTime);
+        }
     }
 
     private void ReduceExternalForces()
