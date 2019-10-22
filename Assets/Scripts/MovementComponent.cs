@@ -16,8 +16,10 @@ public class MovementComponent : MonoBehaviour
     private Vector3 externalForce = Vector3.zero;
     private Vector3 gravity = Vector3.zero;
 
-    public float velocity {
-        get {
+    public float velocity
+    {
+        get
+        {
             return Mathf.Abs(motion.x + externalForce.x);
         }
     }
@@ -51,11 +53,14 @@ public class MovementComponent : MonoBehaviour
     }
 
     private void Move()
-    {
+    {      
         motion = input.direction * speed;
-        if (controller.isGrounded) {
+        if (controller.isGrounded)
+        {
             controller.Move((motion + gravity + externalForce) * Time.fixedDeltaTime);
-        } else {
+        }
+        else
+        {
             externalForce += motion * Time.fixedDeltaTime * airControl;
             //externalForce.x = Mathf.Lerp(externalForce.x, 0, motion.magnitude);
             //(Vector3.Lerp(externalForce, motion, motion.magnitude)

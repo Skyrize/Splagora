@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using XboxCtrlrInput; //system xbox
 
 public class InputComponent : MonoBehaviour
 {
     [Header("Inputs")]
     public string xAxis;
-    public KeyCode downAction;
+    //public KeyCode downAction;
     public KeyCode jump;
 
     [Space]
@@ -23,19 +24,46 @@ public class InputComponent : MonoBehaviour
 
     private float timeJumpPressed = 0;
 
+    //Variables ajouter pour XBOX controller
+    public XboxController controller;
+
+    //Void Start ajouter pour checker les manettes au départ
+    private void Start()
+    {
+        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            Debug.Log("Windows Only:: Any Controller Plugged in: " + XCI.IsPluggedIn(XboxController.Any).ToString());
+
+            Debug.Log("Windows Only:: Controller 1 Plugged in: " + XCI.IsPluggedIn(XboxController.First).ToString());
+            Debug.Log("Windows Only:: Controller 2 Plugged in: " + XCI.IsPluggedIn(XboxController.Second).ToString());
+            Debug.Log("Windows Only:: Controller 3 Plugged in: " + XCI.IsPluggedIn(XboxController.Third).ToString());
+            Debug.Log("Windows Only:: Controller 4 Plugged in: " + XCI.IsPluggedIn(XboxController.Fourth).ToString());
+        }
+    }
+
     private void checkInput()
     {
+
         direction = new Vector3(Input.GetAxis(xAxis), 0, 0);
-        if (Input.GetKey(downAction) == true) {
+        if (XCI.GetAxis(XboxAxis.LeftStickY) <= -0.7) 
+        {
             onDownAction.Invoke();
-        }
-        if (Input.GetKeyDown(jump) == true) {
+        }       
+
+        //if (Input.GetKeyDown(jump) == true) 
+        if (XCI.GetButtonDown(XboxButton.A, controller))
+        {
             timeJumpPressed = Time.time;
         }
-        if (Input.GetKeyUp(jump) == true) {
-            if (Time.time - timeJumpPressed > timeForLongInput) {
+        //if (Input.GetKeyUp(jump) == true) 
+        if (XCI.GetButtonUp(XboxButton.A, controller))
+        {
+            if (Time.time - timeJumpPressed > timeForLongInput)
+            {
                 onLongJump.Invoke();
-            } else {
+            }
+            else
+            {
                 onQuickJump.Invoke();
             }
         }
