@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 26104254496207712}
+  duration: 0
   powerup:
     name: HightSpeed
-    duration: 5
     startAction:
       m_PersistentCalls:
         m_Calls:
@@ -183,10 +183,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupPrefab: {fileID: 8955780935279315860, guid: f61dcbb3739db3a45920de95bf03ff21,
     type: 3}
-  Origin: {fileID: 26104254496207741}
+  Origin: {fileID: 26104254496207712}
   powerups:
   - name: HeighSpeed
-    duration: 5
     startAction:
       m_PersistentCalls:
         m_Calls:
@@ -215,6 +214,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  duration: 0
 --- !u!114 &26104254496207715
 MonoBehaviour:
   m_ObjectHideFlags: 0
