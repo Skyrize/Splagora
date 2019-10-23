@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpeedPowerupBehaviour : MonoBehaviour
 {
     public SpeedPowerupController controller;
+    public int duration;
 
     [SerializeField]
     private SpeedPowerup powerup;
@@ -31,14 +32,13 @@ public class SpeedPowerupBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Player1" || other.gameObject.tag == "Player2")
         {
-            try
-            {
+            try {
                 MovementComponent movementTarget = other.GetComponentInParent<MovementComponent>();
                 controller.GetComponent<SpeedPowerupActions>().SetMovmentComponent(movementTarget);
                 ActivatePowerup();
                 gameObject.SetActive(false);
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
                 Debug.LogWarning("The player collider is null");
             }

@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedPowerupController : MonoBehaviour
 {
     public GameObject powerupPrefab;
+    public GameObject Origin;
 
     public List<SpeedPowerup> powerups;
+    public int duration;
+
 
     public Dictionary<SpeedPowerup, float> activePowerups = new Dictionary<SpeedPowerup, float>();
 
@@ -19,7 +23,7 @@ public class SpeedPowerupController : MonoBehaviour
         HandeActivePowerups();
         if (Input.GetKeyDown(KeyCode.T))
         {
-            SpawnPowerup(powerups[0], new Vector3(2.35f, 2.65f, 1.7f)) ;
+            SpawnPowerup(powerups[0], new Vector3(-1.925f, 2.646f, 1.75f)) ;
         }
     }
 
@@ -53,24 +57,26 @@ public class SpeedPowerupController : MonoBehaviour
         if (!activePowerups.ContainsKey(powerup))
         {
             powerup.Start();
-            activePowerups.Add(powerup, powerup.duration);
+            activePowerups.Add(powerup, duration);
         }
         else
         {
-            activePowerups[powerup] += powerup.duration;
+            activePowerups[powerup] += duration;
         }
         keys = new List<SpeedPowerup>(activePowerups.Keys);
     }
 
     public GameObject SpawnPowerup(SpeedPowerup powerup, Vector3 position)
     {
-        GameObject powerupGameObject = Instantiate(powerupPrefab);
-        var powerupBaehaviour = powerupGameObject.GetComponent<SpeedPowerupBehaviour>();
-
-        powerupBaehaviour.SetPowerup(powerup);
-        powerupBaehaviour.controller = this ;
-        powerupGameObject.transform.position = position;
-
-        return powerupGameObject;
+        try
+        {
+            Quaternion rotation = Quaternion.Euler(0,0,0);
+            GameObject powerupGameObject = Instantiate(Origin, position, rotation);
+            return powerupGameObject;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 }

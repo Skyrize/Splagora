@@ -9,8 +9,6 @@ public class SpeedPowerup
 {
     [SerializeField]
     public string name;
-    [SerializeField]
-    public float duration;
 
     public UnityEvent startAction;
     public UnityEvent endAction;
