@@ -1,15 +1,102 @@
 fileFormatVersion: 2
-guid: efd03938a5a4e9b4d8690bc614e727eb
+guid: c09a6add00c63f241a91c3f8da73f6af
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: habits_textures_fille
-    2100002: peau_cheveux_rollers_textures_fille
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: chest
+    100002: chest 1
+    100004: //RootNode
+    100006: Fille
+    100008: head
+    100010: head1
+    100012: hips
+    100014: hips1
+    100016: L_clavicle1
+    100018: L_elbow
+    100020: L_elbow1
+    100022: L_Foot
+    100024: L_foot6_1
+    100026: L_Foot_handle
+    100028: L_hand
+    100030: L_hand1
+    100032: L_hand_end1
+    100034: L_hand_handle
+    100036: L_hips
+    100038: L_knee
+    100040: L_knee1
+    100042: L_shoulder
+    100044: L_Shoulder1
+    100046: msater_ctrl
+    100048: neck
+    100050: neck1
+    100052: R_clavicle1
+    100054: R_elbow
+    100056: R_elbow1
+    100058: R_Foot
+    100060: R_foot6_1
+    100062: R_foot_handle
+    100064: R_hand
+    100066: R_hand1
+    100068: R_hand_end1
+    100070: R_Hand_handle
+    100072: R_hips
+    100074: R_knee
+    100076: R_knee1
+    100078: R_shoulder
+    100080: R_Shoulder1
+    100082: spine
+    100084: spine 1
+    100086: spine1
+    400000: chest
+    400002: chest 1
+    400004: Fille
+    400006: //RootNode
+    400008: head
+    400010: head1
+    400012: hips
+    400014: hips1
+    400016: L_clavicle1
+    400018: L_elbow
+    400020: L_elbow1
+    400022: L_Foot
+    400024: L_foot6_1
+    400026: L_Foot_handle
+    400028: L_hand
+    400030: L_hand1
+    400032: L_hand_end1
+    400034: L_hand_handle
+    400036: L_hips
+    400038: L_knee
+    400040: L_knee1
+    400042: L_shoulder
+    400044: L_Shoulder1
+    400046: msater_ctrl
+    400048: neck
+    400050: neck1
+    400052: R_clavicle1
+    400054: R_elbow
+    400056: R_elbow1
+    400058: R_Foot
+    400060: R_foot6_1
+    400062: R_foot_handle
+    400064: R_hand
+    400066: R_hand1
+    400068: R_hand_end1
+    400070: R_Hand_handle
+    400072: R_hips
+    400074: R_knee
+    400076: R_knee1
+    400078: R_shoulder
+    400080: R_Shoulder1
+    400082: spine
+    400084: spine 1
+    400086: spine1
+    2100000: Fille_et_Garcon
+    2100002: cheveux_garcon_et_fille
     4300000: Fille
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Fille
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -41,7 +128,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.01
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -63,7 +150,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -90,7 +177,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
