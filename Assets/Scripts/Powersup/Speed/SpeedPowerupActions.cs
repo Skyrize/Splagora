@@ -14,7 +14,7 @@ public class SpeedPowerupActions : MonoBehaviour
     public void HightSpeedStartAction()
     {
         Debug.Log("Start SpeedPowerUp");
-        movementComponent.speed = 0;//*= 2;
+        movementComponent.speed *= 2;
     }
 
     public void HightSpeedEndAction()
