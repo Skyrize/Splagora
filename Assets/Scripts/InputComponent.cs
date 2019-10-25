@@ -44,7 +44,7 @@ public class InputComponent : MonoBehaviour
     private void checkInput()
     {
 
-        direction = new Vector3(Input.GetAxis(xAxis), 0, 0);
+        direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
         if (XCI.GetAxis(XboxAxis.LeftStickY) <= -0.7) 
         {
             onDownAction.Invoke();
