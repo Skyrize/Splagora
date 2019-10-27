@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using XboxCtrlrInput;
 
 public class InputComponent : MonoBehaviour
 {
     [Header("Inputs")]
     public string xAxis;
-    public KeyCode downAction;
+    //public KeyCode downAction;
     public KeyCode jump;
 
     [Space]
@@ -23,19 +24,32 @@ public class InputComponent : MonoBehaviour
 
     private float timeJumpPressed = 0;
 
+    //For XBOX plug_in
+    public XboxController controller;
+
     private void checkInput()
     {
-        direction = new Vector3(Input.GetAxis(xAxis), 0, 0);
-        if (Input.GetKey(downAction) == true) {
+
+        direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
+        if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
+        {
             onDownAction.Invoke();
         }
-        if (Input.GetKeyDown(jump) == true) {
+
+        //if (Input.GetKeyDown(jump) == true) 
+        if (XCI.GetButtonDown(XboxButton.A, controller))
+        {
             timeJumpPressed = Time.time;
         }
-        if (Input.GetKeyUp(jump) == true) {
-            if (Time.time - timeJumpPressed > timeForLongInput) {
+        //if (Input.GetKeyUp(jump) == true) 
+        if (XCI.GetButtonUp(XboxButton.A, controller))
+        {
+            if (Time.time - timeJumpPressed > timeForLongInput)
+            {
                 onLongJump.Invoke();
-            } else {
+            }
+            else
+            {
                 onQuickJump.Invoke();
             }
         }
