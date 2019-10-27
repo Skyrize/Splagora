@@ -27,7 +27,7 @@ public class SplatMakerExample : MonoBehaviour {
 		splatsY = SplatManagerSystem.instance.splatsY;
         
 			channelMask1 = new Vector4(1,0,0,0);
-			channelMask = new Vector4(0,1,0,0);
+			channelMask = new Vector4(0,0,1,1);
 
 
         // A uniformiser (y a une bool différente qui remplit la même fonction dans les scripts suivants "Menu.cs", "SplatMakerExample.cs" et celui-ci) Faire que ce soit la même qui gère les trois trucs.

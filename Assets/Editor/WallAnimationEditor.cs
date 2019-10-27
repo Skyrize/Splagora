@@ -206,7 +206,7 @@ public class WallAnimationEditor : Editor
 
         if (shakeScale)
         {
-            EditorGUILayout.Slider(forceShake, 30, 200, new GUIContent("Force of Shaking:"));
+            EditorGUILayout.Slider(forceShake, 1,50, new GUIContent("Force of Shaking:"));
             
         }
 
