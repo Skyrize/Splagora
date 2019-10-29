@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             EndTurn();
 
         }
-        else
+        else if(isGaming)
         {
             ShowWiner.text = Mathf.Round(Chrono - TimePast).ToString();
         }
