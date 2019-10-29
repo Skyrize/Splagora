@@ -26,8 +26,13 @@ public class InputComponent : MonoBehaviour
 
     //For XBOX plug_in
     public XboxController controller;
-
+    public CharacterController charaController;
     bool startJump;
+
+    public void Start()
+    {
+        charaController = GetComponent<CharacterController>();
+    }
     private void checkInput()
     {
 
@@ -37,23 +42,6 @@ public class InputComponent : MonoBehaviour
             onDownAction.Invoke();
         }
         /*
-        //if (Input.GetKeyDown(jump) == true) 
-        if (XCI.GetButtonDown(XboxButton.A, controller))
-        {
-            timeJumpPressed = Time.time;
-        }
-        //if (Input.GetKeyUp(jump) == true) 
-        if (XCI.GetButtonUp(XboxButton.A, controller))
-        {
-            if (Time.time - timeJumpPressed > timeForLongInput)
-            {
-                onLongJump.Invoke();
-            }
-            else
-            {
-                onQuickJump.Invoke();
-            }
-        }*/
         if (XCI.GetButtonDown(XboxButton.A, controller))
         {
             startJump = true;
@@ -75,7 +63,23 @@ public class InputComponent : MonoBehaviour
                 onQuickJump.Invoke();
                 startJump = false;
             }
+        }*/
+        if (XCI.GetButtonDown(XboxButton.A, controller))
+        {
+            float velocity = charaController.velocity.magnitude;
+            if (velocity < 3f)
+            {
+                onQuickJump.Invoke();
+
+
+            }
+            else
+            {
+                onLongJump.Invoke();
+            }
+            
         }
+
 
 
     }
