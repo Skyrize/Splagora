@@ -16,6 +16,8 @@ public class MovementComponent : MonoBehaviour
     private Vector3 externalForce = Vector3.zero;
     private Vector3 gravity = Vector3.zero;
 
+    private Animator anim;
+
     public float velocity {
         get {
             return Mathf.Abs(motion.x + externalForce.x);
@@ -36,6 +38,9 @@ public class MovementComponent : MonoBehaviour
         controller = GetComponent<CharacterController>();
         if (!controller)
             throw new MissingComponentException("No CharacterController on " + name);
+
+        anim = GetComponentInChildren<Animator>();
+
     }
 
     private void ApplyGravity()
@@ -56,10 +61,10 @@ public class MovementComponent : MonoBehaviour
         if (controller.isGrounded) {
             controller.Move((motion + gravity + externalForce) * Time.fixedDeltaTime);
         } else {
-            externalForce += motion * Time.fixedDeltaTime * airControl;
+            //externalForce += motion * Time.fixedDeltaTime * airControl;
             //externalForce.x = Mathf.Lerp(externalForce.x, 0, motion.magnitude);
             //(Vector3.Lerp(externalForce, motion, motion.magnitude)
-            controller.Move((externalForce + gravity) * Time.fixedDeltaTime);
+            controller.Move((externalForce + gravity + motion*airControl) * Time.fixedDeltaTime);
         }
     }
 
@@ -74,12 +79,27 @@ public class MovementComponent : MonoBehaviour
             externalForce = Vector3.zero;
         }
     }
+    public void AnimationPlayer()
+    {
+        //Debug.Log(controller.velocity.magnitude);
+        if (controller.isGrounded)
+        {
+            anim.SetFloat("Velocity", controller.velocity.magnitude);
+            anim.SetBool("IsJump", false);
+        }
+        else
+        {
+            anim.SetFloat("Velocity", 0);
+            anim.SetBool("IsJump", true);
+        }
+    }
 
     private void FixedUpdate() {
         Turn();
         ApplyGravity();
         Move();
         ReduceExternalForces();
+        AnimationPlayer();
     }
 
 }

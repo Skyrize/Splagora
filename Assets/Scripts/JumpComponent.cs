@@ -16,6 +16,7 @@ public class JumpComponent : MonoBehaviour
 
     private CharacterController controller;
     private MovementComponent movement;
+    private bool canJump;
     // private bool wasInAir = false;
     // Start is called before the first frame update
     void Start()
@@ -26,17 +27,25 @@ public class JumpComponent : MonoBehaviour
         movement = GetComponent<MovementComponent>();
         if (!movement)
             throw new MissingComponentException("No MovementComponent on " + name);
+
+        canJump = true;
+    }
+
+    public void Update()
+    {
+        if (controller.isGrounded)
+        {
+            canJump = true;
+        }
     }
 
     public void Jump(Vector3 direction)
     {
            
-        if (controller.isGrounded) {
-            Debug.Log("JUUUUMP");
+        if (canJump) {
+            canJump = false;
             movement.Propulse(direction * jumpForce);
-        } else {
-            Debug.Log("Can't jump .. because " + controller.isGrounded);
-        }
+        } 
     }
 
     public void QuickJump()
@@ -48,4 +57,5 @@ public class JumpComponent : MonoBehaviour
     {
         Jump(transform.up + transform.forward * 0.5f);
     }
+
 }

@@ -5,30 +5,50 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject FacadeCombine,FacadeBloc;
-
+    public GameObject FacadeCombine,FacadeBloc,FacadeCombine2,FacadeBloc2;
+    public float Chrono;
+    public float TimePast;
     private Texture texture;
     private RenderTexture rendTex;
-
-    public Texture2D tex2D;
-    public List<Color> allColor = new List<Color>();
-    public Color MainColor;
+    private bool isGaming;
+    private Texture2D tex2D;
+    private List<Color> allColor = new List<Color>();
+    private Color MainColor;
     public Text ShowWiner;
     public int ScoreBleu,ScoreRouge;
+    public GameObject P1, P2;
+    public Material Style1, Style2;
+    private int Turn;
 
-    public int QualitySeting;
     // Start is called before the first frame update
     void Start()
     {
-
+        Turn = 1;
+        isGaming = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        TimePast += Time.deltaTime;
+        if(TimePast>= Chrono && isGaming)
+        {
+            isGaming = false;
+            EndTurn();
+        }
     }
-    
+    public void EndTurn()
+    {
+        ShowWiner.text = "CHARGEMENT";
+
+        P1.GetComponent<MovementComponent>().enabled = false;
+        P2.GetComponent<MovementComponent>().enabled = false;
+
+        CalculateScore();
+
+
+        StartCoroutine(NextTurn());
+    }
     public void CalculateScore()
     {
         Material target = FacadeCombine.GetComponent<MeshRenderer>().material;
@@ -41,15 +61,8 @@ public class GameManager : MonoBehaviour
         tex2D = toTexture2D(rendTex,height,width);
 
         AnalyseColor(tex2D);
-
-        if (ScoreBleu > ScoreRouge)
-        {
-            ShowWiner.text = "BLEU";
-        }
-        else
-        {
-            ShowWiner.text = "ROUGE";
-        }
+        //StartCoroutine(AnalyseColour(tex2D));
+        
 
         SetTextureToTransition();
 
@@ -80,6 +93,7 @@ public class GameManager : MonoBehaviour
         Biliner = 1,
         Average = 2
     }
+
     private static Texture2D ResizeTexture(Texture2D pSource, ImageFilterMode pFilterMode, float pScale)
     {
 
@@ -210,7 +224,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    if (target.GetPixel(i, y).b > 0.8f){
+                    if (target.GetPixel(i, y).g > 0.8f){
                         
                         ScoreBleu++;
                     }
@@ -223,7 +237,6 @@ public class GameManager : MonoBehaviour
                
             }
         }
-        Debug.Log(target.GetPixel(1, 1).b);
 
     }
 
@@ -233,6 +246,48 @@ public class GameManager : MonoBehaviour
         {
             bloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
         }
+    }
+
+    IEnumerator NextTurn()
+    {
+        if (ScoreBleu > ScoreRouge)
+        {
+            ShowWiner.text = "Equipe Vert Gagne!";
+        }
+        else
+        {
+            ShowWiner.text = "Equipe Rouge Gagne!";
+
+        }
+        P1.GetComponent<MovementComponent>().enabled = true;
+        P2.GetComponent<MovementComponent>().enabled = true;
+        FindObjectOfType<TriggerAnim>().Transition();
+
+        yield return new WaitForSeconds(3.5f);
+
+        switch (Turn)
+        {
+            case 1:
+                Turn++;
+                FacadeCombine2.SetActive(true);
+                FacadeBloc.SetActive(false);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+        
+
+        
+
+        TimePast = 0;
+        isGaming = true;
+
+        ShowWiner.text = "";
+
     }
 
 }
