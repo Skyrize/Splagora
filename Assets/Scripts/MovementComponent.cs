@@ -100,6 +100,9 @@ public class MovementComponent : MonoBehaviour
         Move();
         ReduceExternalForces();
         AnimationPlayer();
+
+        //Freeze z axis
+        transform.position = new Vector3(transform.position.x, transform.position.y, 1.5f);
     }
 
 }

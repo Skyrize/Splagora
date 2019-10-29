@@ -20,13 +20,14 @@ public class InputComponent : MonoBehaviour
     [Space]
     [Header("Values")]
     public Vector3 direction = Vector3.zero;
-    public float timeForLongInput = 1;
+    public float timeForLongInput = 0.05f;
 
     private float timeJumpPressed = 0;
 
     //For XBOX plug_in
     public XboxController controller;
 
+    bool startJump;
     private void checkInput()
     {
 
@@ -35,7 +36,7 @@ public class InputComponent : MonoBehaviour
         {
             onDownAction.Invoke();
         }
-
+        /*
         //if (Input.GetKeyDown(jump) == true) 
         if (XCI.GetButtonDown(XboxButton.A, controller))
         {
@@ -52,7 +53,31 @@ public class InputComponent : MonoBehaviour
             {
                 onQuickJump.Invoke();
             }
+        }*/
+        if (XCI.GetButtonDown(XboxButton.A, controller))
+        {
+            startJump = true;
+            timeJumpPressed = 0;
         }
+        if (XCI.GetButton(XboxButton.A, controller) && startJump)
+        {
+            timeJumpPressed += Time.deltaTime;
+            if (timeJumpPressed >= timeForLongInput && startJump)
+            {
+                onLongJump.Invoke();
+                startJump = false;
+            }
+        }
+        if (XCI.GetButtonUp(XboxButton.A, controller))
+        {
+            if (timeJumpPressed < timeForLongInput)
+            {
+                onQuickJump.Invoke();
+                startJump = false;
+            }
+        }
+
+
     }
     // Update is called once per frame
     void Update()

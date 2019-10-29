@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
         {
             isGaming = false;
             EndTurn();
+
+        }
+        else
+        {
+            ShowWiner.text = Mathf.Round(Chrono - TimePast).ToString();
         }
     }
     public void EndTurn()
@@ -256,7 +261,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ShowWiner.text = "Equipe Rouge Gagne!";
+            ShowWiner.text = "Equipe Orange Gagne!";
 
         }
         P1.GetComponent<MovementComponent>().enabled = true;
@@ -279,7 +284,8 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-        
+        ScoreRouge = 0;
+        ScoreBleu = 0;
 
         
 
