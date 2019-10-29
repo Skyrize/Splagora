@@ -935,6 +935,7 @@ namespace Es.InkPainter
 		/// <param name="newTexture">New rendertexture.</param>
 		public void SetPaintNormalTexture(string materialName, RenderTexture newTexture)
 		{
+            
 			materialName = materialName.Replace(" (Instance)", "");
 			var data = paintSet.FirstOrDefault(p => p.material.name.Replace(" (Instance)", "") == materialName);
 			if(data == null)
