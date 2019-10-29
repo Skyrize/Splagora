@@ -1362,17 +1362,17 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.978, b: 0.006866356, a: 1}
-        key1: {r: 0.9952762, g: 1, b: 0.9637251, a: 1}
-        key2: {r: 0.99951553, g: 0.9802563, b: 0.105002455, a: 0}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 0, b: 0.8499565, a: 1}
+        key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 1, g: 1, b: 1, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 16962
-        ctime2: 39707
+        ctime1: 65535
+        ctime2: 65535
         ctime3: 65535
         ctime4: 0
         ctime5: 0
@@ -1387,7 +1387,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 4
+        m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -3767,7 +3767,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 0
+    enabled: 1
     ratio: 0
     light: {fileID: 0}
     randomDistribution: 1
@@ -6052,7 +6052,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -6060,9 +6060,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 1, g: 0.99978375, b: 1, a: 1}
+        key1: {r: 1, g: 0, b: 0.81733656, a: 1}
+        key2: {r: 0.29411763, g: 0.0432526, b: 0.29411763, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -6070,7 +6070,7 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
         ctime1: 65535
-        ctime2: 0
+        ctime2: 52428
         ctime3: 0
         ctime4: 0
         ctime5: 0
@@ -8467,7 +8467,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 1
-    light: {fileID: 0}
+    light: {fileID: 660756892626445737, guid: 4ed6ea6496486bb4f92b00ab86b406e7, type: 3}
     randomDistribution: 1
     color: 1
     range: 1
