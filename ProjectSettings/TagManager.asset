@@ -6,8 +6,7 @@ TagManager:
   tags:
   - TriggerAnim
   - Platform
-  - Player1
-  - Player2
+  - brightness
   layers:
   - Default
   - TransparentFX
