@@ -26,7 +26,18 @@ namespace Es.InkPainter.Sample
 		[SerializeField]
 		bool erase = false;
 
-        bool turnP1 = true;
+        public bool turnP1 = true;
+
+        public Brush GetPlayerBrush(string playerName)
+        {
+            if (playerName == Player1.name) {
+                return brush1;
+            } else if (playerName == Player2.name) {
+                return brush2;
+            }
+            return null;
+        }
+
 		private void Update()
 		{
             if (turnP1)
