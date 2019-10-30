@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Es.InkPainter.Sample;
 using Es.InkPainter;
+using Es.InkPainter.Sample;
 
 public class SplashBombComponent : MonoBehaviour
 {
