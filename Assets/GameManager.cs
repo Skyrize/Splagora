@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,8 +51,6 @@ public class GameManager : MonoBehaviour
         P2.GetComponent<MovementComponent>().enabled = false;
 
         CalculateScore();
-
-
         StartCoroutine(NextTurn());
     }
     public void CalculateScore()
@@ -63,9 +62,12 @@ public class GameManager : MonoBehaviour
         int height = texture.height;
         int width = texture.width;
 
-        tex2D = toTexture2D(rendTex,height,width);
+            tex2D = toTexture2D(rendTex, height, width);
+        //new Thread(() =>
+        //{
 
-        AnalyseColor(tex2D);
+            AnalyseColor(tex2D);
+        //}).Start();
         //StartCoroutine(AnalyseColour(tex2D));
         
 
@@ -215,33 +217,43 @@ public class GameManager : MonoBehaviour
 
     private void AnalyseColor(Texture2D target)
     {
-        int height = target.height;
-        int width = target.width;
+        Color[] colors = target.GetPixels(0, 0, target.width, target.height);
+        //int height = target.height;
+        //int width = target.width;
+        foreach (Color color in colors) {
+            if (color.g > 0.8f) {
 
-        for(int i=0; i<height; i++)
-        {
-            for(int y = 0; y < width; y++)
-            {
-                if (!allColor.Contains(target.GetPixel(i, y)))
-                {
-
-                    allColor.Add(target.GetPixel(i, y));
-                }
-                else
-                {
-                    if (target.GetPixel(i, y).g > 0.8f){
-                        
-                        ScoreBleu++;
-                    }
-                    if(target.GetPixel(i,y).r > 0.8f)
-                    {
-                        ScoreRouge++;
-                    }
-                    
-                }
-               
+                ScoreBleu++;
             }
+            if (color.r > 0.8f) {
+                ScoreRouge++;
+            }
+
         }
+        //for(int i=0; i<height; i++)
+        //{
+        //    for(int y = 0; y < width; y++)
+        //    {
+                //if (!allColor.Contains(target.GetPixel(i, y)))
+                //{
+
+                //    allColor.Add(target.GetPixel(i, y));
+                //}
+                //else
+                //{
+                    //if (target.GetPixel(i, y).g > 0.8f){
+                        
+                    //    ScoreBleu++;
+                    //}
+                    //if(target.GetPixel(i,y).r > 0.8f)
+                    //{
+                    //    ScoreRouge++;
+                    //}
+                    
+                //}
+               
+            //}
+        //}
 
     }
 
