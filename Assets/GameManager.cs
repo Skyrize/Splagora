@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject FacadeCombine,FacadeBloc,FacadeCombine2,FacadeBloc2;
+    public GameObject FacadeCombine,FacadeBloc,FacadeCombine2, FacadeBloc2,FacadeBlocAnim;
     public float Chrono;
     public float TimePast;
     private Texture texture;
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(NextTurn());
     }
+
     public void CalculateScore()
     {
         Material target = FacadeCombine.GetComponent<MeshRenderer>().material;
@@ -69,7 +70,7 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(AnalyseColour(tex2D));
         
 
-        SetTextureToTransition();
+        SetTextureToTransition(FacadeBloc);
 
         FacadeCombine.SetActive(false);
         FacadeBloc.SetActive(true);
@@ -244,17 +245,20 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    private void SetTextureToTransition()
+    //Set texture on animated wall
+    public  void SetTextureToTransition(GameObject targetWall)
     {
-        foreach(Transform bloc in FacadeBloc.transform)
+        foreach(Transform bloc in targetWall.transform)
         {
             bloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
         }
     }
+    
+
 
     IEnumerator NextTurn()
     {
+
         if (ScoreBleu > ScoreRouge)
         {
             ShowWiner.text = "Equipe Vert Gagne!";

@@ -12,6 +12,8 @@ public class SpawnerObstacle : MonoBehaviour
     public List<Image> FeedbackSpawners = new List<Image>();
     public float TimeShowFeedBack;
 
+    public GameObject targetWallAnim;
+
     float timePast=0;
     float nextSpawneTime=3;
     bool isSpawning;
@@ -67,7 +69,7 @@ public class SpawnerObstacle : MonoBehaviour
 
         yield return new WaitForSeconds(TimeShowFeedBack);
 
-        GameObject obstacle=Instantiate(prefabTram, currentSpawn.position, Quaternion.identity);
+        GameObject obstacle=Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
         //RightSpawn
         if (indexSide == 0)
         {
@@ -79,6 +81,7 @@ public class SpawnerObstacle : MonoBehaviour
             obstacle.GetComponent<TramObstacle>().SetDirection(1);
 
         }
+        FindObjectOfType<GameManager>().SetTextureToTransition(targetWallAnim);
         isSpawning = false;
         timePast = 0;
         StartSpawning();

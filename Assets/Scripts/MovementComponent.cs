@@ -18,6 +18,9 @@ public class MovementComponent : MonoBehaviour
 
     private Animator anim;
 
+    [Header("Particules")]
+    public GameObject StopParticule;
+
     public float velocity {
         get {
             return Mathf.Abs(motion.x + externalForce.x);
@@ -26,7 +29,9 @@ public class MovementComponent : MonoBehaviour
 
     public void Propulse(Vector3 force)
     {
+        Debug.Log("Propulse");
         externalForce = force;
+
     }
 
     // Start is called before the first frame update
@@ -93,6 +98,14 @@ public class MovementComponent : MonoBehaviour
             anim.SetBool("IsJump", true);
         }
     }
+    public void ParticuleSpawn()
+    {
+        if (controller.velocity.magnitude < 0.5f )
+        {
+            if(StopParticule!=null)
+            Instantiate(StopParticule, transform.position, transform.rotation);
+        }
+    }
 
     private void FixedUpdate() {
         Turn();
@@ -100,9 +113,11 @@ public class MovementComponent : MonoBehaviour
         Move();
         ReduceExternalForces();
         AnimationPlayer();
-
+        ParticuleSpawn();
         //Freeze z axis
         transform.position = new Vector3(transform.position.x, transform.position.y, 1.5f);
     }
+
+
 
 }
