@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465798, g: 0.4964152, b: 0.57481897, a: 1}
+  m_IndirectSpecularColor: {r: 0.16788438, g: 0.21073814, b: 0.28994256, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1723,6 +1723,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.sizeAmount.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.sizeAmount.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.octaves
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.octaveMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.octaveScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: VelocityModule.orbitalY.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578053987670688780, guid: 4a956058abd59ec4589e50f3f582e899,
+        type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a956058abd59ec4589e50f3f582e899, type: 3}
 --- !u!1001 &4937938241392828489
@@ -1791,6 +1851,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937938242727920135, guid: 52180e6652ca328489a607b5de19440d,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937938242727920135, guid: 52180e6652ca328489a607b5de19440d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52180e6652ca328489a607b5de19440d, type: 3}

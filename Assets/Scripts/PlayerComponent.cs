@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerComponent : MonoBehaviour
 {
     public float ForcePropulse;
+    public UnityEvent collidePlayerEvent = new UnityEvent();
     private MovementComponent movement;
     private CharacterController controller;
     private GameObject previousPlatform = null;
@@ -38,6 +40,7 @@ public class PlayerComponent : MonoBehaviour
             Vector3 dir =  transform.position- hit.gameObject.transform.position ;
             hit.gameObject.GetComponent<MovementComponent>().Propulse((-dir+Vector3.up) * ForcePropulse);
             GetComponent<MovementComponent>().Propulse((dir + Vector3.up) * ForcePropulse);
+            collidePlayerEvent.Invoke();
 
 
         

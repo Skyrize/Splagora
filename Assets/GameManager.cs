@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public GameObject P1, P2;
     public Material Style1, Style2;
     private int Turn;
+    public GameObject CollisionWavePrefab;
+    private GameObject waveInst;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +58,15 @@ public class GameManager : MonoBehaviour
 
         
     }
+
+    public void OnPlayerCollision()
+    {
+        if (waveInst)
+            return;
+        Debug.Log("SPAWN");
+        waveInst = Instantiate(CollisionWavePrefab, P1.transform.position + (P2.transform.position - P1.transform.position) / 2, transform.rotation);
+    }
+
     public void EndTurn()
     {
         ShowWiner.text = "CHARGEMENT";
