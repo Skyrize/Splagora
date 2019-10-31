@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7082923285554493888}
   - component: {fileID: 4468908385835325068}
   - component: {fileID: 2413893253340441127}
-  m_Layer: 0
+  - component: {fileID: 7575392314435489840}
+  m_Layer: 2
   m_Name: SplashBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +52,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 632a5d0ba9645f34f892df72e5706519, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +79,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8081422433791033831}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 770d320546ec8cc41a2dfd5a415ea2c3, type: 3}
 --- !u!114 &4468908385835325068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,5 +105,20 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3451076
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7575392314435489840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8081422433791033831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7911f903a77fa4595ecb2282051b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 75
+  amplitudeY: 0.1
+  speedY: 1

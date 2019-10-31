@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerComponent : MonoBehaviour
 {
+    public float ForcePropulse;
     private MovementComponent movement;
     private CharacterController controller;
     private GameObject previousPlatform = null;
@@ -31,14 +32,15 @@ public class PlayerComponent : MonoBehaviour
 
     private void HandlePlayerCollision(ControllerColliderHit hit)
     {
-        Debug.Log(name + " has velocity = " + movement.velocity);
-        if (hit.gameObject.GetComponent<MovementComponent>().velocity > movement.velocity) {
+        
+            //Debug.Log("JE TE POUSSE");
 
-        } else if (hit.gameObject.GetComponent<MovementComponent>().velocity < movement.velocity) {
+            Vector3 dir =  transform.position- hit.gameObject.transform.position ;
+            hit.gameObject.GetComponent<MovementComponent>().Propulse((-dir+Vector3.up) * ForcePropulse);
+            GetComponent<MovementComponent>().Propulse((dir + Vector3.up) * ForcePropulse);
 
-        } else {
 
-        }
+        
     }
 
     private void HandleOtherCollision(ControllerColliderHit hit)

@@ -5,41 +5,43 @@ using DG.Tweening;
 
 public class BlockWallAnimation : MonoBehaviour
 {
-    public float TimeWave;
+    public SOTriggerAnim AnimSeting;
 
-    
-    public float minWaveOffSetZ;
-    public float maxWaveOffSetZ;
-
- 
-    public bool ChangeRotation;
-    public float TimeRotation =0.2f;
-    public float RadialRotation = 180;
-
-    
-    public float LatenceSwitchTexture;
-    
-    
-    public bool ChangeScale;
-    
-    public float ModifScale;
-
-    
-    public bool SwitchTexture;
-    public List<Texture> AllTextureStyle=new List<Texture>();
-    public float SpeedSwitch=0.2f;
-
-   
-    
-    public bool PingPongScale;
-    public bool ChangeMesh;
-    public List<Mesh> allMeshStyle = new List<Mesh>();
+    private float TimeWave;
 
 
-    
+    private float minWaveOffSetZ;
+    private float maxWaveOffSetZ;
 
-    public bool SwitchMaterial;
-    public List<Material> allStyleMaterial = new List<Material>();
+
+    private bool ChangeRotation;
+    private float TimeRotation =0.2f;
+    private float RadialRotation = 180;
+
+
+    private float LatenceSwitchTexture;
+
+
+    private bool ChangeScale;
+
+    private float ModifScale;
+
+
+    private bool SwitchTexture;
+    private List<Texture> AllTextureStyle=new List<Texture>();
+    private float SpeedSwitch=0.2f;
+
+
+
+    private bool PingPongScale;
+    private bool ChangeMesh;
+    private List<Mesh> allMeshStyle = new List<Mesh>();
+
+
+
+
+    private bool SwitchMaterial;
+    private List<Material> allStyleMaterial = new List<Material>();
 
 
 
@@ -61,18 +63,52 @@ public class BlockWallAnimation : MonoBehaviour
         
         
     }
+    private void SetValueScriptableObject()
+    {
+        TimeWave = AnimSeting.TimeWave;
+
+        minWaveOffSetZ = AnimSeting.minWaveOffSetZ;
+        maxWaveOffSetZ = AnimSeting.maxWaveOffSetZ;
+
+        ChangeRotation = AnimSeting.ChangeRotation;
+        TimeRotation = AnimSeting.TimeRotation;
+        RadialRotation = AnimSeting.RadialRotation;
+
+        LatenceSwitchTexture = AnimSeting.LatenceSwitchTexture;
+
+        ChangeScale = AnimSeting.ChangeScale;
+        ModifScale = AnimSeting.ModifScale;
+
+        SwitchTexture = AnimSeting.SwitchTexture;
+        AllTextureStyle = AnimSeting.AllTextureStyle;
+        SpeedSwitch = AnimSeting.SpeedSwitch;
+
+        ChangeMesh = AnimSeting.ChangeMesh;
+        allMeshStyle = AnimSeting.allMeshStyle;
+
+        SwitchMaterial = AnimSeting.SwitchMaterial;
+        allStyleMaterial = AnimSeting.allStyleMaterial;
+
+        CountStyleMat = allStyleMaterial.Count;
+        CountStyleMesh = allMeshStyle.Count;
+    }
 
     //Call when trigger tag "TriggerAnim" hit them , play WaveAnimation
-    public void AnimationBlock()
+    public void AnimationBlock(SOTriggerAnim targetAnim)
     {
+        /*
         if (WaveAnim != null)
         {
 
             WaveAnim.Restart();
             WaveAnim.Play().OnComplete(EndAnimation);
             return;
-        }
+        }*/
+        transform.position = startPos;
+        transform.localScale = startScale;
 
+        AnimSeting = targetAnim;
+        SetValueScriptableObject();
         float offsetZ = Random.Range(minWaveOffSetZ, maxWaveOffSetZ);
 
         //Create Animation with tween ( interpolation )
@@ -159,6 +195,9 @@ public class BlockWallAnimation : MonoBehaviour
     private void EndAnimation()
     {
         transform.position = startPos;
+        transform.localScale = startScale;
+
+
     }
     //Switch Material instantlie
     private void SwitchMatWave()
@@ -187,7 +226,7 @@ public class BlockWallAnimation : MonoBehaviour
     {
         if (other.transform.tag.CompareTo("TriggerAnim")==0)
         {
-            AnimationBlock();
+            //AnimationBlock();
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - brightness
   - Player2
   - Painter
+  - Bloc
   layers:
   - Default
   - TransparentFX

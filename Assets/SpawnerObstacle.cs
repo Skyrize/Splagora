@@ -10,7 +10,11 @@ public class SpawnerObstacle : MonoBehaviour
     public List<Transform> Spawners = new List<Transform>();
     public float MinIntervaleSpawn, MaxIntervaleSpawn;
     public List<Image> FeedbackSpawners = new List<Image>();
+    public List<GameObject> triggerFeedBack = new List<GameObject>();
+
     public float TimeShowFeedBack;
+
+    public GameObject targetWallAnim;
 
     float timePast=0;
     float nextSpawneTime=3;
@@ -18,10 +22,13 @@ public class SpawnerObstacle : MonoBehaviour
     int indexSide;
     Transform currentSpawn;
     Image currentImage;
+    GameObject targetTrigger;
     // Start is called before the first frame update
     void Start()
     {
         StartSpawning();
+        FindObjectOfType<GameManager>().SetTextureToTransition(targetWallAnim);
+
     }
 
     // Update is called once per frame
@@ -47,8 +54,14 @@ public class SpawnerObstacle : MonoBehaviour
         indexSide = Random.Range(0, 2);
         currentSpawn = Spawners[indexSide];
         currentImage = FeedbackSpawners[indexSide];
+        targetTrigger = triggerFeedBack[indexSide];
 
     }
+    private void ActivateTrigger()
+    {
+        targetTrigger.SetActive(!targetTrigger.activeInHierarchy);
+    }
+    
     public IEnumerator SpawnObstacle()
     {
         GetRandomSide();
@@ -65,9 +78,23 @@ public class SpawnerObstacle : MonoBehaviour
         feedBackObstacle.Insert(0,currentImage.transform.DOShakePosition(TimeShowFeedBack, 10, 10, 90, false,false));
         feedBackObstacle.Play();
 
+        Sequence feedBackObstacle2 = DOTween.Sequence();
+        feedBackObstacle2.AppendCallback(ActivateTrigger);
+        feedBackObstacle2.AppendInterval(0.3f);
+        feedBackObstacle2.AppendCallback(ActivateTrigger);
+        feedBackObstacle2.AppendInterval(0.3f);
+        feedBackObstacle2.AppendCallback(ActivateTrigger);
+        feedBackObstacle2.AppendInterval(0.3f);
+        feedBackObstacle2.AppendCallback(ActivateTrigger);
+        feedBackObstacle2.AppendInterval(0.3f);
+        feedBackObstacle2.AppendCallback(ActivateTrigger);
+        feedBackObstacle2.AppendInterval(0.3f);
+        feedBackObstacle2.AppendCallback(ActivateTrigger);
+        feedBackObstacle2.AppendInterval(0.3f);
+        feedBackObstacle2.Play();
         yield return new WaitForSeconds(TimeShowFeedBack);
 
-        GameObject obstacle=Instantiate(prefabTram, currentSpawn.position, Quaternion.identity);
+        GameObject obstacle =Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
         //RightSpawn
         if (indexSide == 0)
         {

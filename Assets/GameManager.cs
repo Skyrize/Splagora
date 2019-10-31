@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject FacadeCombine,FacadeBloc,FacadeCombine2,FacadeBloc2;
+    public GameObject FacadeCombine,FacadeBloc,FacadeCombine2, FacadeBloc2,FacadeBlocAnim;
     public float Chrono;
     public float TimePast;
     private Texture texture;
@@ -41,6 +42,12 @@ public class GameManager : MonoBehaviour
         {
             ShowWiner.text = Mathf.Round(Chrono - TimePast).ToString();
         }
+
+
+        if(FacadeCombine.GetComponent<MeshRenderer>().material != FacadeBloc.GetComponent<MeshRenderer>().material)
+        {
+            FacadeBloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
+        }
     }
     public void EndTurn()
     {
@@ -50,10 +57,9 @@ public class GameManager : MonoBehaviour
         P2.GetComponent<MovementComponent>().enabled = false;
 
         CalculateScore();
-
-
         StartCoroutine(NextTurn());
     }
+
     public void CalculateScore()
     {
         Material target = FacadeCombine.GetComponent<MeshRenderer>().material;
@@ -63,17 +69,20 @@ public class GameManager : MonoBehaviour
         int height = texture.height;
         int width = texture.width;
 
-        tex2D = toTexture2D(rendTex,height,width);
+            tex2D = toTexture2D(rendTex, height, width);
+        //new Thread(() =>
+        //{
 
-        AnalyseColor(tex2D);
+            AnalyseColor(tex2D);
+        //}).Start();
         //StartCoroutine(AnalyseColour(tex2D));
         
 
-        SetTextureToTransition();
-
+        SetTextureToTransition(FacadeBloc);
+        /*
         FacadeCombine.SetActive(false);
         FacadeBloc.SetActive(true);
-        /*
+        
         foreach (ColorThief.QuantizedColor palette in dominant.GetPalette(tex2D))
         {
             allColor.Add(palette.UnityColor);
@@ -215,46 +224,59 @@ public class GameManager : MonoBehaviour
 
     private void AnalyseColor(Texture2D target)
     {
-        int height = target.height;
-        int width = target.width;
+        Color[] colors = target.GetPixels(0, 0, target.width, target.height);
+        //int height = target.height;
+        //int width = target.width;
+        foreach (Color color in colors) {
+            if (color.g > 0.8f) {
 
-        for(int i=0; i<height; i++)
-        {
-            for(int y = 0; y < width; y++)
-            {
-                if (!allColor.Contains(target.GetPixel(i, y)))
-                {
-
-                    allColor.Add(target.GetPixel(i, y));
-                }
-                else
-                {
-                    if (target.GetPixel(i, y).g > 0.8f){
-                        
-                        ScoreBleu++;
-                    }
-                    if(target.GetPixel(i,y).r > 0.8f)
-                    {
-                        ScoreRouge++;
-                    }
-                    
-                }
-               
+                ScoreBleu++;
             }
+            if (color.r > 0.8f) {
+                ScoreRouge++;
+            }
+
         }
+        //for(int i=0; i<height; i++)
+        //{
+        //    for(int y = 0; y < width; y++)
+        //    {
+                //if (!allColor.Contains(target.GetPixel(i, y)))
+                //{
+
+                //    allColor.Add(target.GetPixel(i, y));
+                //}
+                //else
+                //{
+                    //if (target.GetPixel(i, y).g > 0.8f){
+                        
+                    //    ScoreBleu++;
+                    //}
+                    //if(target.GetPixel(i,y).r > 0.8f)
+                    //{
+                    //    ScoreRouge++;
+                    //}
+                    
+                //}
+               
+            //}
+        //}
 
     }
-
-    private void SetTextureToTransition()
+    //Set texture on animated wall
+    public  void SetTextureToTransition(GameObject targetWall)
     {
-        foreach(Transform bloc in FacadeBloc.transform)
+        foreach(Transform bloc in targetWall.transform)
         {
             bloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
         }
     }
+    
+
 
     IEnumerator NextTurn()
     {
+
         if (ScoreBleu > ScoreRouge)
         {
             ShowWiner.text = "Equipe Vert Gagne!";
@@ -269,7 +291,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<TriggerAnim>().Transition();
 
         yield return new WaitForSeconds(3.5f);
-
+        /*
         switch (Turn)
         {
             case 1:
@@ -283,7 +305,7 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 break;
-        }
+        }*/
         ScoreRouge = 0;
         ScoreBleu = 0;
 
