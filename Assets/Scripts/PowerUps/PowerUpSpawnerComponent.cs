@@ -15,7 +15,7 @@ public class PowerUpSpawnerComponent : MonoBehaviour
         Ce code il est pas beau faut pas le regarder dans les yeux franchement c'est pas bien fait j'avais la flemme hihi
     */
     [SerializeField]
-    private bool theOnlyOneIsHere;
+    public GameObject theOnlyOne;
 
     private void Awake()
     {
@@ -46,24 +46,18 @@ public class PowerUpSpawnerComponent : MonoBehaviour
         return false;
     }
 
-    public void TheOnlyOneHasBeenTaken()
-    {
-        theOnlyOneIsHere = false;
-    }
-
     void SpawnRandomPowerUp()
     {
         int index = Random.Range(0, powerUps.Length);
         SpawnPointComponent point = GetRandomPoint();
-        Instantiate(powerUps[index], point.transform.position, point.transform.rotation);
+        theOnlyOne = Instantiate(powerUps[index], point.transform.position, point.transform.rotation);
         point.isHolding = true;
-        theOnlyOneIsHere = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!theOnlyOneIsHere) {
+        if (!theOnlyOne) {
             if (timer > 0) {
                 timer -= Time.deltaTime;
             } else {
