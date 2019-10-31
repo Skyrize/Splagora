@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7738806309053593697}
   - component: {fileID: 8730488531990783631}
   - component: {fileID: 6458428881675880254}
+  - component: {fileID: 7380934363448463665}
   m_Layer: 0
   m_Name: TrigerAnimationWall (1)
   m_TagString: TriggerAnim
@@ -108,6 +109,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &7380934363448463665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245258707341907461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7a864e202e2fb41ad8d9d5dbc7993b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NombreAnim: 0
+  AnimTransition: {fileID: 0}
+  AnimSetting: {fileID: 11400000, guid: 1a74924ae9cba474ab9834a90cc863b7, type: 2}
 --- !u!1 &1499736085719997287
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +459,7 @@ GameObject:
   - component: {fileID: 1928963857773508789}
   - component: {fileID: 5715597142499590226}
   - component: {fileID: 6328518925088477717}
+  - component: {fileID: 6366672541703018457}
   m_Layer: 0
   m_Name: TrigerAnimationWall
   m_TagString: TriggerAnim
@@ -538,3 +555,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &6366672541703018457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825250304104221240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7a864e202e2fb41ad8d9d5dbc7993b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NombreAnim: 0
+  AnimTransition: {fileID: 0}
+  AnimSetting: {fileID: 11400000, guid: 1a74924ae9cba474ab9834a90cc863b7, type: 2}

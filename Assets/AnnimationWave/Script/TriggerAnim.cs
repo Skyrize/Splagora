@@ -6,6 +6,7 @@ public class TriggerAnim : MonoBehaviour
 {
     public int NombreAnim;
     public Animator AnimTransition;
+    public SOTriggerAnim AnimSetting;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -29,5 +30,12 @@ public class TriggerAnim : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         AnimTransition.SetInteger("indexAnim", 0);
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag.CompareTo("Bloc") == 0)
+        {
+            other.GetComponent<BlockWallAnimation>().AnimationBlock(AnimSetting);
+        }
     }
 }
