@@ -44,6 +44,12 @@ public class GameManager : MonoBehaviour
         {
             ShowWiner.text = Mathf.Round(Chrono - TimePast).ToString();
         }
+
+
+        if(FacadeCombine.GetComponent<MeshRenderer>().material != FacadeBloc.GetComponent<MeshRenderer>().material)
+        {
+            FacadeBloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
+        }
     }
 
     public void OnPlayerCollision()
@@ -84,10 +90,10 @@ public class GameManager : MonoBehaviour
         
 
         SetTextureToTransition(FacadeBloc);
-
+        /*
         FacadeCombine.SetActive(false);
         FacadeBloc.SetActive(true);
-        /*
+        
         foreach (ColorThief.QuantizedColor palette in dominant.GetPalette(tex2D))
         {
             allColor.Add(palette.UnityColor);
@@ -296,7 +302,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<TriggerAnim>().Transition();
 
         yield return new WaitForSeconds(3.5f);
-
+        /*
         switch (Turn)
         {
             case 1:
@@ -310,7 +316,7 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 break;
-        }
+        }*/
         ScoreRouge = 0;
         ScoreBleu = 0;
 
