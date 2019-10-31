@@ -7,7 +7,7 @@ using Es.InkPainter;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject FacadeCombine,FacadeBloc,TramSpawner;
+    public GameObject FacadeBrique, FacadeNeon, FacadeFin, FacadeBloc,TramSpawner;
     public float Chrono;
     public float TimePast;
     private Texture texture;
@@ -61,9 +61,10 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerCollision()
     {
+        Debug.Log("SPAWN");
+
         if (waveInst)
             return;
-        Debug.Log("SPAWN");
         waveInst = Instantiate(CollisionWavePrefab, P1.transform.position + (P2.transform.position - P1.transform.position) / 2, transform.rotation);
     }
 
@@ -74,13 +75,30 @@ public class GameManager : MonoBehaviour
         P1.GetComponent<InputComponent>().enabled = false;
         P2.GetComponent<InputComponent>().enabled = false;
 
+        
         CalculateScore();
         StartCoroutine(NextTurn());
     }
 
     public void CalculateScore()
     {
-        Material target = FacadeCombine.GetComponent<MeshRenderer>().material;
+        Material target = null;
+        switch (Turn)
+        {
+            case 1:
+                target = FacadeBrique.GetComponent<MeshRenderer>().material;
+                break;
+            case 2:
+                target = FacadeNeon.GetComponent<MeshRenderer>().material;
+                break;
+            case 3:
+                target = FacadeFin.GetComponent<MeshRenderer>().material;
+                break;
+            default:
+                Debug.Log("Jamais t la ");
+                break;
+        }
+        
         texture = target.GetTexture("_MainTex");
         rendTex  = target.GetTexture("_MainTex") as RenderTexture;
 
@@ -269,9 +287,9 @@ public class GameManager : MonoBehaviour
     //Set texture on animated wall
     public  void SetTextureToTransition(GameObject targetWall)
     {
-        foreach(Transform bloc in targetWall.transform)
+        foreach(Transform bloc in FacadeBloc.transform)
         {
-            bloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
+            bloc.GetComponent<MeshRenderer>().material = targetWall.GetComponent<MeshRenderer>().material;
         }
     }
     
@@ -296,9 +314,27 @@ public class GameManager : MonoBehaviour
 
         P1.GetComponent<InputComponent>().enabled = true;
         P2.GetComponent<InputComponent>().enabled = true;
+        switch (Turn)
+        {
+            case 1:
+                Debug.Log("Fin tour 1 ");
+                FacadeBrique.SetActive(false);
+                SetTextureToTransition(FacadeNeon);
+                break;
+            case 2:
+                Debug.Log("Fin tour 2");
 
-        FacadeCombine.GetComponent<MeshRenderer>().material = FacadeBloc.GetComponentInChildren<MeshRenderer>().material;
-        InkCanvas.paintMainMaterial= FacadeBloc.GetComponentInChildren<MeshRenderer>().material;
+                FacadeNeon.SetActive(false);
+                SetTextureToTransition(FacadeFin);
+                break;
+            case 3:
+                break;
+            default: break;
+        }
+        Turn++;
+
+        
+
         ScoreRouge = 0;
         ScoreBleu = 0;
 

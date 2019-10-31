@@ -61,6 +61,7 @@ MonoBehaviour:
   startingRadius: 0.1
   endingRadius: 2
   duration: 0.4
+  AnimSetting: {fileID: 11400000, guid: b27ebc129b1213e4ebd427f5d5f138ed, type: 2}
 --- !u!54 &54680404753619702
 Rigidbody:
   m_ObjectHideFlags: 0
