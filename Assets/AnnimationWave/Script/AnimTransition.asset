@@ -30,3 +30,4 @@ MonoBehaviour:
   SwitchMaterial: 1
   allStyleMaterial:
   - {fileID: 2100000, guid: 2374c47b2747a1f428ebabc822faff72, type: 2}
+  - {fileID: 2100000, guid: d75c571dd5603294f978560677d9369a, type: 2}
