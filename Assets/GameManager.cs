@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using Es.InkPainter;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject FacadeCombine,FacadeBloc,FacadeCombine2, FacadeBloc2,FacadeBlocAnim;
+    public GameObject FacadeCombine,FacadeBloc,TramSpawner;
     public float Chrono;
     public float TimePast;
     private Texture texture;
@@ -43,18 +44,24 @@ public class GameManager : MonoBehaviour
             ShowWiner.text = Mathf.Round(Chrono - TimePast).ToString();
         }
 
-
-        if(FacadeCombine.GetComponent<MeshRenderer>().material != FacadeBloc.GetComponent<MeshRenderer>().material)
+        if(TimePast + 10f >= Chrono && isGaming)
         {
-            FacadeBloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
+            TramSpawner.SetActive(false);
         }
+        else
+        {
+            TramSpawner.SetActive(true);
+        }
+
+
+        
     }
     public void EndTurn()
     {
         ShowWiner.text = "CHARGEMENT";
 
-        P1.GetComponent<MovementComponent>().enabled = false;
-        P2.GetComponent<MovementComponent>().enabled = false;
+        P1.GetComponent<InputComponent>().enabled = false;
+        P2.GetComponent<InputComponent>().enabled = false;
 
         CalculateScore();
         StartCoroutine(NextTurn());
@@ -70,24 +77,9 @@ public class GameManager : MonoBehaviour
         int width = texture.width;
 
             tex2D = toTexture2D(rendTex, height, width);
-        //new Thread(() =>
-        //{
-
+       
             AnalyseColor(tex2D);
-        //}).Start();
-        //StartCoroutine(AnalyseColour(tex2D));
         
-
-        SetTextureToTransition(FacadeBloc);
-        /*
-        FacadeCombine.SetActive(false);
-        FacadeBloc.SetActive(true);
-        
-        foreach (ColorThief.QuantizedColor palette in dominant.GetPalette(tex2D))
-        {
-            allColor.Add(palette.UnityColor);
-        }
-        */
     }
 
     Texture2D toTexture2D(RenderTexture rTex , int height,int width)
@@ -286,26 +278,16 @@ public class GameManager : MonoBehaviour
             ShowWiner.text = "Equipe Orange Gagne!";
 
         }
-        P1.GetComponent<MovementComponent>().enabled = true;
-        P2.GetComponent<MovementComponent>().enabled = true;
+        
         FindObjectOfType<TriggerAnim>().Transition();
 
         yield return new WaitForSeconds(3.5f);
-        /*
-        switch (Turn)
-        {
-            case 1:
-                Turn++;
-                FacadeCombine2.SetActive(true);
-                FacadeBloc.SetActive(false);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                break;
-        }*/
+
+        P1.GetComponent<InputComponent>().enabled = true;
+        P2.GetComponent<InputComponent>().enabled = true;
+
+        FacadeCombine.GetComponent<MeshRenderer>().material = FacadeBloc.GetComponentInChildren<MeshRenderer>().material;
+        InkCanvas.paintMainMaterial= FacadeBloc.GetComponentInChildren<MeshRenderer>().material;
         ScoreRouge = 0;
         ScoreBleu = 0;
 
