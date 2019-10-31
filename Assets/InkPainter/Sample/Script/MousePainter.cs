@@ -5,6 +5,7 @@ namespace Es.InkPainter.Sample
 	public class MousePainter : MonoBehaviour
 	{
         public GameObject Player1, Player2;
+        public LayerMask IgnoreLayer;
 		/// <summary>
 		/// Types of methods used to paint.
 		/// </summary>
@@ -57,7 +58,7 @@ namespace Es.InkPainter.Sample
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 bool success = true;
                 RaycastHit hitInfo;
-                if (Physics.Raycast(Player1.transform.position, directionP1 * Player1.transform.right, out hitInfo))
+                if (Physics.Raycast(Player1.transform.position, Vector3.forward, out hitInfo))
                 {
 
                     var paintObject = hitInfo.transform.GetComponent<InkCanvas>();
@@ -108,7 +109,7 @@ namespace Es.InkPainter.Sample
             var ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
             bool success2 = true;
             RaycastHit hitInfo2;
-                if (Physics.Raycast(Player2.transform.position, directionP2 * Player2.transform.right, out hitInfo2))
+                if (Physics.Raycast(Player2.transform.position, Vector3.forward, out hitInfo2))
                 {
 
                     var paintObject = hitInfo2.transform.GetComponent<InkCanvas>();
