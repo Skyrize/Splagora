@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using Es.InkPainter;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject FacadeCombine,FacadeBloc,FacadeCombine2, FacadeBloc2,FacadeBlocAnim;
+    public GameObject FacadeBrique, FacadeNeon, FacadeFin, FacadeBloc,TramSpawner;
     public float Chrono;
     public float TimePast;
     private Texture texture;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     public GameObject P1, P2;
     public Material Style1, Style2;
     private int Turn;
+    public GameObject CollisionWavePrefab;
+    private GameObject waveInst;
 
     // Start is called before the first frame update
     void Start()
@@ -43,26 +46,59 @@ public class GameManager : MonoBehaviour
             ShowWiner.text = Mathf.Round(Chrono - TimePast).ToString();
         }
 
-
-        if(FacadeCombine.GetComponent<MeshRenderer>().material != FacadeBloc.GetComponent<MeshRenderer>().material)
+        if(TimePast + 10f >= Chrono && isGaming)
         {
-            FacadeBloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
+            TramSpawner.SetActive(false);
         }
+        else
+        {
+            TramSpawner.SetActive(true);
+        }
+
+
+        
     }
+
+    public void OnPlayerCollision()
+    {
+        Debug.Log("SPAWN");
+
+        if (waveInst)
+            return;
+        waveInst = Instantiate(CollisionWavePrefab, P1.transform.position + (P2.transform.position - P1.transform.position) / 2, transform.rotation);
+    }
+
     public void EndTurn()
     {
         ShowWiner.text = "CHARGEMENT";
 
-        P1.GetComponent<MovementComponent>().enabled = false;
-        P2.GetComponent<MovementComponent>().enabled = false;
+        P1.GetComponent<InputComponent>().enabled = false;
+        P2.GetComponent<InputComponent>().enabled = false;
 
+        
         CalculateScore();
         StartCoroutine(NextTurn());
     }
 
     public void CalculateScore()
     {
-        Material target = FacadeCombine.GetComponent<MeshRenderer>().material;
+        Material target = null;
+        switch (Turn)
+        {
+            case 1:
+                target = FacadeBrique.GetComponent<MeshRenderer>().material;
+                break;
+            case 2:
+                target = FacadeNeon.GetComponent<MeshRenderer>().material;
+                break;
+            case 3:
+                target = FacadeFin.GetComponent<MeshRenderer>().material;
+                break;
+            default:
+                Debug.Log("Jamais t la ");
+                break;
+        }
+        
         texture = target.GetTexture("_MainTex");
         rendTex  = target.GetTexture("_MainTex") as RenderTexture;
 
@@ -70,24 +106,9 @@ public class GameManager : MonoBehaviour
         int width = texture.width;
 
             tex2D = toTexture2D(rendTex, height, width);
-        //new Thread(() =>
-        //{
-
+       
             AnalyseColor(tex2D);
-        //}).Start();
-        //StartCoroutine(AnalyseColour(tex2D));
         
-
-        SetTextureToTransition(FacadeBloc);
-        /*
-        FacadeCombine.SetActive(false);
-        FacadeBloc.SetActive(true);
-        
-        foreach (ColorThief.QuantizedColor palette in dominant.GetPalette(tex2D))
-        {
-            allColor.Add(palette.UnityColor);
-        }
-        */
     }
 
     Texture2D toTexture2D(RenderTexture rTex , int height,int width)
@@ -266,9 +287,9 @@ public class GameManager : MonoBehaviour
     //Set texture on animated wall
     public  void SetTextureToTransition(GameObject targetWall)
     {
-        foreach(Transform bloc in targetWall.transform)
+        foreach(Transform bloc in FacadeBloc.transform)
         {
-            bloc.GetComponent<MeshRenderer>().material = FacadeCombine.GetComponent<MeshRenderer>().material;
+            bloc.GetComponent<MeshRenderer>().material = targetWall.GetComponent<MeshRenderer>().material;
         }
     }
     
@@ -286,26 +307,34 @@ public class GameManager : MonoBehaviour
             ShowWiner.text = "Equipe Orange Gagne!";
 
         }
-        P1.GetComponent<MovementComponent>().enabled = true;
-        P2.GetComponent<MovementComponent>().enabled = true;
+        
         FindObjectOfType<TriggerAnim>().Transition();
 
         yield return new WaitForSeconds(3.5f);
-        /*
+
+        P1.GetComponent<InputComponent>().enabled = true;
+        P2.GetComponent<InputComponent>().enabled = true;
         switch (Turn)
         {
             case 1:
-                Turn++;
-                FacadeCombine2.SetActive(true);
-                FacadeBloc.SetActive(false);
+                Debug.Log("Fin tour 1 ");
+                FacadeBrique.SetActive(false);
+                SetTextureToTransition(FacadeNeon);
                 break;
             case 2:
+                Debug.Log("Fin tour 2");
+
+                FacadeNeon.SetActive(false);
+                SetTextureToTransition(FacadeFin);
                 break;
             case 3:
                 break;
-            default:
-                break;
-        }*/
+            default: break;
+        }
+        Turn++;
+
+        
+
         ScoreRouge = 0;
         ScoreBleu = 0;
 

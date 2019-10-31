@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8730488531990783631}
   - component: {fileID: 6458428881675880254}
   - component: {fileID: 7380934363448463665}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TrigerAnimationWall (1)
   m_TagString: TriggerAnim
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5220848383190411919}
   - component: {fileID: 5807759651670140033}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TramObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 4910246899784106003}
   - component: {fileID: 2960874850558359550}
   - component: {fileID: 6535404662928289911}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3860835783337928601}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BumperFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 2112316204015287359}
   - component: {fileID: 687826125415317224}
   - component: {fileID: 8968766551162552177}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5056650792931125122}
   - component: {fileID: 9054694798956416676}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 8415639783177450103}
   - component: {fileID: 8415639783176122967}
   - component: {fileID: 8415639783175024791}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 5715597142499590226}
   - component: {fileID: 6328518925088477717}
   - component: {fileID: 6366672541703018457}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TrigerAnimationWall
   m_TagString: TriggerAnim
   m_Icon: {fileID: 0}

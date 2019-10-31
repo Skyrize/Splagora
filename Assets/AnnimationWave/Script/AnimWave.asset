@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9674f7d8ac55a04b968e79e6aa55a4a, type: 3}
-  m_Name: AnimTransition
+  m_Name: AnimWave
   m_EditorClassIdentifier: 
-  TimeWave: 1
-  minWaveOffSetZ: 3
-  maxWaveOffSetZ: 3.5
+  TimeWave: 0.4
+  minWaveOffSetZ: 1
+  maxWaveOffSetZ: 1
   ChangeRotation: 0
   TimeRotation: 0.2
   RadialRotation: 180
-  LatenceSwitchTexture: 0.3
-  ChangeScale: 1
+  LatenceSwitchTexture: 0
+  ChangeScale: 0
   ModifScale: 1
   SwitchTexture: 0
   AllTextureStyle: []
@@ -27,7 +27,5 @@ MonoBehaviour:
   PingPongScale: 0
   ChangeMesh: 0
   allMeshStyle: []
-  SwitchMaterial: 1
-  allStyleMaterial:
-  - {fileID: 2100000, guid: 2374c47b2747a1f428ebabc822faff72, type: 2}
-  - {fileID: 2100000, guid: d75c571dd5603294f978560677d9369a, type: 2}
+  SwitchMaterial: 0
+  allStyleMaterial: []

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 176809703446420991}
   - component: {fileID: 6688017599282057835}
   - component: {fileID: 480359393257972848}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ejector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 3171713290838569059}
   - component: {fileID: 682003415060924247}
   - component: {fileID: 1676890682228321235}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,6 +164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BumperParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197177562454011421, guid: 3beee94b5d35c124b87e3ce639c57ffe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4197177562454011410, guid: 3beee94b5d35c124b87e3ce639c57ffe,
         type: 3}

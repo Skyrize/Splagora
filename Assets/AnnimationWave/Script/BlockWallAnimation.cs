@@ -202,12 +202,14 @@ public class BlockWallAnimation : MonoBehaviour
     //Switch Material instantlie
     private void SwitchMatWave()
     {
-        CurrentStyleIndex++;
         if (CurrentStyleIndex >= CountStyleMat)
         {
             CurrentStyleIndex = 0;
         }
+
         transform.GetComponent<MeshRenderer>().material = allStyleMaterial[CurrentStyleIndex];
+        CurrentStyleIndex++;
+
     }
     //Call when Scale = 0 to Switch Mesh smooth
 

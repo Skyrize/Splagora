@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5868060805257060289}
   - component: {fileID: 6320106850969953653}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PowerUp Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,11 +64,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5868060805257060289}
     m_Modifications:
-    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint
-      objectReference: {fileID: 0}
     - target: {fileID: 3631722198306956965, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123,6 +118,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6252300601380091649, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
@@ -184,11 +189,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5868060805257060289}
     m_Modifications:
-    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3631722198306956965, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -244,6 +244,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6252300601380091649, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: onTaken.m_PersistentCalls.m_Calls.Array.size
@@ -289,11 +299,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5868060805257060289}
     m_Modifications:
-    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3631722198306956965, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,6 +354,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6252300601380091649, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: onTaken.m_PersistentCalls.m_Calls.Array.size
@@ -394,11 +409,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5868060805257060289}
     m_Modifications:
-    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 3631722198306956965, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -454,6 +464,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6252300601380091649, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: onTaken.m_PersistentCalls.m_Calls.Array.size
@@ -499,11 +519,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5868060805257060289}
     m_Modifications:
-    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 3631722198306956965, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -558,6 +573,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654943625320895254, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6252300601380091649, guid: 84dcb4ab36b17ae4ea619b22827c61fc,
         type: 3}

@@ -28,8 +28,6 @@ namespace Es.InkPainter
 			/// <summary>
 			/// Applying paint materials.
 			/// </summary>
-			[HideInInspector]
-			[NonSerialized]
 			public Material material;
 
 			[SerializeField, Tooltip("The property name of the main texture.")]
@@ -151,9 +149,9 @@ namespace Es.InkPainter
 			#endregion Constractor
 		}
 
-		private static Material paintMainMaterial = null;
-		private static Material paintNormalMaterial = null;
-		private static Material paintHeightMaterial = null;
+		public static Material paintMainMaterial = null;
+		public static Material paintNormalMaterial = null;
+		public static Material paintHeightMaterial = null;
 		private bool eraseFlag = false;
 		private RenderTexture debugEraserMainView;
 		private RenderTexture debugEraserNormalView;

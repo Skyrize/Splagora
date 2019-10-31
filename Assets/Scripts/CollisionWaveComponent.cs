@@ -9,6 +9,7 @@ public class CollisionWaveComponent : MonoBehaviour
     public float duration = 2;
     private SphereCollider col;
     private float remaining;
+    public SOTriggerAnim AnimSetting;
 
     private void Start() {
         col = GetComponent<SphereCollider>();
@@ -20,11 +21,19 @@ public class CollisionWaveComponent : MonoBehaviour
     void Update()
     {
         if (remaining > 0) {
-            col.radius = Mathf.Lerp(endingRadius, startingRadius, remaining/duration);
             remaining -= Time.deltaTime;
+            col.radius = Mathf.Lerp(endingRadius, startingRadius, remaining/duration);
         } else {
             Destroy(this.gameObject);
             // remaining = duration;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag.CompareTo("Bloc") == 0)
+        {
+            other.GetComponent<BlockWallAnimation>().AnimationBlock(AnimSetting);
         }
     }
 }
