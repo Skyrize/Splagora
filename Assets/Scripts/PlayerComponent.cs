@@ -11,6 +11,8 @@ public class PlayerComponent : MonoBehaviour
     private CharacterController controller;
     private GameObject previousPlatform = null;
     private GameObject platform = null;
+    private Animator Anim;
+    private Animator AnimP2;
 
     private void Start()
     {
@@ -20,6 +22,8 @@ public class PlayerComponent : MonoBehaviour
         controller = GetComponent<CharacterController>();
         if (!controller)
             throw new MissingComponentException("No CharacterController on " + name);
+
+        Anim = GetComponentInChildren<Animator>();
     }
 
     private void HandlePlatformCollision(ControllerColliderHit hit)
@@ -34,9 +38,15 @@ public class PlayerComponent : MonoBehaviour
 
     private void HandlePlayerCollision(ControllerColliderHit hit)
     {
-        
-            //Debug.Log("JE TE POUSSE");
 
+        //Debug.Log("JE TE POUSSE");
+        if (AnimP2 == null)
+        {
+            AnimP2 = hit.gameObject.GetComponentInChildren<Animator>();
+        }
+        AnimP2.SetBool("Bump", true);
+        Anim.SetBool("Punch", true);
+            StartCoroutine(ResetAnim());
             Vector3 dir =  transform.position- hit.gameObject.transform.position ;
             hit.gameObject.GetComponent<MovementComponent>().Propulse((-dir+Vector3.up) * ForcePropulse);
             GetComponent<MovementComponent>().Propulse((dir + Vector3.up) * ForcePropulse);
@@ -72,6 +82,13 @@ public class PlayerComponent : MonoBehaviour
             Physics.IgnoreCollision(platform.GetComponent<Collider>(), GetComponent<CharacterController>());
             previousPlatform = platform;
         }
+    }
+
+    public IEnumerator ResetAnim()
+    {
+        yield return new WaitForSeconds(0.1f);
+        AnimP2.SetBool("Bump", false);
+        Anim.SetBool("Punch", false);
     }
 
 }
