@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3631722198306956965}
   - component: {fileID: 5992400709862762725}
   - component: {fileID: 6252300601380091649}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -57,3 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: addfaa5a85e891b43aad9f5e2502d056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHolding: 0
+  isDenied: 0

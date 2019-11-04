@@ -7,7 +7,7 @@ using Es.InkPainter;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject FacadeBrique, FacadeNeon, FacadeFin, FacadeBloc,TramSpawner;
+    public GameObject FacadeBrique, FacadeNeon, FacadeFin, FacadeBloc,TramSpawner, PowerUpsSpawner;
     public float Chrono;
     public float TimePast;
     private Texture texture;
@@ -75,6 +75,9 @@ public class GameManager : MonoBehaviour
         P1.GetComponent<InputComponent>().enabled = false;
         P2.GetComponent<InputComponent>().enabled = false;
 
+        if (PowerUpsSpawner.GetComponent<PowerUpSpawnerComponent>().theOnlyOne)
+            Destroy(PowerUpsSpawner.GetComponent<PowerUpSpawnerComponent>().theOnlyOne);
+        PowerUpsSpawner.SetActive(false);
         
         CalculateScore();
         StartCoroutine(NextTurn());
@@ -337,6 +340,7 @@ public class GameManager : MonoBehaviour
 
         ScoreRouge = 0;
         ScoreBleu = 0;
+        PowerUpsSpawner.SetActive(true);
 
         
 
