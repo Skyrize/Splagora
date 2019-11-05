@@ -15,7 +15,7 @@ public class BumpComponent : MonoBehaviour
     public float timeAnim;
 
     
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if (other.gameObject.tag.CompareTo("Player") == 0) {
             //Debug.Log("Boing");
             other.gameObject.GetComponent<MovementComponent>().Propulse(transform.up * ejectionForce);
