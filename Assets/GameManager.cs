@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 using Es.InkPainter;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,13 +21,25 @@ public class GameManager : MonoBehaviour
     public int ScoreBleu,ScoreRouge;
     public GameObject P1, P2;
     public Material Style1, Style2;
-    private int Turn;
+    private int Turn,MancheP1,MancheP2;
     public GameObject CollisionWavePrefab;
     private GameObject waveInst;
+    public GameObject SpotLight;
+    public List<GameObject> FeedBackWinP1 = new List<GameObject>();
+    public List<GameObject> FeedBackWinP2 = new List<GameObject>();
+
+    public GameObject EndGamePanel;
+    public Text TxtEndGame, M1P1, M1P2, M2P1, M2P2, M3P1, M3P2;
+    public int IndexScene;
+    public Light directionnal;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        MancheP1 = 0;
+        MancheP2 = 0;
         Turn = 1;
         isGaming = true;
     }
@@ -300,55 +313,105 @@ public class GameManager : MonoBehaviour
 
     IEnumerator NextTurn()
     {
-
+        
         if (ScoreBleu > ScoreRouge)
         {
-            ShowWiner.text = "Equipe Vert Gagne!";
+            if (Turn <= 2)
+            {
+                ShowWiner.text = "Equipe Rouge Gagne!";
+                FeedBackWinP1[MancheP1].SetActive(true);
+            }
+            MancheP1++;
         }
         else
         {
-            ShowWiner.text = "Equipe Orange Gagne!";
-
+            if (Turn <= 2)
+            {
+                ShowWiner.text = "Equipe Bleue Gagne!";
+                FeedBackWinP2[MancheP2].SetActive(true);
+            }
+            MancheP2++;
         }
+
         
         FindObjectOfType<TriggerAnim>().Transition();
 
         yield return new WaitForSeconds(3.5f);
 
-        P1.GetComponent<InputComponent>().enabled = true;
-        P2.GetComponent<InputComponent>().enabled = true;
+        
         switch (Turn)
         {
             case 1:
                 Debug.Log("Fin tour 1 ");
                 FacadeBrique.SetActive(false);
                 SetTextureToTransition(FacadeNeon);
+                M1P1.text =Mathf.Round( (((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
+                M1P2.text = Mathf.Round((((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
+
                 break;
             case 2:
                 Debug.Log("Fin tour 2");
 
                 FacadeNeon.SetActive(false);
                 SetTextureToTransition(FacadeFin);
+                SpotLight.SetActive(true);
+                directionnal.intensity = 0.4f;
+
+                M2P1.text = Mathf.Round(((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge) * 100) )+ "%";
+                M2P2.text = Mathf.Round(((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
                 break;
             case 3:
+                EndGame();
+                M3P1.text = Mathf.Round(((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
+                M3P2.text = Mathf.Round(((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
                 break;
             default: break;
         }
         Turn++;
+        if (Turn > 3)
+        {
 
-        
+        }
+        else
+        {
+            P1.GetComponent<InputComponent>().enabled = true;
+            P2.GetComponent<InputComponent>().enabled = true;
 
-        ScoreRouge = 0;
-        ScoreBleu = 0;
-        PowerUpsSpawner.SetActive(true);
 
-        
+            ScoreRouge = 0;
+            ScoreBleu = 0;
+            PowerUpsSpawner.SetActive(true);
 
-        TimePast = 0;
-        isGaming = true;
 
-        ShowWiner.text = "";
 
+            TimePast = 0;
+            isGaming = true;
+
+            ShowWiner.text = "";
+        }
+
+    }
+    public void EndGame()
+    {
+        EndGamePanel.SetActive(true);
+        if (MancheP1 > MancheP2)
+        {
+            TxtEndGame.text = "Equipe ROUGE Gagne la partie!";
+        }
+        else
+        {
+            TxtEndGame.text = "Equipe BLEUE Gagne la partie!";
+        }
+    }
+
+    public void ButtonQuitter()
+    {
+        Application.Quit();
+    }
+
+    public void ButtonReplay()
+    {
+        SceneManager.LoadScene(IndexScene);
     }
 
 }
