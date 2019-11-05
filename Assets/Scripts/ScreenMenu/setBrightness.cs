@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class setBrightness : MonoBehaviour
 {
-    float RGBvalue = 0.5f;    
+    public float RGBvalue;    
     public Slider mainSlider;
 
     public void SettingsBright()
