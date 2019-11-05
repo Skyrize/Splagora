@@ -13,6 +13,7 @@ public class PlayerComponent : MonoBehaviour
     private GameObject platform = null;
     private Animator Anim;
     private Animator AnimP2;
+    private Vector3 tramSpeed = Vector3.zero;
 
     private void Start()
     {
@@ -64,7 +65,24 @@ public class PlayerComponent : MonoBehaviour
         }
     }
 
+    private void HandleTramCollision(Collider other)
+    {
+        //movement.AddMotion(hit.transform.parent.GetComponent<TramObstacle>().velocity);
+        //Debug.Log("hit tram");
+        //Debug.Log(hit.transform.parent.GetComponent<TramObstacle>().velocity);
+        controller.Move(other.transform.parent.GetComponent<TramObstacle>().velocity * Time.deltaTime);
+        //movement.Propulse(new Vector3(hit.transform.parent.GetComponent<TramObstacle>().speed * hit.transform.parent.GetComponent<TramObstacle>().directionX, 12f));
+        //transform.parent = hit.transform;
+        //Debug.Log(hit.transform.name);
+        //this.transform.position = new Vector3(hit.transform.parent.transform.position.x, transform.position.y, transform.position.z);
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Tram"))
+            HandleTramCollision(other);
+
+    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
