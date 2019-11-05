@@ -94,7 +94,9 @@ public class MovementComponent : MonoBehaviour
         }
         else
         {
-            anim.SetFloat("Velocity", 0);
+            //anim.SetFloat("Velocity", 0);
+            anim.SetFloat("Velocity", controller.velocity.magnitude);
+
             anim.SetBool("IsJump", true);
         }
     }
