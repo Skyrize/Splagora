@@ -11,7 +11,7 @@ public class SpawnerObstacle : MonoBehaviour
     public float MinIntervaleSpawn, MaxIntervaleSpawn;
     public List<Image> FeedbackSpawners = new List<Image>();
     public List<GameObject> triggerFeedBack = new List<GameObject>();
-
+    public Material currentStyle;
     public float TimeShowFeedBack;
 
     public GameObject targetWallAnim;
@@ -95,6 +95,7 @@ public class SpawnerObstacle : MonoBehaviour
         yield return new WaitForSeconds(TimeShowFeedBack);
 
         GameObject obstacle =Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
+        obstacle.GetComponentInChildren<MeshRenderer>().material = currentStyle;
         //RightSpawn
         if (indexSide == 0)
         {

@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
     public int IndexScene;
     public Light directionnal;
 
+    public GameObject PlatformContener;
+    public Material PlatformNormal, PlatformNeon , TramNeon,TramClassique;
+
+    private SpawnerObstacle TramSpwan;
+
+
 
 
     // Start is called before the first frame update
@@ -42,6 +48,8 @@ public class GameManager : MonoBehaviour
         MancheP2 = 0;
         Turn = 1;
         isGaming = true;
+        TramSpwan = FindObjectOfType<SpawnerObstacle>();
+
     }
 
     // Update is called once per frame
@@ -347,6 +355,12 @@ public class GameManager : MonoBehaviour
                 SetTextureToTransition(FacadeNeon);
                 M1P1.text =Mathf.Round( (((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
                 M1P2.text = Mathf.Round((((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
+                TramSpwan.currentStyle = TramNeon;
+
+                foreach(Transform render in PlatformContener.transform)
+                {
+                    render.GetComponent<MeshRenderer>().material = PlatformNeon;
+                }
 
                 break;
             case 2:
@@ -359,6 +373,13 @@ public class GameManager : MonoBehaviour
 
                 M2P1.text = Mathf.Round(((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge) * 100) )+ "%";
                 M2P2.text = Mathf.Round(((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
+
+                TramSpwan.currentStyle = TramClassique;
+                foreach (Transform render in PlatformContener.transform)
+                {
+                    render.GetComponent<MeshRenderer>().material = PlatformNormal;
+                }
+
                 break;
             case 3:
                 EndGame();
