@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class SpawnerObstacle : MonoBehaviour
 {
-    public GameObject prefabTram, bumperLeft, bumperRight;
+    public GameObject prefabTram;
     public List<Transform> Spawners = new List<Transform>();
     public float MinIntervaleSpawn, MaxIntervaleSpawn;
     public List<Image> FeedbackSpawners = new List<Image>();
@@ -100,14 +100,11 @@ public class SpawnerObstacle : MonoBehaviour
         if (indexSide == 0)
         {
             obstacle.GetComponent<TramObstacle>().SetDirection(-1);
-            bumperLeft.SetActive(true);
-            bumperRight.SetActive(false);
+
         }
         else
         {
             obstacle.GetComponent<TramObstacle>().SetDirection(1);
-            bumperRight.SetActive(true);
-            bumperLeft.SetActive(false);
 
         }
         isSpawning = false;
