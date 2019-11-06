@@ -10,6 +10,8 @@ TagManager:
   - Player2
   - Painter
   - Bloc
+  - Tram
+  - BumpTrigger
   layers:
   - Default
   - TransparentFX

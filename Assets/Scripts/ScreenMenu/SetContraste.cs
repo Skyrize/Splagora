@@ -8,6 +8,7 @@ public class SetContraste : MonoBehaviour
 {        
     public Slider contrastSlider;
     ColorGrading colorGrading;
+    public float MultiplicateurContraste;
 
     void Start()
     {
@@ -18,6 +19,6 @@ public class SetContraste : MonoBehaviour
     public void ModifyContrast(float ContrastValue)
     {
         ContrastValue = contrastSlider.value;
-        colorGrading.contrast.value = ContrastValue * 100;       
+        colorGrading.contrast.value = ContrastValue * MultiplicateurContraste;       
     }
 }

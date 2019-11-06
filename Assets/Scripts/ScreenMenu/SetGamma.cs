@@ -7,7 +7,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class SetGamma : MonoBehaviour
 {
     public Slider GammaSlider;
-    ColorGrading colorGrading;  
+    ColorGrading colorGrading;
+    public float MultiplicateurGamma;
 
     void Start()
     {      
@@ -17,8 +18,8 @@ public class SetGamma : MonoBehaviour
 
     public void ModifyGamma(float GammaValue)
     {
-        GammaValue = GammaSlider.value * 10;        
-        colorGrading.gamma.value = new Vector4 (GammaValue, GammaValue, GammaValue, 1);
+        GammaValue = GammaSlider.value * MultiplicateurGamma;        
+        colorGrading.toneCurveGamma.value = GammaValue;
         Debug.Log("my Slider value" + GammaSlider.value);
         Debug.Log("my Gamma value" + GammaValue);
         Debug.Log("my Color grading value" + colorGrading.gamma.value);
