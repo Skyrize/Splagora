@@ -274,7 +274,7 @@ public class GameManager : MonoBehaviour
         //int height = target.height;
         //int width = target.width;
         foreach (Color color in colors) {
-            if (color.g > 0.8f) {
+            if (color.b > 0.8f) {
 
                 ScoreBleu++;
             }
