@@ -28,6 +28,7 @@ public class SplashBombComponent : MonoBehaviour
             if (isP1 == painter.turnP1 && particle.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().time == 3) {
                 ink.Paint(brush, hitInfo);
                 GetComponent<MeshRenderer>().enabled = false;
+                particle.transform.parent.GetComponent<ParticleSystem>().Stop();
             }
             if (isP1 == painter.turnP1 && particle.GetComponent<ParticleSystem>().time == 1.5)
                 Destroy(gameObject);
