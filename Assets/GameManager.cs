@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     public int ScoreBleu,ScoreRouge;
     public GameObject P1, P2;
     public Material Style1, Style2;
-    private int Turn,MancheP1,MancheP2;
+    [HideInInspector]
+    public int Turn,MancheP1,MancheP2;
     public GameObject CollisionWavePrefab;
     private GameObject waveInst;
     public GameObject SpotLight;
