@@ -14,19 +14,24 @@ public class SplashBombComponent : MonoBehaviour
     private InkCanvas ink;
     bool isP1;
     bool isTriggered = false;
+    private GameObject particle;
 
     private void Start()
     {
         painter = GameObject.FindGameObjectWithTag("Painter").GetComponent<MousePainter>();
+        particle = transform.GetChild(0).GetChild(0).gameObject;
     }
 
     private void Update()
     {
         if (isTriggered) {
-            if (isP1 == painter.turnP1) {
+            if (isP1 == painter.turnP1 && particle.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().time == 3) {
                 ink.Paint(brush, hitInfo);
-                Destroy(gameObject);
+                GetComponent<MeshRenderer>().enabled = false;
+                particle.transform.parent.GetComponent<ParticleSystem>().Stop();
             }
+            if (isP1 == painter.turnP1 && particle.GetComponent<ParticleSystem>().time == 1.5)
+                Destroy(gameObject);
         }
     }
 
@@ -43,6 +48,7 @@ public class SplashBombComponent : MonoBehaviour
                 brush = painter.GetPlayerBrush(other.name).Clone() as Brush;
                 brush.Scale = SplashSize;
                 isTriggered = true;
+                particle.SetActive(true);
             } else {
                 Debug.LogError("SplashBomb couldn't raycast");
             }
