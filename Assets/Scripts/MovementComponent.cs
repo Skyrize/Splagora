@@ -98,6 +98,8 @@ public class MovementComponent : MonoBehaviour
             anim.SetFloat("Velocity", controller.velocity.magnitude);
 
             anim.SetBool("IsJump", true);
+
+            
         }
     }
     public void ParticuleSpawn()

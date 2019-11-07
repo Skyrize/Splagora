@@ -29,8 +29,11 @@ public class InputComponent : MonoBehaviour
     public CharacterController charaController;
     bool startJump;
 
+    public Animator anim;
+
     public void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         charaController = GetComponent<CharacterController>();
     }
     private void checkInput()
@@ -66,6 +69,9 @@ public class InputComponent : MonoBehaviour
         }*/
         if (XCI.GetButtonDown(XboxButton.A, controller))
         {
+            int randomFigure = Random.Range(0, 3);
+            anim.SetFloat("RandomFigure", randomFigure);
+
             float velocity = charaController.velocity.magnitude;
             if (velocity < 3f)
             {
