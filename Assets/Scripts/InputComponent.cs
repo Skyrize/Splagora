@@ -8,7 +8,7 @@ public class InputComponent : MonoBehaviour
 {
     [Header("Inputs")]
     public string xAxis;
-    //public KeyCode downAction;
+    public KeyCode downAction;
     public KeyCode jump;
 
     [Space]
@@ -35,12 +35,8 @@ public class InputComponent : MonoBehaviour
     }
     private void checkInput()
     {
-
-        direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
-        if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
-        {
-            onDownAction.Invoke();
-        }
+        // direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
+        // if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
         /*
         if (XCI.GetButtonDown(XboxButton.A, controller))
         {
@@ -64,21 +60,7 @@ public class InputComponent : MonoBehaviour
                 startJump = false;
             }
         }*/
-        if (XCI.GetButtonDown(XboxButton.A, controller))
-        {
-            float velocity = charaController.velocity.magnitude;
-            if (velocity < 3f)
-            {
-                onQuickJump.Invoke();
-
-
-            }
-            else
-            {
-                onLongJump.Invoke();
-            }
-            
-        }
+        // if (XCI.GetButtonDown(XboxButton.A, controller))
 
 
 
