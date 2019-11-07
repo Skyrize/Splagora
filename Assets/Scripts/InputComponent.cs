@@ -29,8 +29,11 @@ public class InputComponent : MonoBehaviour
     public CharacterController charaController;
     bool startJump;
 
+    public Animator anim;
+
     public void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         charaController = GetComponent<CharacterController>();
     }
     private void checkInput()
@@ -60,7 +63,47 @@ public class InputComponent : MonoBehaviour
                 startJump = false;
             }
         }*/
+
+        
+        direction = new Vector3(Input.GetAxis(xAxis), 0, 0);
+        if (Input.GetKey(downAction))
+        {
+            onDownAction.Invoke();
+        }
+        if (Input.GetKey(jump))
+        {
+            float velocity = charaController.velocity.magnitude;
+            if (velocity < 3f)
+            {
+                onQuickJump.Invoke();
+
+
+            }
+            else
+            {
+                onLongJump.Invoke();
+            }
+            
+        }
+
         // if (XCI.GetButtonDown(XboxButton.A, controller))
+        // {
+        //     int randomFigure = Random.Range(0, 3);
+        //     anim.SetFloat("RandomFigure", randomFigure);
+
+        //     float velocity = charaController.velocity.magnitude;
+        //     if (velocity < 3f)
+        //     {
+        //         onQuickJump.Invoke();
+
+
+        //     }
+        //     else
+        //     {
+        //         onLongJump.Invoke();
+        //     }
+            
+        // }
 
 
 
