@@ -33,7 +33,7 @@ public class BlockWallAnimation : MonoBehaviour
 
 
 
-    private bool PingPongScale;
+    private bool PingPongScale = false;
     private bool ChangeMesh;
     private List<Mesh> allMeshStyle = new List<Mesh>();
 
@@ -53,8 +53,19 @@ public class BlockWallAnimation : MonoBehaviour
     private Vector3 startScale;
     private Sequence WaveAnim = null;
 
+    public static bool dotweenInited = false;
+
+    static public void Init()
+    {
+        if (dotweenInited == false) {
+            dotweenInited = true;
+            DOTween.SetTweensCapacity(48825, 30467);
+        }
+    }
+
     public void Start()
     {
+        Init();
         startPos = transform.position;
         startScale = transform.localScale;
         CountStyleMat = allStyleMaterial.Count;

@@ -19,7 +19,7 @@ namespace Es.InkPainter.Sample
 		}
 
 		[SerializeField]
-		private Brush brush1,brush2;
+		private Brush brush1 = null,brush2 = null;
 
 		[SerializeField]
 		private UseMethodType useMethodType = UseMethodType.RaycastHitInfo;
@@ -44,15 +44,15 @@ namespace Es.InkPainter.Sample
             if (turnP1)
             {
                 //Direction to Paint WALL
-                int directionP1 = 1;
-                if (Player1.transform.eulerAngles.y == 90)
-                {
-                    directionP1 = -1;
-                }
-                if (Player1.transform.eulerAngles.y == 270)
-                {
-                    directionP1 = 1;
-                }
+                // int directionP1 = 1;
+                // if (Player1.transform.eulerAngles.y == 90)
+                // {
+                //     directionP1 = -1;
+                // }
+                // if (Player1.transform.eulerAngles.y == 270)
+                // {
+                //     directionP1 = 1;
+                // }
 
                 //Paint Wall
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -95,15 +95,15 @@ namespace Es.InkPainter.Sample
             }
             if (!turnP1) { 
 
-            int directionP2 = 1;
-            if (Player2.transform.eulerAngles.y == 90)
-            {
-                directionP2 = -1;
-            }
-            if (Player2.transform.eulerAngles.y == 270)
-            {
-                directionP2 = 1;
-            }
+            // int directionP2 = 1;
+            // if (Player2.transform.eulerAngles.y == 90)
+            // {
+            //     directionP2 = -1;
+            // }
+            // if (Player2.transform.eulerAngles.y == 270)
+            // {
+            //     directionP2 = 1;
+            // }
 
             //Paint Wall
             var ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);

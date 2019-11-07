@@ -11,13 +11,13 @@ namespace Es.InkPainter.Sample
 		private Brush brush = null;
 
 		[SerializeField]
-		private Camera cam;
+		private Camera cam = null;
 
 		[SerializeField]
-		private Vector3 offset;
+		private Vector3 offset = Vector3.zero;
 
 		[SerializeField]
-		private bool debugMode;
+		private bool debugMode = false;
 
 		private RenderTexture rt;
 		private RenderTexture debug;

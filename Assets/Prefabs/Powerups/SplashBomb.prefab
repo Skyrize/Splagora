@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 1293069976864098, guid: 0f88d33ddc235c84599052d00298735a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4510098173624124, guid: 0f88d33ddc235c84599052d00298735a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -176,6 +180,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4510098173624124, guid: 0f88d33ddc235c84599052d00298735a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307792324209580, guid: 0f88d33ddc235c84599052d00298735a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683864482772409983, guid: 0f88d33ddc235c84599052d00298735a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198064904575086184, guid: 0f88d33ddc235c84599052d00298735a,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198064904575086184, guid: 0f88d33ddc235c84599052d00298735a,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439449233630264999, guid: 0f88d33ddc235c84599052d00298735a,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198424921399777486, guid: 0f88d33ddc235c84599052d00298735a,
+        type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

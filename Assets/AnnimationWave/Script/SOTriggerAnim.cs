@@ -45,9 +45,9 @@ public class SOTriggerAnim : ScriptableObject
 
 
     private int CountStyleMat;
-    private int CurrentStyleIndex = 0;
+    // private int CurrentStyleIndex = 0;
     private int CountStyleMesh;
-    private int CurrentStyleMeshIndex = 0;
+    // private int CurrentStyleMeshIndex = 0;
     private Vector3 startPos;
     private Vector3 startScale;
 }

@@ -19,6 +19,7 @@ public class SpeedUpComponent : MonoBehaviour
             player.GetComponent<MovementComponent>().speed = speed;
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
