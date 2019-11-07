@@ -29,7 +29,7 @@ public class MovementComponent : MonoBehaviour
 
     public void Propulse(Vector3 force)
     {
-        Debug.Log("Propulse");
+        //Debug.Log("Propulse");
         externalForce = force;
 
     }
@@ -59,7 +59,7 @@ public class MovementComponent : MonoBehaviour
     {
         transform.LookAt(transform.position + input.direction);
     }
-
+    
     private void Move()
     {
         motion = input.direction * speed;
