@@ -8,7 +8,7 @@ public class InputComponent : MonoBehaviour
 {
     [Header("Inputs")]
     public string xAxis;
-    //public KeyCode downAction;
+    public KeyCode downAction;
     public KeyCode jump;
 
     [Space]
@@ -38,12 +38,8 @@ public class InputComponent : MonoBehaviour
     }
     private void checkInput()
     {
-
-        direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
-        if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
-        {
-            onDownAction.Invoke();
-        }
+        // direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
+        // if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
         /*
         if (XCI.GetButtonDown(XboxButton.A, controller))
         {
@@ -67,11 +63,15 @@ public class InputComponent : MonoBehaviour
                 startJump = false;
             }
         }*/
-        if (XCI.GetButtonDown(XboxButton.A, controller))
-        {
-            int randomFigure = Random.Range(0, 3);
-            anim.SetFloat("RandomFigure", randomFigure);
 
+        
+        direction = new Vector3(Input.GetAxis(xAxis), 0, 0);
+        if (Input.GetKey(downAction))
+        {
+            onDownAction.Invoke();
+        }
+        if (Input.GetKey(jump))
+        {
             float velocity = charaController.velocity.magnitude;
             if (velocity < 3f)
             {
@@ -85,6 +85,25 @@ public class InputComponent : MonoBehaviour
             }
             
         }
+
+        // if (XCI.GetButtonDown(XboxButton.A, controller))
+        // {
+        //     int randomFigure = Random.Range(0, 3);
+        //     anim.SetFloat("RandomFigure", randomFigure);
+
+        //     float velocity = charaController.velocity.magnitude;
+        //     if (velocity < 3f)
+        //     {
+        //         onQuickJump.Invoke();
+
+
+        //     }
+        //     else
+        //     {
+        //         onLongJump.Invoke();
+        //     }
+            
+        // }
 
 
 
