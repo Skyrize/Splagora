@@ -38,40 +38,21 @@ public class InputComponent : MonoBehaviour
     }
     private void checkInput()
     {
-        // direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
-        // if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
-        /*
+         direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
+        if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
+            onDownAction.Invoke();
+
         if (XCI.GetButtonDown(XboxButton.A, controller))
         {
             startJump = true;
             timeJumpPressed = 0;
         }
-        if (XCI.GetButton(XboxButton.A, controller) && startJump)
-        {
-            timeJumpPressed += Time.deltaTime;
-            if (timeJumpPressed >= timeForLongInput && startJump)
-            {
-                onLongJump.Invoke();
-                startJump = false;
-            }
-        }
-        if (XCI.GetButtonUp(XboxButton.A, controller))
-        {
-            if (timeJumpPressed < timeForLongInput)
-            {
-                onQuickJump.Invoke();
-                startJump = false;
-            }
-        }*/
 
-        
-        direction = new Vector3(Input.GetAxis(xAxis), 0, 0);
-        if (Input.GetKey(downAction))
+        if (XCI.GetButtonDown(XboxButton.A, controller))
         {
-            onDownAction.Invoke();
-        }
-        if (Input.GetKey(jump))
-        {
+            int randomFigure = Random.Range(0, 3);
+            anim.SetFloat("RandomFigure", randomFigure);
+
             float velocity = charaController.velocity.magnitude;
             if (velocity < 3f)
             {
@@ -83,27 +64,8 @@ public class InputComponent : MonoBehaviour
             {
                 onLongJump.Invoke();
             }
-            
+
         }
-
-        // if (XCI.GetButtonDown(XboxButton.A, controller))
-        // {
-        //     int randomFigure = Random.Range(0, 3);
-        //     anim.SetFloat("RandomFigure", randomFigure);
-
-        //     float velocity = charaController.velocity.magnitude;
-        //     if (velocity < 3f)
-        //     {
-        //         onQuickJump.Invoke();
-
-
-        //     }
-        //     else
-        //     {
-        //         onLongJump.Invoke();
-        //     }
-            
-        // }
 
 
 

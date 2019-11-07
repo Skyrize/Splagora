@@ -58,6 +58,21 @@ public class MovementComponent : MonoBehaviour
     private void Turn()
     {
         transform.LookAt(transform.position + input.direction);
+        Debug.Log(input.direction + "Direction");
+        if (input.direction.x > 0)
+        {
+            if (transform.localScale.x > 0)
+            {
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            }
+        }
+        if (input.direction.x < 0)
+        {
+            if (transform.localScale.x < 0)
+            {
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            }
+        }
     }
     
     private void Move()

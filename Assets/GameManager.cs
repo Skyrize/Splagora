@@ -327,7 +327,7 @@ public class GameManager : MonoBehaviour
         {
             if (Turn <= 2)
             {
-                ShowWiner.text = "Equipe Rouge Gagne!";
+                ShowWiner.text = "Equipe Bleue Gagne!";
                 FeedBackWinP1[MancheP1].SetActive(true);
             }
             MancheP1++;
@@ -336,7 +336,7 @@ public class GameManager : MonoBehaviour
         {
             if (Turn <= 2)
             {
-                ShowWiner.text = "Equipe Bleue Gagne!";
+                ShowWiner.text = "Equipe Rouge Gagne!";
                 FeedBackWinP2[MancheP2].SetActive(true);
             }
             MancheP2++;
