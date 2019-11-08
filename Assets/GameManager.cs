@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Threading;
 using Es.InkPainter;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject PlatformContener;
     public Material PlatformNormal, PlatformNeon , TramNeon,TramClassique;
+    public List<GameObject> BlocChrono = new List<GameObject>();
 
     private SpawnerObstacle TramSpwan;
 
@@ -77,9 +79,25 @@ public class GameManager : MonoBehaviour
             TramSpawner.SetActive(true);
         }
 
+        if((int)TimePast % 10 == 0 && Chrono - TimePast > 5)
+        {
+            LightBlocChrono((int)TimePast/ 10);
+        }
+
+
 
         
     }
+    private void LightBlocChrono(int index)
+    {
+        BlocChrono[index].transform.DOMoveZ(BlocChrono[index].transform.position.z - 0.1f, 1f, false);
+        BlocChrono[index].transform.DOScale(BlocChrono[index].transform.localScale * 1.1f, 1f);
+
+        BlocChrono[index].GetComponent<BoxCollider>().enabled = false;
+        BlocChrono[index].GetComponent<BlockWallAnimation>().enabled = false;
+
+    }
+    
 
     public void OnPlayerCollision()
     {
@@ -96,6 +114,8 @@ public class GameManager : MonoBehaviour
 
         P1.GetComponent<InputComponent>().enabled = false;
         P2.GetComponent<InputComponent>().enabled = false;
+        P1.GetComponent<MovementComponent>().enabled = false;
+        P2.GetComponent<MovementComponent>().enabled = false;
 
         if (PowerUpsSpawner.GetComponent<PowerUpSpawnerComponent>().theOnlyOne)
             Destroy(PowerUpsSpawner.GetComponent<PowerUpSpawnerComponent>().theOnlyOne);
@@ -103,6 +123,12 @@ public class GameManager : MonoBehaviour
         
         CalculateScore();
         StartCoroutine(NextTurn());
+
+        foreach(GameObject blocChrono in BlocChrono)
+        {
+            blocChrono.GetComponent<BoxCollider>().enabled = true;
+            blocChrono.GetComponent<BlockWallAnimation>().enabled = true;
+        }
     }
 
     public void CalculateScore()
@@ -347,7 +373,11 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(3.5f);
 
-        
+        foreach (GameObject blocChrono in BlocChrono)
+        {
+            blocChrono.GetComponent<BoxCollider>().enabled = false;
+            blocChrono.GetComponent<BlockWallAnimation>().enabled = false;
+        }
         switch (Turn)
         {
             case 1:
@@ -398,6 +428,9 @@ public class GameManager : MonoBehaviour
         {
             P1.GetComponent<InputComponent>().enabled = true;
             P2.GetComponent<InputComponent>().enabled = true;
+
+            P1.GetComponent<MovementComponent>().enabled = true;
+            P2.GetComponent<MovementComponent>().enabled = true;
 
 
             ScoreRouge = 0;

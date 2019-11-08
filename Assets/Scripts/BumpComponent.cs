@@ -12,9 +12,17 @@ public class BumpComponent : MonoBehaviour
 
     public GameObject render;
     public Vector3 AnimBumper;
+    private Vector3 startScale;
     public float timeAnim;
+    public void Start()
+    {
+        if (render != null)
+        {
+            startScale = render.transform.localScale;
 
-    
+        }
+    }
+
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.tag.CompareTo("Player") == 0) {
             //Debug.Log("Boing");
@@ -23,6 +31,8 @@ public class BumpComponent : MonoBehaviour
             particlebump.Play();
             if (render != null)
             {
+                render.transform.DOKill();
+                render.transform.localScale = startScale;
                 
                 render.transform.DOPunchScale(-AnimBumper,timeAnim, 2,1).OnComplete(EndBumpAnim);
             }
