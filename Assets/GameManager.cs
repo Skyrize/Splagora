@@ -94,8 +94,8 @@ public class GameManager : MonoBehaviour
     {
         ShowWiner.text = "CHARGEMENT";
 
-        P1.GetComponent<InputComponent>().enabled = false;
-        P2.GetComponent<InputComponent>().enabled = false;
+        P1.GetComponent<InputComponent>().Block();
+        P2.GetComponent<InputComponent>().Block();
 
         if (PowerUpsSpawner.GetComponent<PowerUpSpawnerComponent>().theOnlyOne)
             Destroy(PowerUpsSpawner.GetComponent<PowerUpSpawnerComponent>().theOnlyOne);
@@ -396,8 +396,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            P1.GetComponent<InputComponent>().enabled = true;
-            P2.GetComponent<InputComponent>().enabled = true;
+            P1.GetComponent<InputComponent>().Release();
+            P2.GetComponent<InputComponent>().Release();
 
 
             ScoreRouge = 0;
