@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     private void LightBlocChrono(int index)
     {
         BlocChrono[index].transform.DOMoveZ(BlocChrono[index].transform.position.z - 0.1f, 1f, false);
-        BlocChrono[index].transform.DOScale(BlocChrono[index].transform.localScale * 1.1f, 1f);
+        BlocChrono[index].transform.DOScale(BlocChrono[index].transform.localScale * 1f, 1f);
 
         BlocChrono[index].GetComponent<BoxCollider>().enabled = false;
         BlocChrono[index].GetComponent<BlockWallAnimation>().enabled = false;
