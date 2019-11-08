@@ -22,6 +22,8 @@ public class InputComponent : MonoBehaviour
     public Vector3 direction = Vector3.zero;
     public float timeForLongInput = 0.05f;
 
+    private bool blocked = false;
+
     private float timeJumpPressed = 0;
 
     //For XBOX plug_in
@@ -31,6 +33,16 @@ public class InputComponent : MonoBehaviour
 
     public Animator anim;
 
+    public void Block()
+    {
+        blocked = true;
+    }
+    
+    public void Release()
+    {
+        blocked = false;
+    }
+
     public void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -38,36 +50,63 @@ public class InputComponent : MonoBehaviour
     }
     private void checkInput()
     {
-         direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
-        if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
-            onDownAction.Invoke();
+        if (blocked) {
+            direction = Vector3.zero;
+        } else {
 
-        if (XCI.GetButtonDown(XboxButton.A, controller))
-        {
-            startJump = true;
-            timeJumpPressed = 0;
-        }
+            direction = new Vector3(XCI.GetAxis(XboxAxis.LeftStickX, controller), 0, 0);
+            if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
+                onDownAction.Invoke();
 
-        if (XCI.GetButtonDown(XboxButton.A, controller))
-        {
-            int randomFigure = Random.Range(0, 3);
-            anim.SetFloat("RandomFigure", randomFigure);
-
-            float velocity = charaController.velocity.magnitude;
-            if (velocity < 3f)
+            if (XCI.GetButtonDown(XboxButton.A, controller))
             {
-                onQuickJump.Invoke();
-
-
-            }
-            else
-            {
-                onLongJump.Invoke();
+                startJump = true;
+                timeJumpPressed = 0;
             }
 
+            if (XCI.GetButtonDown(XboxButton.A, controller))
+            {
+                int randomFigure = Random.Range(0, 3);
+                anim.SetFloat("RandomFigure", randomFigure);
+
+                float velocity = charaController.velocity.magnitude;
+                if (velocity < 3f)
+                {
+                    onQuickJump.Invoke();
+
+
+                }
+                else
+                {
+                    onLongJump.Invoke();
+                }
+
+            }
         }
 
 
+        // if (blocked) {
+        //     direction = Vector3.zero;
+        // } else {
+        //     direction = new Vector3(Input.GetAxis(xAxis), 0, 0);
+        //     if (Input.GetKey(downAction))
+        //     {
+        //         onDownAction.Invoke();
+        //     }
+        //     if (Input.GetKey(jump))
+        //     {
+        //         float velocity = charaController.velocity.magnitude;
+        //         if (velocity < 3f)
+        //         {
+        //             onQuickJump.Invoke();
+        //         }
+        //         else
+        //         {
+        //             onLongJump.Invoke();
+        //         }
+                
+        //     }
+        // }
 
     }
     // Update is called once per frame
