@@ -86,7 +86,7 @@ public class PlayerComponent : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag.Equals("Bloc"))
+        if (hit.gameObject.tag.Equals("Platform"))
             HandlePlatformCollision(hit);
         else if (hit.gameObject.tag.Equals("Player"))
             HandlePlayerCollision(hit);
