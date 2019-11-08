@@ -14,6 +14,7 @@ public class SplashBombComponent : MonoBehaviour
     private InkCanvas ink;
     bool isP1;
     bool isTriggered = false;
+    bool hasExploded = false;
     private GameObject particle;
 
     private void Start()
@@ -25,10 +26,11 @@ public class SplashBombComponent : MonoBehaviour
     private void Update()
     {
         if (isTriggered) {
-            if (isP1 == painter.turnP1 && particle.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().time == 3) {
+            if (hasExploded == false && isP1 == painter.turnP1 && particle.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().time == 3) {
                 ink.Paint(brush, hitInfo);
                 GetComponent<MeshRenderer>().enabled = false;
                 particle.transform.parent.GetComponent<ParticleSystem>().Stop();
+                hasExploded = true;
             }
             if (isP1 == painter.turnP1 && particle.GetComponent<ParticleSystem>().time == 1.5)
                 Destroy(gameObject);
