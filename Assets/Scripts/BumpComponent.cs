@@ -32,8 +32,7 @@ public class BumpComponent : MonoBehaviour
             if (render != null)
             {
                 render.transform.DOKill();
-                render.transform.localScale = startScale;
-                
+                render.transform.localScale = startScale;                
                 render.transform.DOPunchScale(-AnimBumper,timeAnim, 2,1).OnComplete(EndBumpAnim);
             }
         }
