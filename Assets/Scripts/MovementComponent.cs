@@ -58,7 +58,7 @@ public class MovementComponent : MonoBehaviour
     private void Turn()
     {
         transform.LookAt(transform.position + input.direction);
-        Debug.Log(input.direction + "Direction");
+        //Debug.Log(input.direction + "Direction");
         if (input.direction.x > 0)
         {
             if (transform.localScale.x > 0)
