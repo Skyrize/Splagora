@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> BlocChrono = new List<GameObject>();
 
     private SpawnerObstacle TramSpwan;
+    TriggerAnim TAnim;
 
 
 
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         Turn = 1;
         isGaming = true;
         TramSpwan = FindObjectOfType<SpawnerObstacle>();
+        TAnim = FindObjectOfType<TriggerAnim>();
 
     }
 
@@ -366,8 +368,8 @@ public class GameManager : MonoBehaviour
             MancheP2++;
         }
 
-        
-        FindObjectOfType<TriggerAnim>().Transition();
+
+        TAnim.Transition();
 
         yield return new WaitForSeconds(3.5f);
 
