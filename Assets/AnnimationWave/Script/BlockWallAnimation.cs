@@ -70,6 +70,7 @@ public class BlockWallAnimation : MonoBehaviour
         startScale = transform.localScale;
         CountStyleMat = allStyleMaterial.Count;
         CountStyleMesh = allMeshStyle.Count;
+
         //AnimationBlock();
         
         

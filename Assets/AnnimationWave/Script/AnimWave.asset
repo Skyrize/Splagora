@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AnimWave
   m_EditorClassIdentifier: 
   TimeWave: 0.4
-  minWaveOffSetZ: 1
-  maxWaveOffSetZ: 1
+  minWaveOffSetZ: 0.5
+  maxWaveOffSetZ: 0.5
   ChangeRotation: 0
   TimeRotation: 0.2
   RadialRotation: 180

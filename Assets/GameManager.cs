@@ -72,11 +72,11 @@ public class GameManager : MonoBehaviour
 
         if(TimePast + 10f >= Chrono && isGaming)
         {
-            TramSpawner.SetActive(false);
+           // TramSpawner.SetActive(false);
         }
         else
         {
-            TramSpawner.SetActive(true);
+            //TramSpawner.SetActive(true);
         }
 
         if((int)TimePast % 10 == 0 && Chrono - TimePast > 5)
