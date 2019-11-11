@@ -27,6 +27,7 @@ public class SplashBombComponent : MonoBehaviour
     {
         if (isTriggered) {
             if (hasExploded == false && isP1 == painter.turnP1 && particle.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().time == 3) {
+                //le son pour bombe 
                 ink.Paint(brush, hitInfo);
                 GetComponent<MeshRenderer>().enabled = false;
                 particle.transform.parent.GetComponent<ParticleSystem>().Stop();
@@ -36,11 +37,12 @@ public class SplashBombComponent : MonoBehaviour
                 Destroy(gameObject);
         }
     }
-
+    public AudioClip SoundPickUp;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player") == true) {
             if (Physics.Raycast(transform.position, Vector3.forward, out hitInfo)) {
+                SoundManager.Instance.PowerUpSound(SoundPickUp);
                 if (other.gameObject.name == "Player1 Garçon") {
                     isP1 = true;
                 } else {

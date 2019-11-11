@@ -10,9 +10,11 @@ public class SpeedUpComponent : MonoBehaviour
     private float oldSpeed = 0;
     private GameObject player;
 
+    public AudioClip SoundPickUp;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player") == true) {
+            SoundManager.Instance.PowerUpSound(SoundPickUp);
             taken = true;
             player = other.gameObject;
             oldSpeed = player.GetComponent<MovementComponent>().speed;

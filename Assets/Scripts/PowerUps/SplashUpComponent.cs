@@ -17,10 +17,11 @@ public class SplashUpComponent : MonoBehaviour
     {
         painter = GameObject.FindGameObjectWithTag("Painter").GetComponent<MousePainter>();
     }
-
+    public AudioClip SoundPickUp;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player") == true) {
+            SoundManager.Instance.PowerUpSound(SoundPickUp);
             taken = true;
             brush = painter.GetPlayerBrush(other.gameObject.name);
             oldScale = brush.Scale;
