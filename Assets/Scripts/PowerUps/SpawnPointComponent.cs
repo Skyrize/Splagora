@@ -6,25 +6,28 @@ public class SpawnPointComponent : MonoBehaviour
 {
     public bool isHolding = false;
     public bool isDenied = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "Player")
+        {
             isHolding = false;
             isDenied = true;
-        }
+        }       
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player") {
             isHolding = false;
-            isDenied = true;
+            isDenied = true;           
         }
 
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player") {
-            isDenied = false;
+            isDenied = false;           
         }
     }
     // Start is called before the first frame update

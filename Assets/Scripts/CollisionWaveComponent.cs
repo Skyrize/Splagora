@@ -11,6 +11,8 @@ public class CollisionWaveComponent : MonoBehaviour
     private float remaining;
     public SOTriggerAnim AnimSetting;
 
+    public AudioClip SoundWave;
+
     private void Start() {
         col = GetComponent<SphereCollider>();
         col.radius = startingRadius;
@@ -34,6 +36,7 @@ public class CollisionWaveComponent : MonoBehaviour
         if (other.transform.tag.CompareTo("Bloc") == 0)
         {
             other.GetComponent<BlockWallAnimation>().AnimationBlock(AnimSetting);
+            SoundManager.Instance.WaveSoundEffect(SoundWave);
         }
     }
 }

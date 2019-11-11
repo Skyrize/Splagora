@@ -5,7 +5,11 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioSource SoundPowerUp;
-    public AudioSource MusicPhasesSource;
+    public AudioSource TramSound;
+    public AudioSource WaveSound;
+    public AudioSource MusicPhaseSource1;
+    public AudioSource MusicPhaseSource2;
+    public AudioSource MusicPhaseSource3;
 
     public static SoundManager Instance = null;
 
@@ -25,18 +29,65 @@ public class SoundManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }   
-    /*
-    public void EffectsSoundsPlay(AudioClip clip)
+    
+    public void PowerUpSound(AudioClip clip)
     {
         SoundPowerUp.clip = clip;
         SoundPowerUp.Play();
-    }*/
+    }
 
-    public void PlaySceneMusic(AudioClip clip)
+    public void TramSoundComing(AudioClip clip)
+    {
+        TramSound.clip = clip;
+        TramSound.Play();
+    }
+
+    public void WaveSoundEffect(AudioClip clip)
+    {
+        WaveSound.clip = clip;
+        WaveSound.Play();
+    }
+
+    public void PlaySceneMusic1(AudioClip clip)
     {
         Debug.Log("La musique se joue");
-        MusicPhasesSource.clip = clip;
-        MusicPhasesSource.Play();       
+        MusicPhaseSource1.clip = clip;
+        MusicPhaseSource1.Play();       
+    }
+
+    public void StopSceneMusic1(AudioClip clip)
+    {
+        Debug.Log("La musique se joue");
+        MusicPhaseSource1.clip = clip;
+        MusicPhaseSource1.Stop();
+    }
+
+    public void PlaySceneMusic2(AudioClip clip)
+    {
+        Debug.Log("La musique se joue");
+        MusicPhaseSource2.clip = clip;
+        MusicPhaseSource2.Play();
+    }
+
+    public void StopSceneMusic2(AudioClip clip)
+    {
+        Debug.Log("La musique se joue");
+        MusicPhaseSource2.clip = clip;
+        MusicPhaseSource2.Stop();
+    }
+
+    public void PlaySceneMusic3(AudioClip clip)
+    {
+        Debug.Log("La musique se joue");
+        MusicPhaseSource3.clip = clip;
+        MusicPhaseSource3.Play();
+    }
+
+    public void StopSceneMusic3(AudioClip clip)
+    {
+        Debug.Log("La musique se joue");
+        MusicPhaseSource3.clip = clip;
+        MusicPhaseSource3.Stop();
     }
 
 }

@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         isGaming = true;
         TramSpwan = FindObjectOfType<SpawnerObstacle>();
         TAnim = FindObjectOfType<TriggerAnim>();
-
+        SoundManager.Instance.PlaySceneMusic1(Phase1Sound);
     }
 
     // Update is called once per frame
@@ -343,9 +343,12 @@ public class GameManager : MonoBehaviour
             bloc.GetComponent<MeshRenderer>().material = targetWall.GetComponent<MeshRenderer>().material;
         }
     }
-    
 
 
+    public AudioClip Phase1Sound;
+    public AudioClip Phase2Sound;
+    public AudioClip Phase3Sound;
+    public AudioClip WaveSoundAnim;
     IEnumerator NextTurn()
     {
         
@@ -370,6 +373,7 @@ public class GameManager : MonoBehaviour
 
 
         TAnim.Transition();
+        SoundManager.Instance.WaveSoundEffect(WaveSoundAnim);
 
         yield return new WaitForSeconds(3.5f);
 
@@ -382,6 +386,8 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 Debug.Log("Fin tour 1 ");
+                SoundManager.Instance.StopSceneMusic1(Phase1Sound);
+                SoundManager.Instance.PlaySceneMusic2(Phase2Sound);                
                 FacadeBrique.SetActive(false);
                 SetTextureToTransition(FacadeNeon);
                 M1P1.text =Mathf.Round( (((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
@@ -396,7 +402,8 @@ public class GameManager : MonoBehaviour
                 break;
             case 2:
                 Debug.Log("Fin tour 2");
-
+                SoundManager.Instance.StopSceneMusic2(Phase2Sound);
+                SoundManager.Instance.PlaySceneMusic3(Phase3Sound);               
                 FacadeNeon.SetActive(false);
                 SetTextureToTransition(FacadeFin);
                 SpotLight.SetActive(true);
