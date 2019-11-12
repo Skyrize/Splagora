@@ -6,6 +6,7 @@ using System.Threading;
 using Es.InkPainter;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Es.InkPainter.Sample;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     public float TimePast;
     private Texture texture;
     private RenderTexture rendTex;
-    private bool isGaming;
+    public bool isGaming;
     private Texture2D tex2D;
     private List<Color> allColor = new List<Color>();
     private Color MainColor;
@@ -58,10 +59,13 @@ public class GameManager : MonoBehaviour
     public GameObject PoliceCar;
 
 
-
+    MousePainter painter;
     // Start is called before the first frame update
     void Start()
     {
+
+        painter = GameObject.FindGameObjectWithTag("Painter").GetComponent<MousePainter>();
+
         MancheP1 = 0;
         MancheP2 = 0;
         Turn = 1;
@@ -125,9 +129,16 @@ public class GameManager : MonoBehaviour
             return;
         waveInst = Instantiate(CollisionWavePrefab, P1.transform.position + (P2.transform.position - P1.transform.position) / 2, transform.rotation);
     }
+    public void ResetPLayerCapacity()
+    {
+        painter.brush1.Scale = 0.13f;
+        painter.brush2.Scale = 0.13f;
+
+    }
 
     public void EndTurn()
     {
+        ResetPLayerCapacity();
         TramSpawner.GetComponent<SpawnerObstacle>().StartSpawning();
         ShowWiner.text = "CHARGEMENT";
 

@@ -70,7 +70,7 @@ public class PlayerComponent : MonoBehaviour
         //movement.AddMotion(hit.transform.parent.GetComponent<TramObstacle>().velocity);
         //Debug.Log("hit tram");
         //Debug.Log(hit.transform.parent.GetComponent<TramObstacle>().velocity);
-        controller.Move(other.transform.parent.GetComponent<TramObstacle>().velocity * Time.deltaTime);
+        controller.Move(other.transform.parent.GetComponent<TramObstacle>().velocity * Time.deltaTime *2);
         //movement.Propulse(new Vector3(hit.transform.parent.GetComponent<TramObstacle>().speed * hit.transform.parent.GetComponent<TramObstacle>().directionX, 12f));
         //transform.parent = hit.transform;
         //Debug.Log(hit.transform.name);

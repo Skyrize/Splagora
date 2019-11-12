@@ -7,11 +7,14 @@ public class SoundManager : MonoBehaviour
     public AudioSource SoundPowerUp;
     public AudioSource TramSound;
     public AudioSource WaveSound;
+    public AudioSource BumperSound;
     public AudioSource MusicPhaseSource1;
     public AudioSource MusicPhaseSource2;
     public AudioSource MusicPhaseSource3;
 
     public static SoundManager Instance = null;
+
+    public Transform[] spawnersTram;
 
     public float lowPitchRange = .95f;               
     public float highPitchRange = 1.05f;
@@ -36,16 +39,23 @@ public class SoundManager : MonoBehaviour
         SoundPowerUp.Play();
     }
 
-    public void TramSoundComing(AudioClip clip)
+    public void TramSoundComing(AudioClip clip, int SideTram)
     {
         TramSound.clip = clip;
-        TramSound.Play();
+        AudioSource.PlayClipAtPoint(clip, spawnersTram[SideTram].position);
+        Debug.Log("Position Sound" + spawnersTram[SideTram].position);
     }
 
     public void WaveSoundEffect(AudioClip clip)
     {
         WaveSound.clip = clip;
         WaveSound.Play();
+    }
+
+    public void SoundBumper(AudioClip clip)
+    {
+        BumperSound.clip = clip;
+        BumperSound.Play();
     }
 
     public void PlaySceneMusic1(AudioClip clip)

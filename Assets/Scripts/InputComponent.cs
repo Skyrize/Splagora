@@ -58,13 +58,13 @@ public class InputComponent : MonoBehaviour
             if (XCI.GetAxis(XboxAxis.LeftStickY, controller) <= -0.7)
                 onDownAction.Invoke();
 
-            if (XCI.GetButtonDown(XboxButton.A, controller))
+            if (XCI.GetButtonDown(XboxButton.A, controller) || XCI.GetButtonDown(XboxButton.B, controller) || XCI.GetButtonDown(XboxButton.X, controller) || XCI.GetButtonDown(XboxButton.Y, controller))
             {
                 startJump = true;
                 timeJumpPressed = 0;
             }
 
-            if (XCI.GetButtonDown(XboxButton.A, controller))
+            if (XCI.GetButtonDown(XboxButton.A, controller) || XCI.GetButtonDown(XboxButton.B, controller) || XCI.GetButtonDown(XboxButton.X, controller) || XCI.GetButtonDown(XboxButton.Y, controller))
             {
                 int randomFigure = Random.Range(0, 3);
                 anim.SetFloat("RandomFigure", randomFigure);

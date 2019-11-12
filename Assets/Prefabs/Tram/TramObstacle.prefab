@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  time: 6
+  time: 12
   Light: {fileID: 5124608871729932250}
   directionX: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -362,6 +362,7 @@ MonoBehaviour:
   render: {fileID: 0}
   AnimBumper: {x: 0, y: 0, z: 0}
   timeAnim: 0
+  BumperSound: {fileID: 0}
 --- !u!1 &3743889040420165998
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   render: {fileID: 0}
   AnimBumper: {x: 0, y: 0, z: 0}
   timeAnim: 0
+  BumperSound: {fileID: 0}
 --- !u!1 &7840405677068339506
 GameObject:
   m_ObjectHideFlags: 0

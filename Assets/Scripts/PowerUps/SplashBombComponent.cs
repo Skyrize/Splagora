@@ -15,6 +15,7 @@ public class SplashBombComponent : MonoBehaviour
     bool isP1;
     bool isTriggered = false;
     bool hasExploded = false;
+    bool willDestroy= false;
     private GameObject particle;
 
     private void Start()
@@ -32,9 +33,14 @@ public class SplashBombComponent : MonoBehaviour
                 GetComponent<MeshRenderer>().enabled = false;
                 particle.transform.parent.GetComponent<ParticleSystem>().Stop();
                 hasExploded = true;
+                
             }
-            if (isP1 == painter.turnP1 && particle.GetComponent<ParticleSystem>().time == 1.5)
-                Destroy(gameObject);
+            if (hasExploded && !willDestroy)
+            {
+                willDestroy = true;
+                Debug.Log("DETRUIRE BOMBE");
+                Destroy(gameObject,1f);
+            }
         }
     }
     public AudioClip SoundPickUp;

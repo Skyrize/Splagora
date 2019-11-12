@@ -14,6 +14,9 @@ public class BumpComponent : MonoBehaviour
     public Vector3 AnimBumper;
     private Vector3 startScale;
     public float timeAnim;
+
+    public AudioClip BumperSound;
+
     public void Start()
     {
         if (render != null)
@@ -27,6 +30,7 @@ public class BumpComponent : MonoBehaviour
         if (other.gameObject.tag.CompareTo("Player") == 0) {
             //Debug.Log("Boing");
             other.gameObject.GetComponent<MovementComponent>().Propulse(transform.up * ejectionForce);
+            SoundManager.Instance.SoundBumper(BumperSound);
             if(particlebump!=null)
             particlebump.Play();
             if (render != null)
