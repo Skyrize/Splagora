@@ -42,5 +42,6 @@ public class SplashUpComponent : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+       
     }
 }

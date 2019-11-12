@@ -6,6 +6,7 @@ using System.Threading;
 using Es.InkPainter;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Es.InkPainter.Sample;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     public float TimePast;
     private Texture texture;
     private RenderTexture rendTex;
-    private bool isGaming;
+    public bool isGaming;
     private Texture2D tex2D;
     private List<Color> allColor = new List<Color>();
     private Color MainColor;
@@ -42,13 +43,29 @@ public class GameManager : MonoBehaviour
     private SpawnerObstacle TramSpwan;
     TriggerAnim TAnim;
 
+    [Header("Tram Color")]
+
     public GameObject BMX_Front, BMX_Back;
     public Material BMXClasicB, BMXNeonB, BMXClasicF, BMXNeonF;
 
+    [Header("Bumper Color")]
 
+    public GameObject B_SideL, B_SideR,B_Center, B_CenterSideL, B_CenterSideR;
+    public Material BumperSide, BumperCenter, BumperCenterSide;
+    public Material BumperSideNeon, BumperCenterNeon, BumperCenterSideNeon;
+
+    [Header("Police Car")]
+
+    public GameObject PoliceCar;
+
+
+    MousePainter painter;
     // Start is called before the first frame update
     void Start()
     {
+
+        painter = GameObject.FindGameObjectWithTag("Painter").GetComponent<MousePainter>();
+
         MancheP1 = 0;
         MancheP2 = 0;
         Turn = 1;
@@ -75,10 +92,12 @@ public class GameManager : MonoBehaviour
 
         if(TimePast + 10f >= Chrono && isGaming)
         {
-           // TramSpawner.SetActive(false);
+            // TramSpawner.SetActive(false);
+            TramSpawner.GetComponent<SpawnerObstacle>().CancelSpawn();
         }
         else
         {
+
             //TramSpawner.SetActive(true);
         }
 
@@ -110,9 +129,17 @@ public class GameManager : MonoBehaviour
             return;
         waveInst = Instantiate(CollisionWavePrefab, P1.transform.position + (P2.transform.position - P1.transform.position) / 2, transform.rotation);
     }
+    public void ResetPLayerCapacity()
+    {
+        painter.brush1.Scale = 0.13f;
+        painter.brush2.Scale = 0.13f;
+
+    }
 
     public void EndTurn()
     {
+        ResetPLayerCapacity();
+        TramSpawner.GetComponent<SpawnerObstacle>().StartSpawning();
         ShowWiner.text = "CHARGEMENT";
 
         P1.GetComponent<InputComponent>().Block();
@@ -357,8 +384,8 @@ public class GameManager : MonoBehaviour
         {
             if (Turn <= 2)
             {
-                ShowWiner.text = "Equipe Bleue Gagne!";
-                FeedBackWinP1[MancheP1].SetActive(true);
+                ShowWiner.text = "EQUIPE BLEUE GAGNE!";
+                FeedBackWinP2[MancheP2].SetActive(true);
             }
             MancheP1++;
         }
@@ -366,8 +393,8 @@ public class GameManager : MonoBehaviour
         {
             if (Turn <= 2)
             {
-                ShowWiner.text = "Equipe Rouge Gagne!";
-                FeedBackWinP2[MancheP2].SetActive(true);
+                ShowWiner.text = "EQUIPE ROUGE GAGNE!";
+                FeedBackWinP1[MancheP1].SetActive(true);
             }
             MancheP2++;
         }
@@ -393,9 +420,24 @@ public class GameManager : MonoBehaviour
                 SetTextureToTransition(FacadeNeon);
                 M1P1.text =Mathf.Round( (((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
                 M1P2.text = Mathf.Round((((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
+                //Tram Render
                 TramSpwan.currentStyle = TramNeon;
+
+                //BMX Render
                 BMX_Back.GetComponent<MeshRenderer>().material = BMXNeonB;
                 BMX_Front.GetComponent<MeshRenderer>().material = BMXNeonF;
+
+                //Bumper Render
+                B_Center.GetComponent<MeshRenderer>().material = BumperCenterNeon;
+
+                B_CenterSideL.GetComponent<MeshRenderer>().material = BumperCenterSideNeon;
+                B_CenterSideR.GetComponent<MeshRenderer>().material = BumperCenterSideNeon;
+
+                B_SideL.GetComponent<MeshRenderer>().material = BumperSideNeon;
+                B_SideR.GetComponent<MeshRenderer>().material = BumperSideNeon;
+
+
+
                 foreach (Transform render in PlatformContener.transform)
                 {
                     render.GetComponent<MeshRenderer>().material = PlatformNeon;
@@ -413,11 +455,25 @@ public class GameManager : MonoBehaviour
 
                 M2P1.text = Mathf.Round(((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge) * 100) )+ "%";
                 M2P2.text = Mathf.Round(((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
-
-                TramSpwan.currentStyle = TramClassique;
                 
+                //Tram Render
+                TramSpwan.currentStyle = TramClassique;
+
+                //BMX Render
                 BMX_Back.GetComponent<MeshRenderer>().material = BMXClasicB;
                 BMX_Front.GetComponent<MeshRenderer>().material = BMXClasicF;
+                
+                //Bumper Render
+                B_Center.GetComponent<MeshRenderer>().material = BumperCenter;
+
+                B_CenterSideL.GetComponent<MeshRenderer>().material = BumperCenterSide;
+                B_CenterSideR.GetComponent<MeshRenderer>().material = BumperCenterSide;
+
+                B_SideL.GetComponent<MeshRenderer>().material = BumperSide;
+                B_SideR.GetComponent<MeshRenderer>().material = BumperSide;
+
+                TramSpawner.GetComponent<SpawnerObstacle>().prefabTram = PoliceCar;
+
                 foreach (Transform render in PlatformContener.transform)
                 {
                     render.GetComponent<MeshRenderer>().material = PlatformNormal;
@@ -460,11 +516,13 @@ public class GameManager : MonoBehaviour
         EndGamePanel.SetActive(true);
         if (MancheP1 > MancheP2)
         {
-            TxtEndGame.text = "Equipe ROUGE Gagne la partie!";
+            TxtEndGame.text = "EQUIPE BLEUE GANGNE LA PARTIE!";
+            TxtEndGame.color = Color.blue;
         }
         else
         {
-            TxtEndGame.text = "Equipe BLEUE Gagne la partie!";
+            TxtEndGame.text = "EQUIPE ROUGE GAGNE LA PARTIE!";
+            TxtEndGame.color = Color.red;
         }
     }
 

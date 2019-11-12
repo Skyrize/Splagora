@@ -116,6 +116,7 @@ public class BlockWallAnimation : MonoBehaviour
             WaveAnim.Play().OnComplete(EndAnimation);
             return;
         }*/
+        WaveAnim.Kill();
         transform.position = startPos;
         transform.localScale = startScale;
 

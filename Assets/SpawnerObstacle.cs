@@ -43,13 +43,18 @@ public class SpawnerObstacle : MonoBehaviour
         }
 
     }
-    private void OnEnable()
+    public void CancelSpawn()
     {
-        
-    }
+        StopAllCoroutines();
+        isSpawning = true;
 
-    void StartSpawning()
+    }
+    
+
+    public void StartSpawning()
     {
+        isSpawning = false;
+        timePast = 0;
         nextSpawneTime = Random.Range(MinIntervaleSpawn, MaxIntervaleSpawn);
         
 
@@ -101,6 +106,7 @@ public class SpawnerObstacle : MonoBehaviour
         yield return new WaitForSeconds(TimeShowFeedBack);
 
         GameObject obstacle =Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
+        if(obstacle.name.Contains("Tram"))
         obstacle.GetComponentInChildren<MeshRenderer>().material = currentStyle;
         //RightSpawn
         if (indexSide == 0)
