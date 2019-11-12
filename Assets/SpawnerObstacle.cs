@@ -53,10 +53,12 @@ public class SpawnerObstacle : MonoBehaviour
     public AudioClip TramSoundSpawn;
     private void GetRandomSide()
     {
+        Debug.Log("fonction d'appel icone attention tram");
         indexSide = Random.Range(0, 2);
         currentSpawn = Spawners[indexSide];
         currentImage = FeedbackSpawners[indexSide];
         SoundManager.Instance.TramSoundComing(TramSoundSpawn);
+        Debug.Log("son du tram joué");
         targetTrigger = triggerFeedBack[indexSide];
 
     }
