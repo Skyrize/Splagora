@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         TimePast += Time.deltaTime;
-        if(TimePast>= Chrono && isGaming)
+        if(TimePast >= Chrono && isGaming)
         {
             isGaming = false;
             EndTurn();

@@ -362,6 +362,7 @@ MonoBehaviour:
   render: {fileID: 0}
   AnimBumper: {x: 0, y: 0, z: 0}
   timeAnim: 0
+  BumperSound: {fileID: 0}
 --- !u!1 &3743889040420165998
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   render: {fileID: 0}
   AnimBumper: {x: 0, y: 0, z: 0}
   timeAnim: 0
+  BumperSound: {fileID: 8300000, guid: 2773028b4a2cf04419fa2fef5f6c3225, type: 3}
 --- !u!1 &7840405677068339506
 GameObject:
   m_ObjectHideFlags: 0
