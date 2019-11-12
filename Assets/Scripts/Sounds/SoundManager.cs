@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource TramSound;
     public AudioSource WaveSound;
     public AudioSource BumperSound;
+    public AudioSource PoliceSound;
     public AudioSource MusicPhaseSource1;
     public AudioSource MusicPhaseSource2;
     public AudioSource MusicPhaseSource3;
@@ -56,6 +57,12 @@ public class SoundManager : MonoBehaviour
     {
         BumperSound.clip = clip;
         BumperSound.Play();
+    }
+
+    public void SoundPolice(AudioClip clip)
+    {
+        PoliceSound.clip = clip;
+        PoliceSound.Play();
     }
 
     public void PlaySceneMusic1(AudioClip clip)
