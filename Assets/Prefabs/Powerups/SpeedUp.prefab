@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   duration: 2
-  SoundPickUp: {fileID: 8300000, guid: 71d59a319a378164f955f5d130e1a1bc, type: 3}
+  SoundPickUp: {fileID: 8300000, guid: 35b0bd0a61c93a14eb51e7be0a1444c0, type: 3}
 --- !u!114 &114755443841413896
 MonoBehaviour:
   m_ObjectHideFlags: 0

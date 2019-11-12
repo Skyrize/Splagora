@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SplashSize: 0.5
   painter: {fileID: 0}
-  SoundPickUp: {fileID: 8300000, guid: 71d59a319a378164f955f5d130e1a1bc, type: 3}
+  SoundPickUp: {fileID: 8300000, guid: 35b0bd0a61c93a14eb51e7be0a1444c0, type: 3}
 --- !u!135 &2413893253340441127
 SphereCollider:
   m_ObjectHideFlags: 0
