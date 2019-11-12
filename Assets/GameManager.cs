@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
     private SpawnerObstacle TramSpwan;
     TriggerAnim TAnim;
 
-
+    public GameObject BMX_Front, BMX_Back;
+    public Material BMXClasicB, BMXNeonB, BMXClasicF, BMXNeonF;
 
 
     // Start is called before the first frame update
@@ -393,8 +394,9 @@ public class GameManager : MonoBehaviour
                 M1P1.text =Mathf.Round( (((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
                 M1P2.text = Mathf.Round((((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge)) * 100)) + "%";
                 TramSpwan.currentStyle = TramNeon;
-
-                foreach(Transform render in PlatformContener.transform)
+                BMX_Back.GetComponent<MeshRenderer>().material = BMXNeonB;
+                BMX_Front.GetComponent<MeshRenderer>().material = BMXNeonF;
+                foreach (Transform render in PlatformContener.transform)
                 {
                     render.GetComponent<MeshRenderer>().material = PlatformNeon;
                 }
@@ -413,6 +415,9 @@ public class GameManager : MonoBehaviour
                 M2P2.text = Mathf.Round(((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
 
                 TramSpwan.currentStyle = TramClassique;
+                
+                BMX_Back.GetComponent<MeshRenderer>().material = BMXClasicB;
+                BMX_Front.GetComponent<MeshRenderer>().material = BMXClasicF;
                 foreach (Transform render in PlatformContener.transform)
                 {
                     render.GetComponent<MeshRenderer>().material = PlatformNormal;
@@ -421,6 +426,7 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 EndGame();
+                
                 M3P1.text = Mathf.Round(((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
                 M3P2.text = Mathf.Round(((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
                 break;

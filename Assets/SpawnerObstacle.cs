@@ -7,7 +7,6 @@ using DG.Tweening;
 public class SpawnerObstacle : MonoBehaviour
 {
     public GameObject prefabTram, bumperLeft, bumperRight;
-    public GameObject[] platforms = new GameObject[2];
     public List<Transform> Spawners = new List<Transform>();
     public float MinIntervaleSpawn, MaxIntervaleSpawn;
     public List<Image> FeedbackSpawners = new List<Image>();
@@ -43,6 +42,10 @@ public class SpawnerObstacle : MonoBehaviour
         }
 
     }
+    private void OnEnable()
+    {
+        
+    }
 
     void StartSpawning()
     {
@@ -50,13 +53,11 @@ public class SpawnerObstacle : MonoBehaviour
         
 
     }
-    public AudioClip TramSoundSpawn;
     private void GetRandomSide()
     {
         indexSide = Random.Range(0, 2);
         currentSpawn = Spawners[indexSide];
         currentImage = FeedbackSpawners[indexSide];
-        SoundManager.Instance.TramSoundComing(TramSoundSpawn);
         targetTrigger = triggerFeedBack[indexSide];
 
     }
@@ -95,8 +96,6 @@ public class SpawnerObstacle : MonoBehaviour
         feedBackObstacle2.AppendCallback(ActivateTrigger);
         feedBackObstacle2.AppendInterval(0.3f);
         feedBackObstacle2.Play();
-        platforms[0].GetComponent<RecessingPlatformComponent>().Recess();
-        platforms[1].GetComponent<RecessingPlatformComponent>().Recess();
         yield return new WaitForSeconds(TimeShowFeedBack);
 
         GameObject obstacle =Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
