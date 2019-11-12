@@ -15,6 +15,8 @@ public class PlayerComponent : MonoBehaviour
     private Animator AnimP2;
     private Vector3 tramSpeed = Vector3.zero;
 
+    public AudioClip PlayersSoundOnCollision;
+
     private void Start()
     {
         movement = GetComponent<MovementComponent>();
@@ -47,6 +49,7 @@ public class PlayerComponent : MonoBehaviour
         }
         AnimP2.SetBool("Bump", true);
         Anim.SetBool("Punch", true);
+        SoundManager.Instance.SoundPlayersCollision(PlayersSoundOnCollision);
             StartCoroutine(ResetAnim());
             Vector3 dir =  transform.position- hit.gameObject.transform.position ;
             hit.gameObject.GetComponent<MovementComponent>().Propulse((-dir+Vector3.up) * ForcePropulse);
