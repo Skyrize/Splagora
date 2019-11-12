@@ -13,6 +13,8 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance = null;
 
+    public Transform[] spawnersTram;
+
     public float lowPitchRange = .95f;               
     public float highPitchRange = 1.05f;
 
@@ -36,10 +38,11 @@ public class SoundManager : MonoBehaviour
         SoundPowerUp.Play();
     }
 
-    public void TramSoundComing(AudioClip clip)
+    public void TramSoundComing(AudioClip clip, int SideTram)
     {
         TramSound.clip = clip;
-        TramSound.Play();
+        AudioSource.PlayClipAtPoint(clip, spawnersTram[SideTram].position);
+        Debug.Log("Position Sound" + spawnersTram[SideTram].position);
     }
 
     public void WaveSoundEffect(AudioClip clip)
