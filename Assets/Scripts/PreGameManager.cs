@@ -41,7 +41,7 @@ public class PreGameManager : MonoBehaviour
             text.text = Mathf.Ceil(timer).ToString();
         } else if (timer > -1) {
             timer -= Time.deltaTime;
-            text.text = "GO !";
+            text.text = "GO";
         } else {
             Debug.Log("end");
             GameManager.SetActive(true);
