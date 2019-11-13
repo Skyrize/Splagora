@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource TramSound;
     public AudioSource WaveSound;
     public AudioSource BumperSound;
-    public AudioSource PoliceSound;
+    //public AudioSource PoliceSound;
     public AudioSource timerGong;
     public AudioSource playerSoundCollision;
     public AudioSource MusicPhaseSource1;
@@ -60,12 +60,12 @@ public class SoundManager : MonoBehaviour
         BumperSound.clip = clip;
         BumperSound.Play();
     }
-
+    /*
     public void SoundPolice(AudioClip clip)
     {
         PoliceSound.clip = clip;
         PoliceSound.Play();
-    }
+    }*/
 
     public void SoundGong(AudioClip clip)
     {

@@ -219,6 +219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabTram: {fileID: 1499736085719997287, guid: 9fff7c50e1a7ec14b894c0900e07c3f0,
     type: 3}
+  bumperLeft: {fileID: 0}
+  bumperRight: {fileID: 0}
   Spawners:
   - {fileID: 4974093704207659587}
   - {fileID: 5762945354047274871}
@@ -230,8 +232,10 @@ MonoBehaviour:
   triggerFeedBack:
   - {fileID: 779749154}
   - {fileID: 1000593875}
+  currentStyle: {fileID: 0}
   TimeShowFeedBack: 2
   targetWallAnim: {fileID: 0}
+  TramSoundSpawn: {fileID: 8300000, guid: 4556bcf5103ec714bb80a6f1239eeeb2, type: 3}
 --- !u!1 &6198969812667358020
 GameObject:
   m_ObjectHideFlags: 0
