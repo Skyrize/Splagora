@@ -71,6 +71,9 @@ public class SoundManager : MonoBehaviour
     {
         timerGong.clip = clip;
         timerGong.Play();
+        MusicPhaseSource1.volume = 0.3f;
+        MusicPhaseSource2.volume = 0.3f;
+        MusicPhaseSource3.volume = 0.3f;
     }
 
     public void SoundPlayersCollision(AudioClip clip)
@@ -81,42 +84,39 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySceneMusic1(AudioClip clip)
     {
-        Debug.Log("La musique se joue");
         MusicPhaseSource1.clip = clip;
+        MusicPhaseSource2.volume = 1f;
         MusicPhaseSource1.Play();       
     }
 
     public void StopSceneMusic1(AudioClip clip)
     {
-        Debug.Log("La musique se joue");
         MusicPhaseSource1.clip = clip;
         MusicPhaseSource1.Stop();
     }
 
     public void PlaySceneMusic2(AudioClip clip)
     {
-        Debug.Log("La musique se joue");
         MusicPhaseSource2.clip = clip;
-        MusicPhaseSource2.Play();
+        MusicPhaseSource2.volume = 1f;
+        MusicPhaseSource2.Play();        
     }
 
     public void StopSceneMusic2(AudioClip clip)
     {
-        Debug.Log("La musique se joue");
         MusicPhaseSource2.clip = clip;
         MusicPhaseSource2.Stop();
     }
 
     public void PlaySceneMusic3(AudioClip clip)
     {
-        Debug.Log("La musique se joue");
         MusicPhaseSource3.clip = clip;
+        MusicPhaseSource3.volume = 1f;
         MusicPhaseSource3.Play();
     }
 
     public void StopSceneMusic3(AudioClip clip)
-    {
-        Debug.Log("La musique se joue");
+    {        
         MusicPhaseSource3.clip = clip;
         MusicPhaseSource3.Stop();
     }

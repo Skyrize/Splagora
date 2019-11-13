@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.PlaySceneMusic1(Phase1Sound);
     }
 
+    public AudioClip SoundtimerGong;
     // Update is called once per frame
     void Update()
     {
@@ -106,9 +107,11 @@ public class GameManager : MonoBehaviour
             LightBlocChrono((int)TimePast/ 10);
         }
 
-
-
-        
+        if (ShowWiner.text == "5")
+        {
+            SoundManager.Instance.SoundGong(SoundtimerGong);
+            Debug.Log("Timer Gong launched");
+        }
     }
     private void LightBlocChrono(int index)
     {
