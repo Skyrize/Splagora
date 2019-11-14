@@ -3,29 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class SettingsData 
 {
-    public Slider GammaSlider;
-    public Slider ContrastSlider;
-    public Slider BrightnessSlider;
-
-    public void GammaUI(int amount)
-    {
-        GammaSlider.value += amount;
-    }
-
-    public void ContrasteUI (int amount)
-    {
-        ContrastSlider.value += amount;
-    }
-
-    public void BrightnessUI(int amount)
-    {
-        BrightnessSlider.value += amount;
-    }
+    public float Gamma;
+    public float Contrast;
+    public float Brightness;
+   
     
     public SettingsData(SettingsUI settingslight)
     {
-
-    }
+        
+           Gamma = settingslight.GammaSlider.value;
+        Contrast = settingslight.contrastSlider.value;
+        Brightness = settingslight.BrightnessSlider.value;
+    }   
 }
