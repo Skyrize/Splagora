@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class SpawnerObstacle : MonoBehaviour
 {
-    public GameObject prefabTram, bumperLeft, bumperRight;
+    public GameObject prefabTram, bumperLeft, bumperRight, platform1, platform2;
     public List<Transform> Spawners = new List<Transform>();
     public float MinIntervaleSpawn, MaxIntervaleSpawn;
     public List<Image> FeedbackSpawners = new List<Image>();
@@ -102,6 +102,8 @@ public class SpawnerObstacle : MonoBehaviour
         feedBackObstacle2.AppendInterval(0.3f);
         feedBackObstacle2.Play();
         yield return new WaitForSeconds(TimeShowFeedBack);
+        platform1.GetComponent<RecessingPlatformComponent>().Recess();
+        platform2.GetComponent<RecessingPlatformComponent>().Recess();
 
         GameObject obstacle =Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
         if(obstacle.name.Contains("Tram"))

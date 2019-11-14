@@ -6,7 +6,8 @@ using DG.Tweening;
 public class BlockWallAnimation : MonoBehaviour
 {
     public SOTriggerAnim AnimSeting;
-
+    public SOTriggerAnim WaveImpulse;
+    public bool isPlatform=false;
     private float TimeWave;
 
 
@@ -123,6 +124,10 @@ public class BlockWallAnimation : MonoBehaviour
             WaveAnim.Play().OnComplete(EndAnimation);
             return;
         }*/
+        if(isPlatform && targetAnim== WaveImpulse)
+        {
+            return;
+        }
         WaveAnim.Kill();
         transform.position = startPos;
         transform.localScale = startScale;

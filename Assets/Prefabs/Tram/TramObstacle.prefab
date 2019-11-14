@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 6870449382422518775}
   m_Layer: 2
   m_Name: BumpTriggerEnd
-  m_TagString: Untagged
+  m_TagString: ObstacleTriggerEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 9125656866120834812}
   m_Layer: 2
   m_Name: BumpTriggerStart
-  m_TagString: Untagged
+  m_TagString: ObstacleTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

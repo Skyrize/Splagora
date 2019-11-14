@@ -43,7 +43,7 @@ public class DebugLive : MonoBehaviour
         TramPrefab.GetComponent<TramObstacle>().time = PlayerPrefs.GetInt("TRAMSPEED");
 
         if (PlayerPrefs.GetInt("SPAWNSPEED") != 0) {
-            TramSpawner.GetComponent<SpawnerObstacle>().MaxIntervaleSpawn = PlayerPrefs.GetInt("SPAWNSPEED")+4;
+            TramSpawner.GetComponent<SpawnerObstacle>().MaxIntervaleSpawn = PlayerPrefs.GetInt("SPAWNSPEED")+2;
             TramSpawner.GetComponent<SpawnerObstacle>().MinIntervaleSpawn = PlayerPrefs.GetInt("SPAWNSPEED");
         }
 
@@ -112,7 +112,7 @@ public class DebugLive : MonoBehaviour
     public void ButtonIntervaleSpawn()
     {
         TramSpawner.GetComponent<SpawnerObstacle>().MinIntervaleSpawn = int.Parse(CicleTram.text);
-        TramSpawner.GetComponent<SpawnerObstacle>().MaxIntervaleSpawn = int.Parse(CicleTram.text)+4;
+        TramSpawner.GetComponent<SpawnerObstacle>().MaxIntervaleSpawn = int.Parse(CicleTram.text)+2;
         PlayerPrefs.SetInt("SPAWNSPEED", int.Parse(CicleTram.text));
         CurrentSpeedSpawn.text = "Apparition Intervale entre " + TramSpawner.GetComponent<SpawnerObstacle>().MinIntervaleSpawn + "et" + TramSpawner.GetComponent<SpawnerObstacle>().MaxIntervaleSpawn;
 
