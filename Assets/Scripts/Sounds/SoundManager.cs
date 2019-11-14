@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
-{
+{    
     public AudioSource SoundPowerUp;
-    public AudioSource TramSound;
+    //public AudioSource TramSound;
     public AudioSource WaveSound;
     public AudioSource BumperSound;
     //public AudioSource PoliceSound;
@@ -14,13 +14,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource MusicPhaseSource1;
     public AudioSource MusicPhaseSource2;
     public AudioSource MusicPhaseSource3;
+    //public AudioSource MusicMenu;
+    //public AudioSource UIButtonSound;
 
     public static SoundManager Instance = null;
 
-    public Transform[] spawnersTram;
-
-    public float lowPitchRange = .95f;               
-    public float highPitchRange = 1.05f;
+    //public Transform[] spawnersTram;   
 
     private void Awake()
     {
@@ -34,20 +33,20 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    }   
-    
+    }  
+
     public void PowerUpSound(AudioClip clip)
     {
         SoundPowerUp.clip = clip;
         SoundPowerUp.Play();
     }
-
+    /*
     public void TramSoundComing(AudioClip clip, int SideTram)
     {
         TramSound.clip = clip;
         AudioSource.PlayClipAtPoint(clip, spawnersTram[SideTram].position);
         Debug.Log("Position Sound" + spawnersTram[SideTram].position);
-    }
+    }*/
 
     public void WaveSoundEffect(AudioClip clip)
     {
@@ -119,6 +118,5 @@ public class SoundManager : MonoBehaviour
     {        
         MusicPhaseSource3.clip = clip;
         MusicPhaseSource3.Stop();
-    }
-
+    }   
 }

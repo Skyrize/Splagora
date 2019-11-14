@@ -23,7 +23,6 @@ public class SpawnerObstacle : MonoBehaviour
     Transform currentSpawn;
     Image currentImage;
     GameObject targetTrigger;
-    public AudioClip TramSoundSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,8 +62,7 @@ public class SpawnerObstacle : MonoBehaviour
     {       
         indexSide = Random.Range(0, 2);
         currentSpawn = Spawners[indexSide];
-        currentImage = FeedbackSpawners[indexSide];
-        SoundManager.Instance.TramSoundComing(TramSoundSpawn, indexSide);       
+        currentImage = FeedbackSpawners[indexSide];             
         targetTrigger = triggerFeedBack[indexSide];
 
     }

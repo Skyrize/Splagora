@@ -64,8 +64,6 @@ MonoBehaviour:
   spawnersTram:
   - {fileID: 0}
   - {fileID: 0}
-  lowPitchRange: 0.95
-  highPitchRange: 1.05
 --- !u!82 &6067496234133175115
 AudioSource:
   m_ObjectHideFlags: 0
