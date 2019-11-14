@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private Texture2D tex2D;
     private List<Color> allColor = new List<Color>();
     private Color MainColor;
-    public Text ShowWiner;
+    public Text ShowWiner,TxtWiner, TxtWinerWhite;
     public int ScoreBleu,ScoreRouge;
     public GameObject P1, P2;
     public Material Style1, Style2;
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> FeedBackWinP2 = new List<GameObject>();
 
     public GameObject EndGamePanel;
-    public Text TxtEndGame, M1P1, M1P2, M2P1, M2P2, M3P1, M3P2;
+    public Text TxtEndGame, TxtEndGameWhite, M1P1, M1P2, M2P1, M2P2, M3P1, M3P2;
     public int IndexScene;
     public Light directionnal;
 
@@ -57,6 +57,9 @@ public class GameManager : MonoBehaviour
     [Header("Police Car")]
 
     public GameObject PoliceCar;
+    [Header("ENDING")]
+
+    public GameObject TriggerEnding;
 
 
     MousePainter painter;
@@ -102,7 +105,7 @@ public class GameManager : MonoBehaviour
             //TramSpawner.SetActive(true);
         }
 
-        if((int)TimePast % 10 == 0 && Chrono - TimePast > 5)
+        if((int)TimePast % 10 == 0 && Chrono - TimePast > 5 && Chrono==40)
         {
             LightBlocChrono((int)TimePast/ 10);
         }
@@ -387,23 +390,36 @@ public class GameManager : MonoBehaviour
         {
             if (Turn <= 2)
             {
-                ShowWiner.text = "EQUIPE BLEUE GAGNE!";
+                TxtWiner.text = "EQUIPE BLEUE GAGNE";
+                TxtWiner.color = Color.blue;
+                TxtWinerWhite.text = "EQUIPE BLEUE GAGNE";
                 FeedBackWinP2[MancheP2].SetActive(true);
+                P2.GetComponentInChildren<Animator>().SetBool("Win", true);
+                P1.GetComponentInChildren<Animator>().SetBool("Loose", true);
+
             }
-            MancheP1++;
+            MancheP2++;
         }
         else
         {
             if (Turn <= 2)
             {
-                ShowWiner.text = "EQUIPE ROUGE GAGNE!";
+                TxtWiner.text = "EQUIPE ROUGE GAGNE";
+                TxtWiner.color = Color.red;
+                TxtWinerWhite.text = "EQUIPE ROUGE GAGNE";
                 FeedBackWinP1[MancheP1].SetActive(true);
+                P1.GetComponentInChildren<Animator>().SetBool("Win", true);
+                P2.GetComponentInChildren<Animator>().SetBool("Loose", true);
             }
-            MancheP2++;
+            MancheP1++;
         }
 
-
-        TAnim.Transition();
+        if (Turn <= 2) 
+            TAnim.Transition();
+        if (Turn == 3)
+        {
+            TriggerEnding.SetActive(true);
+        }
         SoundManager.Instance.WaveSoundEffect(WaveSoundAnim);
 
         yield return new WaitForSeconds(3.5f);
@@ -501,6 +517,10 @@ public class GameManager : MonoBehaviour
             P1.GetComponent<InputComponent>().Release();
             P2.GetComponent<InputComponent>().Release();
 
+            P2.GetComponentInChildren<Animator>().SetBool("Win", false);
+            P1.GetComponentInChildren<Animator>().SetBool("Win", false);
+            P1.GetComponentInChildren<Animator>().SetBool("Loose", false);
+            P2.GetComponentInChildren<Animator>().SetBool("Loose", false);
             ScoreRouge = 0;
             ScoreBleu = 0;
             PowerUpsSpawner.SetActive(true);
@@ -511,6 +531,8 @@ public class GameManager : MonoBehaviour
             isGaming = true;
 
             ShowWiner.text = "";
+            TxtWiner.text = "";
+            TxtWinerWhite.text = "";
         }
 
     }
@@ -519,13 +541,20 @@ public class GameManager : MonoBehaviour
         EndGamePanel.SetActive(true);
         if (MancheP1 > MancheP2)
         {
-            TxtEndGame.text = "EQUIPE BLEUE GANGNE LA PARTIE!";
-            TxtEndGame.color = Color.blue;
+            TxtEndGame.text = "VICTOIRE ROUGE";
+            TxtEndGame.color = Color.red;
+            TxtEndGameWhite.text = "EQUIPE ROUGE GAGNE LA PARTIE";
+            P1.GetComponentInChildren<Animator>().SetBool("Win", true);
+            P2.GetComponentInChildren<Animator>().SetBool("Loose", true);
         }
         else
         {
-            TxtEndGame.text = "EQUIPE ROUGE GAGNE LA PARTIE!";
-            TxtEndGame.color = Color.red;
+            TxtEndGame.text = "VICTOIRE BLEUE";
+            TxtEndGame.color = Color.blue;
+            TxtEndGameWhite.text = "EQUIPE BLEUE GAGNE LA PARTIE";
+
+            P2.GetComponentInChildren<Animator>().SetBool("Win", true);
+            P1.GetComponentInChildren<Animator>().SetBool("Loose", true);
         }
     }
 

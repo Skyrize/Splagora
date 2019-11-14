@@ -17,6 +17,7 @@ public class SplashBombComponent : MonoBehaviour
     bool hasExploded = false;
     bool willDestroy= false;
     private GameObject particle;
+    bool picked=false;
 
     private void Start()
     {
@@ -46,7 +47,7 @@ public class SplashBombComponent : MonoBehaviour
     public AudioClip SoundPickUp;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player") == true) {
+        if (other.gameObject.tag.Equals("Player") == true && picked==false) {
             if (Physics.Raycast(transform.position, Vector3.forward, out hitInfo)) {
                 SoundManager.Instance.PowerUpSound(SoundPickUp);
                 if (other.gameObject.name == "Player1 Garçon") {
@@ -59,6 +60,7 @@ public class SplashBombComponent : MonoBehaviour
                 brush.Scale = SplashSize;
                 isTriggered = true;
                 particle.SetActive(true);
+                picked = true;
             } else {
                 Debug.LogError("SplashBomb couldn't raycast");
             }

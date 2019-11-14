@@ -54,7 +54,7 @@ public class BlockWallAnimation : MonoBehaviour
     private Sequence WaveAnim = null;
 
     public static bool dotweenInited = false;
-
+    bool isBloc;
     static public void Init()
     {
         if (dotweenInited == false) {
@@ -62,15 +62,22 @@ public class BlockWallAnimation : MonoBehaviour
             DOTween.SetTweensCapacity(48825, 30467);
         }
     }
+    private void IsNotBloc()
+    {
 
-    public void Start()
+    }
+
+    public void Awake()
     {
         Init();
         startPos = transform.position;
         startScale = transform.localScale;
         CountStyleMat = allStyleMaterial.Count;
         CountStyleMesh = allMeshStyle.Count;
-
+        if (AnimSeting == null)
+        {
+            isBloc = true;
+        }
         //AnimationBlock();
         
         
@@ -119,8 +126,15 @@ public class BlockWallAnimation : MonoBehaviour
         WaveAnim.Kill();
         transform.position = startPos;
         transform.localScale = startScale;
-
-        AnimSeting = targetAnim;
+        if (isBloc)
+        {
+            AnimSeting = targetAnim;
+        }
+        if(!isBloc && FindObjectOfType<GameManager>().isGaming)
+        {
+           
+            return;
+        }
         SetValueScriptableObject();
         float offsetZ = Random.Range(minWaveOffSetZ, maxWaveOffSetZ);
 

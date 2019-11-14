@@ -6,6 +6,7 @@ namespace Es.InkPainter.Sample
 	{
         public float minimalDistance = 0;
         public GameObject Player1, Player2;
+       
         public LayerMask IgnoreLayer;
 		/// <summary>
 		/// Types of methods used to paint.
@@ -39,12 +40,27 @@ namespace Es.InkPainter.Sample
             }
             return null;
         }
-        
+        public bool CanSpray(GameObject player)
+        {
+            if (player.GetComponent<CharacterController>().velocity.magnitude > 0f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         private void Update()
 		{
-            if (Vector3.Distance(Player1.transform.position, Player2.transform.position) > minimalDistance * brush1.Scale * brush2.Scale) {
+            //Debug.Log(CanSpray(Player1));
+            if (CanSpray(Player1))
+            {
+                Debug.Log("YES Tu peux y aller P1");
                 if (turnP1)
                 {
+                    Debug.Log("PAINT P1");
+
                     //Direction to Paint WALL
                     // int directionP1 = 1;
                     // if (Player1.transform.eulerAngles.y == 90)
@@ -92,25 +108,29 @@ namespace Es.InkPainter.Sample
                             Debug.LogError("Failed to paint.");
                     }
 
-                    turnP1 = false;
-                    return;
+                    //turnP1 = false;
+                   // return;
                 }
-                if (!turnP1) { 
+            }
+            if (CanSpray(Player2))
+            {
+                if (!turnP1)
+                {
 
-                // int directionP2 = 1;
-                // if (Player2.transform.eulerAngles.y == 90)
-                // {
-                //     directionP2 = -1;
-                // }
-                // if (Player2.transform.eulerAngles.y == 270)
-                // {
-                //     directionP2 = 1;
-                // }
+                    // int directionP2 = 1;
+                    // if (Player2.transform.eulerAngles.y == 90)
+                    // {
+                    //     directionP2 = -1;
+                    // }
+                    // if (Player2.transform.eulerAngles.y == 270)
+                    // {
+                    //     directionP2 = 1;
+                    // }
 
-                //Paint Wall
-                var ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-                bool success2 = true;
-                RaycastHit hitInfo2;
+                    //Paint Wall
+                    var ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    bool success2 = true;
+                    RaycastHit hitInfo2;
                     if (Physics.Raycast(Player2.transform.position, Vector3.forward, out hitInfo2))
                     {
 
@@ -138,15 +158,16 @@ namespace Es.InkPainter.Sample
                                     break;
                             }
                         }
-                        turnP1 = true;
-                        return;
+                        //turnP1 = true;
+                        //return;
                     }
-
-                    if (!success2)
-                        Debug.LogError("Failed to paint.");
                 }
             }
 
+
+
+
+            turnP1 = !turnP1;
         }
 
         public void OnGUI()
