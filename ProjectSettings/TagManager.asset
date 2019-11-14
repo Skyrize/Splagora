@@ -12,6 +12,8 @@ TagManager:
   - Bloc
   - Tram
   - BumpTrigger
+  - ObstacleTrigger
+  - ObstacleTriggerEnd
   layers:
   - Default
   - TransparentFX
