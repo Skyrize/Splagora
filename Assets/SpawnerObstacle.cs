@@ -103,9 +103,9 @@ public class SpawnerObstacle : MonoBehaviour
         feedBackObstacle2.AppendCallback(ActivateTrigger);
         feedBackObstacle2.AppendInterval(0.3f);
         feedBackObstacle2.Play();
+        yield return new WaitForSeconds(TimeShowFeedBack);
         platform1.GetComponent<RecessingPlatformComponent>().Recess();
         platform2.GetComponent<RecessingPlatformComponent>().Recess();
-        yield return new WaitForSeconds(TimeShowFeedBack);
 
         GameObject obstacle =Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
         if(obstacle.name.Contains("Tram"))
