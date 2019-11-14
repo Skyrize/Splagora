@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject EndGamePanel;
     public Text TxtEndGame, TxtEndGameWhite, M1P1, M1P2, M2P1, M2P2, M3P1, M3P2;
     public int IndexScene;
-    public Light directionnal;
+    public GameObject directionnal;
 
     public GameObject PlatformContener;
     public Material PlatformNormal, PlatformNeon , TramNeon,TramClassique;
@@ -470,7 +470,7 @@ public class GameManager : MonoBehaviour
                 FacadeNeon.SetActive(false);
                 SetTextureToTransition(FacadeFin);
                 SpotLight.SetActive(true);
-                directionnal.intensity = 0.4f;
+                directionnal.GetComponent<FadeOverTimeComponent>().Fade();
 
                 M2P1.text = Mathf.Round(((float)ScoreBleu / ((float)ScoreBleu + (float)ScoreRouge) * 100) )+ "%";
                 M2P2.text = Mathf.Round(((float)ScoreRouge / ((float)ScoreBleu + (float)ScoreRouge) * 100)) + "%";
