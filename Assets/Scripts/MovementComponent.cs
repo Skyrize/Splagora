@@ -9,6 +9,7 @@ public class MovementComponent : MonoBehaviour
     public float resistance = 1;
     public float gravityScale = 0.5f;
     public float airControl = 2;
+    public bool canPropusle=true;
 
     private InputComponent input;
     private CharacterController controller;
@@ -29,8 +30,13 @@ public class MovementComponent : MonoBehaviour
 
     public void Propulse(Vector3 force)
     {
-        //Debug.Log("Propulse");
-        externalForce = force;
+        if (canPropusle)
+        {
+            //Debug.Log("Propulse");
+            externalForce = force;
+            canPropusle = false;
+            StartCoroutine(CDPropulse());
+        }
 
     }
 
@@ -135,6 +141,11 @@ public class MovementComponent : MonoBehaviour
         ParticuleSpawn();
         //Freeze z axis
         transform.position = new Vector3(transform.position.x, transform.position.y, 1.5f);
+    }
+    public IEnumerator CDPropulse()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canPropusle = true;
     }
 
 

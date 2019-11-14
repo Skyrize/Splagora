@@ -43,7 +43,7 @@ public class PreGameManager : MonoBehaviour
             timer -= Time.deltaTime;
             text.text = "GO";
         } else {
-            Debug.Log("end");
+           // Debug.Log("end");
             GameManager.SetActive(true);
             TramSpawner.SetActive(true);
             PowerUpSpawner.SetActive(true);

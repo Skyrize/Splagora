@@ -315,8 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60296cfd998935046b37344ffc4139a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  time: 14
+  speed: 15
+  time: 9
   Light: {fileID: 5124608871729932250}
   directionX: 0
   velocity: {x: 0, y: 0, z: 0}

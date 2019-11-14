@@ -28,7 +28,7 @@ public class TramObstacle : MonoBehaviour
     {
         directionX = OffSetDirection;
         velocity = Vector3.right * speed * directionX;
-        transform.DOMove(new Vector3(OffSetDirection*speed*time, 0, 1.5f), time);
+        transform.DOMove(new Vector3(OffSetDirection*speed, 0, 1.5f), time);
     }
 
     

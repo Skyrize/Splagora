@@ -101,7 +101,7 @@ public class WallAnimationEditor1 : Editor
             //GUI.Label(customField, "AA", EditorStyles.textField);
 
             EditorGUILayout.Space();
-            EditorGUILayout.Slider(Latence, 0, 1, new GUIContent("Latence to ComeBack"));
+            EditorGUILayout.Slider(Latence, 0, 5, new GUIContent("Latence to ComeBack"));
         }
         EditorGUILayout.EndVertical();
 

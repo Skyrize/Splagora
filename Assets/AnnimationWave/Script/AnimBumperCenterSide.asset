@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9674f7d8ac55a04b968e79e6aa55a4a, type: 3}
+  m_Name: AnimBumperCenterSide
+  m_EditorClassIdentifier: 
+  TimeWave: 1.2
+  minWaveOffSetZ: 3
+  maxWaveOffSetZ: 3.5
+  ChangeRotation: 0
+  TimeRotation: 0.2
+  RadialRotation: 180
+  LatenceSwitchTexture: 0
+  ChangeScale: 1
+  ModifScale: 2
+  SwitchTexture: 0
+  AllTextureStyle: []
+  SpeedSwitch: 0.2
+  PingPongScale: 0
+  ChangeMesh: 0
+  allMeshStyle: []
+  SwitchMaterial: 1
+  allStyleMaterial:
+  - {fileID: 2100000, guid: fb389fe957e88f84aad676dd210c6615, type: 2}
+  - {fileID: 2100000, guid: ee230e9efa938c040aa5ef2be078e749, type: 2}
