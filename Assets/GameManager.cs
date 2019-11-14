@@ -543,7 +543,7 @@ public class GameManager : MonoBehaviour
         {
             TxtEndGame.text = "VICTOIRE ROUGE";
             TxtEndGame.color = Color.red;
-            TxtEndGameWhite.text = "EQUIPE ROUGE GAGNE LA PARTIE";
+            TxtEndGameWhite.text = "VICTOIRE ROUGE";
             P1.GetComponentInChildren<Animator>().SetBool("Win", true);
             P2.GetComponentInChildren<Animator>().SetBool("Loose", true);
         }
@@ -551,7 +551,7 @@ public class GameManager : MonoBehaviour
         {
             TxtEndGame.text = "VICTOIRE BLEUE";
             TxtEndGame.color = Color.blue;
-            TxtEndGameWhite.text = "EQUIPE BLEUE GAGNE LA PARTIE";
+            TxtEndGameWhite.text = "VICTOIRE BLEUE";
 
             P2.GetComponentInChildren<Animator>().SetBool("Win", true);
             P1.GetComponentInChildren<Animator>().SetBool("Loose", true);
