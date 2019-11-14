@@ -18,7 +18,7 @@ public class FadeOverTimeComponent : MonoBehaviour
     void Update()
     {
         if (activated) {
-            if (timeToFade < 0) {
+            if (timeToFade > 0) {
                 GetComponent<Light>().intensity = Mathf.Lerp(fadeTo, 1, timeToFade);
                 timeToFade -= Time.deltaTime;
             } else {
