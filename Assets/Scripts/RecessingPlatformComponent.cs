@@ -34,7 +34,7 @@ public class RecessingPlatformComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "BumpTriggerEnd") {
+        if (other.gameObject.tag == "ObstacleTriggerEnd") {
             Debug.Log("UNRECESS ON TRIGGER");
             Unrecess();
         }
