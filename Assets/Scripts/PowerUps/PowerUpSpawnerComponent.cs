@@ -49,7 +49,7 @@ public class PowerUpSpawnerComponent : MonoBehaviour
     void SpawnRandomPowerUp()
     {
         int index = Random.Range(0, powerUps.Length);
-        // int index = 1;
+        //int index = 1;
         SpawnPointComponent point = GetRandomPoint();
         theOnlyOne = Instantiate(powerUps[index], point.transform.position, point.transform.rotation);
         point.isHolding = true;

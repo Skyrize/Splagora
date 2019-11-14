@@ -49,18 +49,20 @@ public class SplashBombComponent : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player") == true && picked==false) {
             if (Physics.Raycast(transform.position, Vector3.forward, out hitInfo)) {
-                SoundManager.Instance.PowerUpSound(SoundPickUp);
                 if (other.gameObject.name == "Player1 Garçon") {
                     isP1 = true;
                 } else {
                     isP1 = false;
                 }
                 ink = hitInfo.transform.GetComponent<InkCanvas>();
+                Debug.Log("trying to get ink from" + hitInfo.transform.gameObject.name);
                 brush = painter.GetPlayerBrush(other.name).Clone() as Brush;
+                Debug.Log("bursh is " + brush);
                 brush.Scale = SplashSize;
                 isTriggered = true;
                 particle.SetActive(true);
                 picked = true;
+                SoundManager.Instance.PowerUpSound(SoundPickUp);
             } else {
                 Debug.LogError("SplashBomb couldn't raycast");
             }
