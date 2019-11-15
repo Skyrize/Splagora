@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     [Header("ENDING")]
 
     public GameObject TriggerEnding;
+    public Image UiFin;
     public bool preEnd;
 
 
@@ -564,6 +565,7 @@ public class GameManager : MonoBehaviour
         {
             TxtEndGame.text = "VICTOIRE ROUGE";
             TxtEndGame.color = Color.red;
+            UiFin.color = Color.red;
             TxtEndGameWhite.text = "VICTOIRE ROUGE";
             P1.GetComponentInChildren<Animator>().SetBool("Win", true);
             P2.GetComponentInChildren<Animator>().SetBool("Loose", true);
@@ -573,7 +575,7 @@ public class GameManager : MonoBehaviour
             TxtEndGame.text = "VICTOIRE BLEUE";
             TxtEndGame.color = Color.blue;
             TxtEndGameWhite.text = "VICTOIRE BLEUE";
-
+            UiFin.color = Color.blue;
             P2.GetComponentInChildren<Animator>().SetBool("Win", true);
             P1.GetComponentInChildren<Animator>().SetBool("Loose", true);
         }
@@ -586,6 +588,8 @@ public class GameManager : MonoBehaviour
 
     public void ButtonReplay()
     {
+        SoundManager.Instance.StopSceneMusic3(Phase3Sound);
+
         SceneManager.LoadScene(IndexScene);
     }
 
