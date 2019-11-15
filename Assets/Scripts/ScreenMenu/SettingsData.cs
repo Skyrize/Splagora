@@ -14,8 +14,15 @@ public class SettingsData
     public SettingsData(SettingsUI settingslight)
     {
         
-           Gamma = settingslight.GammaSlider.value;
+        Gamma = settingslight.GammaSlider.value;
         Contrast = settingslight.contrastSlider.value;
         Brightness = settingslight.BrightnessSlider.value;
-    }   
+    }
+
+    public SettingsData()
+    {
+        Gamma = 0.5f;
+        Contrast = 0.5f;
+        Brightness = 0.5f;
+    }
 }

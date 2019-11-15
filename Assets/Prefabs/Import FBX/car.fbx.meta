@@ -4,11 +4,26 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Back_Wheel
+    100004: Body
+    100006: Front_Wheel
     400000: //RootNode
+    400002: Back_Wheel
+    400004: Body
+    400006: Front_Wheel
     2100000: voiture
     2300000: //RootNode
+    2300002: Back_Wheel
+    2300004: Body
+    2300006: Front_Wheel
     3300000: //RootNode
+    3300002: Back_Wheel
+    3300004: Body
+    3300006: Front_Wheel
     4300000: Car
+    4300002: Body
+    4300004: Back_Wheel
+    4300006: Front_Wheel
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -27,14 +27,23 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
 
             SettingsData data = formatter.Deserialize(stream) as SettingsData;
+
+            Debug.Log(data.ToString());
+
             stream.Close();
 
             return data;
         }
         else
         {
-            Debug.LogError("Save File not found in" + path);
-            return null;
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Create);
+
+            SettingsData data = new SettingsData();
+
+            formatter.Serialize(stream, data);
+            stream.Close();
+            return data;
         }
     }
 }
