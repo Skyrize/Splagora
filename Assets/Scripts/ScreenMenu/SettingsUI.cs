@@ -10,6 +10,8 @@ public class SettingsUI : MonoBehaviour
     public Slider contrastSlider;        
     public Slider BrightnessSlider;
     public Slider GammaSlider;
+    public Slider EffectsSlider;
+    public Slider MusicsSlider;
 
     public Canvas mycanvasmenu;
 
@@ -44,6 +46,8 @@ public class SettingsUI : MonoBehaviour
         contrastSlider.value = data.Contrast;
         BrightnessSlider.value = data.Brightness;
         GammaSlider.value = data.Gamma;
+        MusicsSlider.value = data.Musics;
+        EffectsSlider.value = data.Effects;
     }
 
     public void LoadGameSettings()
@@ -75,5 +79,5 @@ public class SettingsUI : MonoBehaviour
     {
         GammaValue = GammaSlider.value * MultiplicateurGamma;
         colorGrading.toneCurveGamma.value = GammaValue;
-    }
+    }    
 }
