@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    SettingsUI mysettings;
     public AudioSource[] EffectsSounds;
     public AudioSource[] Musics;
 
@@ -22,9 +21,11 @@ public class SoundManager : MonoBehaviour
     //public AudioSource MusicMenu;
     //public AudioSource UIButtonSound;
 
-    SettingsData musicsetting;   
+    SettingsData musicData;   
 
     public static SoundManager Instance = null;
+
+    public float gongReduce = 1.2f;
 
     //public Transform[] spawnersTram;   
 
@@ -41,8 +42,7 @@ public class SoundManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        musicsetting = GetComponent<SettingsData>();
-        mysettings = GetComponent<SettingsUI>();
+        musicData = SaveSystem.LoadData();
 
     }     
 
@@ -54,19 +54,19 @@ public class SoundManager : MonoBehaviour
 
     public void ModifyVolumePhases()
     {
-        Musics[0].volume = mysettings.MusicsSlider.value;
-        Musics[1].volume = mysettings.MusicsSlider.value;
-        Musics[2].volume = mysettings.MusicsSlider.value;
+        Musics[0].volume = musicData.Musics;
+        Musics[1].volume = musicData.Musics;
+        Musics[2].volume = musicData.Musics;
     }
 
     public void ModifyVolumeEffects()
     {
-        EffectsSounds[0].volume = mysettings.EffectsSlider.value;
-        EffectsSounds[1].volume = mysettings.EffectsSlider.value;
-        EffectsSounds[2].volume = mysettings.EffectsSlider.value;
-        EffectsSounds[3].volume = mysettings.EffectsSlider.value;
-        EffectsSounds[4].volume = mysettings.EffectsSlider.value;
-        EffectsSounds[5].volume = mysettings.EffectsSlider.value;
+        EffectsSounds[0].volume = musicData.Effects;
+        EffectsSounds[1].volume = musicData.Effects;
+        EffectsSounds[2].volume = musicData.Effects;
+        EffectsSounds[3].volume = musicData.Effects;
+        EffectsSounds[4].volume = musicData.Effects;
+        EffectsSounds[5].volume = musicData.Effects;
     }
     /*
     public void TramSoundComing(AudioClip clip, int SideTram)
@@ -98,9 +98,9 @@ public class SoundManager : MonoBehaviour
     {
         timerGong.clip = clip;
         timerGong.Play();
-        MusicPhaseSource1.volume = 0.3f;
-        MusicPhaseSource2.volume = 0.3f;
-        MusicPhaseSource3.volume = 0.3f;
+        MusicPhaseSource1.volume = musicData.Musics / gongReduce;
+        MusicPhaseSource2.volume = musicData.Musics / gongReduce;
+        MusicPhaseSource3.volume = musicData.Musics / gongReduce;
     }
 
     public void SoundPlayersCollision(AudioClip clip)
@@ -112,7 +112,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySceneMusic1(AudioClip clip)
     {
         MusicPhaseSource1.clip = clip;
-        MusicPhaseSource2.volume = musicsetting.Musics;
+        MusicPhaseSource2.volume = musicData.Musics;
         MusicPhaseSource1.Play();       
     }
 
@@ -125,7 +125,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySceneMusic2(AudioClip clip)
     {
         MusicPhaseSource2.clip = clip;
-        MusicPhaseSource2.volume = musicsetting.Musics;
+        MusicPhaseSource2.volume = musicData.Musics;
         MusicPhaseSource2.Play();        
     }
 
@@ -138,7 +138,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySceneMusic3(AudioClip clip)
     {
         MusicPhaseSource3.clip = clip;
-        MusicPhaseSource3.volume = musicsetting.Musics;
+        MusicPhaseSource3.volume = musicData.Musics;
         MusicPhaseSource3.Play();
     }
 

@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
     public List<GameObject> FeedBackWinP1 = new List<GameObject>();
     public List<GameObject> FeedBackWinP2 = new List<GameObject>();
 
-    public SaveSystem systemsave;
-
     public GameObject EndGamePanel;
     public Text TxtEndGame, TxtEndGameWhite, M1P1, M1P2, M2P1, M2P2, M3P1, M3P2;
     public int IndexScene;
@@ -67,10 +65,6 @@ public class GameManager : MonoBehaviour
 
     MousePainter painter;
 
-    void Awake()
-    {
-        systemsave = GetComponent<SaveSystem>();
-    }
     // Start is called before the first frame update
     void Start()
     {
