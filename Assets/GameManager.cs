@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     [Header("ENDING")]
 
     public GameObject TriggerEnding;
+    public bool preEnd;
 
 
     MousePainter painter;
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
     {
 
         painter = GameObject.FindGameObjectWithTag("Painter").GetComponent<MousePainter>();
-
+        preEnd = false;
         MancheP1 = 0;
         MancheP2 = 0;
         Turn = 1;
@@ -94,11 +95,15 @@ public class GameManager : MonoBehaviour
             ShowWiner.text = Mathf.Round(Chrono - TimePast).ToString();
         }
 
-        if(TimePast + 10f >= Chrono && isGaming)
+        if(TimePast + 5f >= Chrono && isGaming && preEnd==false)
         {
+            preEnd = true;
             // TramSpawner.SetActive(false);
             TramSpawner.GetComponent<SpawnerObstacle>().CancelSpawn();
+            EndChrono();
+            
         }
+        
         else
         {
 
@@ -115,6 +120,22 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance.SoundGong(SoundtimerGong);
             Debug.Log("Timer Gong launched");
         }
+    }
+    private void EndChrono()
+    {
+        Vector3 maxSize = new Vector3(2, 2, 2);
+        Sequence pingpong = DOTween.Sequence();
+        pingpong.Append(ShowWiner.transform.DOScale(Vector3.one, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(maxSize, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(Vector3.one, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(maxSize, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(Vector3.one, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(maxSize, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(Vector3.one, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(maxSize, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(Vector3.one, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(maxSize, 0.5f));
+        pingpong.Append(ShowWiner.transform.DOScale(Vector3.one, 0.5f));
     }
     private void LightBlocChrono(int index)
     {
@@ -529,7 +550,7 @@ public class GameManager : MonoBehaviour
 
             TimePast = 0;
             isGaming = true;
-
+            preEnd = false;
             ShowWiner.text = "";
             TxtWiner.text = "";
             TxtWinerWhite.text = "";
