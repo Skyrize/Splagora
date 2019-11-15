@@ -9,10 +9,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource[] Musics;
 
     public AudioSource SoundPowerUp;
-    //public AudioSource TramSound;
     public AudioSource WaveSound;
     public AudioSource BumperSound;
-    //public AudioSource PoliceSound;
     public AudioSource timerGong;
     public AudioSource playerSoundCollision;
     public AudioSource MusicPhaseSource1;
@@ -44,7 +42,12 @@ public class SoundManager : MonoBehaviour
 
         musicData = SaveSystem.LoadData();
 
-    }     
+    }
+    private void Start() {
+        ModifyVolumePhases();
+        ModifyVolumeEffects();
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
+    }
 
     public void PowerUpSound(AudioClip clip)
     {
@@ -54,19 +57,34 @@ public class SoundManager : MonoBehaviour
 
     public void ModifyVolumePhases()
     {
-        Musics[0].volume = musicData.Musics;
-        Musics[1].volume = musicData.Musics;
-        Musics[2].volume = musicData.Musics;
+        MusicPhaseSource1.volume = musicData.Musics;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
+        MusicPhaseSource2.volume = musicData.Musics;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
+        MusicPhaseSource3.volume = musicData.Musics;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
     }
 
     public void ModifyVolumeEffects()
     {
-        EffectsSounds[0].volume = musicData.Effects;
-        EffectsSounds[1].volume = musicData.Effects;
-        EffectsSounds[2].volume = musicData.Effects;
-        EffectsSounds[3].volume = musicData.Effects;
-        EffectsSounds[4].volume = musicData.Effects;
-        EffectsSounds[5].volume = musicData.Effects;
+        SoundPowerUp.volume = musicData.Effects;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
+        WaveSound.volume = musicData.Effects;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
+        BumperSound.volume = musicData.Effects;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
+        timerGong.volume = musicData.Effects;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
+        playerSoundCollision.volume = musicData.Effects;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
     }
     /*
     public void TramSoundComing(AudioClip clip, int SideTram)
@@ -99,8 +117,14 @@ public class SoundManager : MonoBehaviour
         timerGong.clip = clip;
         timerGong.Play();
         MusicPhaseSource1.volume = musicData.Musics / gongReduce;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
         MusicPhaseSource2.volume = musicData.Musics / gongReduce;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
         MusicPhaseSource3.volume = musicData.Musics / gongReduce;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
     }
 
     public void SoundPlayersCollision(AudioClip clip)
@@ -113,6 +137,8 @@ public class SoundManager : MonoBehaviour
     {
         MusicPhaseSource1.clip = clip;
         MusicPhaseSource2.volume = musicData.Musics;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
         MusicPhaseSource1.Play();       
     }
 
@@ -126,6 +152,8 @@ public class SoundManager : MonoBehaviour
     {
         MusicPhaseSource2.clip = clip;
         MusicPhaseSource2.volume = musicData.Musics;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
         MusicPhaseSource2.Play();        
     }
 
@@ -139,6 +167,8 @@ public class SoundManager : MonoBehaviour
     {
         MusicPhaseSource3.clip = clip;
         MusicPhaseSource3.volume = musicData.Musics;
+        
+        Debug.Log("data = " + musicData.Musics + " " + musicData.Effects);
         MusicPhaseSource3.Play();
     }
 

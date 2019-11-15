@@ -23,6 +23,7 @@ public class TramObstacle : MonoBehaviour
         {
             Light.SetActive(false);
         }
+        GetComponent<AudioSource>().volume = SaveSystem.LoadData().Effects;
     }
     public void SetDirection(float OffSetDirection)
     {
