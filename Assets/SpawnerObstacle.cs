@@ -23,11 +23,13 @@ public class SpawnerObstacle : MonoBehaviour
     Transform currentSpawn;
     Image currentImage;
     GameObject targetTrigger;
+    GameManager Manager;
     // Start is called before the first frame update
     void Start()
     {
         StartSpawning();
         FindObjectOfType<GameManager>().SetTextureToTransition(targetWallAnim);
+        Manager = FindObjectOfType<GameManager>();
 
     }
 
@@ -75,55 +77,64 @@ public class SpawnerObstacle : MonoBehaviour
     {
         GetRandomSide();
         //Create Animation for feedBack
-        Sequence feedBackObstacle = DOTween.Sequence();
-        feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
-        feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
-        feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
-        feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
-        feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
-        feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
-        feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
-        feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
-        feedBackObstacle.Insert(0,currentImage.transform.DOShakePosition(TimeShowFeedBack, 10, 10, 90, false,false));
-        feedBackObstacle.Play();
-
-        Sequence feedBackObstacle2 = DOTween.Sequence();
-        feedBackObstacle2.AppendCallback(ActivateTrigger);
-        feedBackObstacle2.AppendInterval(0.3f);
-        feedBackObstacle2.AppendCallback(ActivateTrigger);
-        feedBackObstacle2.AppendInterval(0.3f);
-        feedBackObstacle2.AppendCallback(ActivateTrigger);
-        feedBackObstacle2.AppendInterval(0.3f);
-        feedBackObstacle2.AppendCallback(ActivateTrigger);
-        feedBackObstacle2.AppendInterval(0.3f);
-        feedBackObstacle2.AppendCallback(ActivateTrigger);
-        feedBackObstacle2.AppendInterval(0.3f);
-        feedBackObstacle2.AppendCallback(ActivateTrigger);
-        feedBackObstacle2.AppendInterval(0.3f);
-        feedBackObstacle2.Play();
-        yield return new WaitForSeconds(TimeShowFeedBack);
-        platform1.GetComponent<RecessingPlatformComponent>().Recess();
-        platform2.GetComponent<RecessingPlatformComponent>().Recess();
-
-        GameObject obstacle =Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
-        if(obstacle.name.Contains("Tram"))
-        obstacle.GetComponentInChildren<MeshRenderer>().material = currentStyle;
-        //RightSpawn
-        if (indexSide == 0)
+        if (Manager.TimePast > Manager.Chrono - 5f)
         {
-            obstacle.GetComponent<TramObstacle>().SetDirection(-1);
-            bumperLeft.SetActive(true);
-            bumperRight.SetActive(false);
+            isSpawning = false;
+            timePast = 0;
+            StartSpawning();
         }
         else
         {
-            obstacle.GetComponent<TramObstacle>().SetDirection(1);
-            bumperRight.SetActive(true);
-            bumperLeft.SetActive(false);
+            Sequence feedBackObstacle = DOTween.Sequence();
+            feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
+            feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
+            feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
+            feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
+            feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
+            feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
+            feedBackObstacle.Append(currentImage.DOFade(1, TimeShowFeedBack / 6));
+            feedBackObstacle.Append(currentImage.DOFade(0, TimeShowFeedBack / 6));
+            feedBackObstacle.Insert(0, currentImage.transform.DOShakePosition(TimeShowFeedBack, 10, 10, 90, false, false));
+            feedBackObstacle.Play();
 
+            Sequence feedBackObstacle2 = DOTween.Sequence();
+            feedBackObstacle2.AppendCallback(ActivateTrigger);
+            feedBackObstacle2.AppendInterval(0.3f);
+            feedBackObstacle2.AppendCallback(ActivateTrigger);
+            feedBackObstacle2.AppendInterval(0.3f);
+            feedBackObstacle2.AppendCallback(ActivateTrigger);
+            feedBackObstacle2.AppendInterval(0.3f);
+            feedBackObstacle2.AppendCallback(ActivateTrigger);
+            feedBackObstacle2.AppendInterval(0.3f);
+            feedBackObstacle2.AppendCallback(ActivateTrigger);
+            feedBackObstacle2.AppendInterval(0.3f);
+            feedBackObstacle2.AppendCallback(ActivateTrigger);
+            feedBackObstacle2.AppendInterval(0.3f);
+            feedBackObstacle2.Play();
+            yield return new WaitForSeconds(TimeShowFeedBack);
+            platform1.GetComponent<RecessingPlatformComponent>().Recess();
+            platform2.GetComponent<RecessingPlatformComponent>().Recess();
+
+            GameObject obstacle = Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
+            if (obstacle.name.Contains("Tram"))
+                obstacle.GetComponentInChildren<MeshRenderer>().material = currentStyle;
+            //RightSpawn
+            if (indexSide == 0)
+            {
+                obstacle.GetComponent<TramObstacle>().SetDirection(-1);
+                bumperLeft.SetActive(true);
+                bumperRight.SetActive(false);
+            }
+            else
+            {
+                obstacle.GetComponent<TramObstacle>().SetDirection(1);
+                bumperRight.SetActive(true);
+                bumperLeft.SetActive(false);
+
+            }
+            isSpawning = false;
+            timePast = 0;
+            StartSpawning();
         }
-        isSpawning = false;
-        timePast = 0;
-        StartSpawning();
     }
 }

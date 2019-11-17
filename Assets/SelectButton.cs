@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SelectButton : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class SelectButton : MonoBehaviour
 
     public void OnEnable()
     {
-        selectFirst.Select();
+        StartCoroutine(SelectButtonLater());
+    }
+    IEnumerator SelectButtonLater()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(selectFirst.gameObject);
     }
 }

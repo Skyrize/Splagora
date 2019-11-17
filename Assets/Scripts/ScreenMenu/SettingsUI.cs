@@ -10,6 +10,7 @@ public class SettingsUI : MonoBehaviour
     public Slider contrastSlider;        
     public Slider BrightnessSlider;
     public Slider GammaSlider;
+    public bool inGame;
 
     public Canvas mycanvasmenu;
 
@@ -29,51 +30,54 @@ public class SettingsUI : MonoBehaviour
 
     void Start()
     {
+        if (inGame)
+        {
+            gameObject.SetActive(false);
+        }
+        if (PlayerPrefs.GetFloat("Contrast") != 0)
+        {
+            colorGrading.contrast.value = PlayerPrefs.GetFloat("Contrast");
+            contrastSlider.value = PlayerPrefs.GetFloat("Contrast") / MultiplicateurContraste;
+        }
+
+        if (PlayerPrefs.GetFloat("BrightValue") != 0)
+        {
+            RenderSettings.ambientLight = new Color(PlayerPrefs.GetFloat("BrightValue"), PlayerPrefs.GetFloat("BrightValue"), PlayerPrefs.GetFloat("BrightValue"), 1);
+            BrightnessSlider.value = PlayerPrefs.GetFloat("BrightValue");
+        }
+
+        if (PlayerPrefs.GetFloat("Gamma") != 0)
+        {
+            colorGrading.toneCurveGamma.value = PlayerPrefs.GetFloat("Gamma");
+            GammaSlider.value= PlayerPrefs.GetFloat("Gamma")/MultiplicateurGamma;
+        }
     }
     
-    public void SaveSettings()
-    {
-        Debug.Log("save");
-        SaveSystem.SaveSettings(this);
-    }   
+    
 
-    public void LoadMenuSettings()
+    public void ModifyContrast()
     {
-        SettingsData data = SaveSystem.LoadData();       
+        float ContrastValue = contrastSlider.value;
+        colorGrading.contrast.value = ContrastValue * MultiplicateurContraste;
 
-        contrastSlider.value = data.Contrast;
-        BrightnessSlider.value = data.Brightness;
-        GammaSlider.value = data.Gamma;
+        PlayerPrefs.SetFloat("Contrast", ContrastValue*MultiplicateurContraste);
+
     }
-
-    public void LoadGameSettings()
-    {
-        SettingsData data = SaveSystem.LoadData();
-
-        RenderSettings.ambientLight = new Color(data.Brightness, data.Brightness, data.Brightness, 1);
-        colorGrading.toneCurveGamma.value = data.Gamma;
-        colorGrading.contrast.value =
-            data.Contrast * MultiplicateurContraste;       
-    }
-
-    public void ModifyContrast(float ContrastValue)
-    {
-        ContrastValue = contrastSlider.value;
-        if (!colorGrading)
-            Debug.Log("allo");
-        colorGrading.contrast.value = 
-            ContrastValue * MultiplicateurContraste;
-    }   
 
     public void ModifyBright()
     {
-        RGBvalue = BrightnessSlider.value;
+        RGBvalue = BrightnessSlider.value* MultiplicateurContraste;
         RenderSettings.ambientLight = new Color(RGBvalue, RGBvalue, RGBvalue, 1);
+        
+        PlayerPrefs.SetFloat("BrightValue", RGBvalue);
     }       
 
-    public void ModifyGamma(float GammaValue)
+    public void ModifyGamma()
     {
-        GammaValue = GammaSlider.value * MultiplicateurGamma;
+        float GammaValue = GammaSlider.value * MultiplicateurGamma;
         colorGrading.toneCurveGamma.value = GammaValue;
+
+        PlayerPrefs.SetFloat("Gamma", GammaValue);
+
     }
 }

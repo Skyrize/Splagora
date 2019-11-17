@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
-{    
+{
+    public AudioMixer Mixer;
+    public AudioSource[] EffectsSounds;
+    public AudioSource[] Musics;
+
     public AudioSource SoundPowerUp;
-    //public AudioSource TramSound;
     public AudioSource WaveSound;
     public AudioSource BumperSound;
-    //public AudioSource PoliceSound;
     public AudioSource timerGong;
     public AudioSource playerSoundCollision;
     public AudioSource MusicPhaseSource1;
@@ -17,7 +21,11 @@ public class SoundManager : MonoBehaviour
     //public AudioSource MusicMenu;
     //public AudioSource UIButtonSound;
 
+    SettingsData musicData;   
+
     public static SoundManager Instance = null;
+
+    public float gongReduce = 1.2f;
 
     //public Transform[] spawnersTram;   
 
@@ -33,12 +41,31 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    }  
+
+
+    }
+    private void Start() {
+      
+    }
 
     public void PowerUpSound(AudioClip clip)
     {
         SoundPowerUp.clip = clip;
         SoundPowerUp.Play();
+    }
+
+    public void ModifyVolumeGeneral(float value)
+    {
+        Mixer.SetFloat("Master", value);
+    }
+
+    public void ModifyVolumeEffects()
+    {
+        SoundPowerUp.volume = musicData.Effects;
+        WaveSound.volume = musicData.Effects;
+        BumperSound.volume = musicData.Effects;
+        timerGong.volume = musicData.Effects;
+        playerSoundCollision.volume = musicData.Effects;
     }
     /*
     public void TramSoundComing(AudioClip clip, int SideTram)
@@ -70,9 +97,8 @@ public class SoundManager : MonoBehaviour
     {
         timerGong.clip = clip;
         timerGong.Play();
-        MusicPhaseSource1.volume = 0.3f;
-        MusicPhaseSource2.volume = 0.3f;
-        MusicPhaseSource3.volume = 0.3f;
+
+        
     }
 
     public void SoundPlayersCollision(AudioClip clip)
@@ -84,7 +110,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySceneMusic1(AudioClip clip)
     {
         MusicPhaseSource1.clip = clip;
-        MusicPhaseSource2.volume = 1f;
+        
         MusicPhaseSource1.Play();       
     }
 
@@ -97,7 +123,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySceneMusic2(AudioClip clip)
     {
         MusicPhaseSource2.clip = clip;
-        MusicPhaseSource2.volume = 1f;
+        
         MusicPhaseSource2.Play();        
     }
 
@@ -110,7 +136,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySceneMusic3(AudioClip clip)
     {
         MusicPhaseSource3.clip = clip;
-        MusicPhaseSource3.volume = 1f;
+        
         MusicPhaseSource3.Play();
     }
 
