@@ -117,7 +117,14 @@ public class SpawnerObstacle : MonoBehaviour
 
             GameObject obstacle = Instantiate(prefabTram, currentSpawn.position, currentSpawn.rotation);
             if (obstacle.name.Contains("Tram"))
+            {
                 obstacle.GetComponentInChildren<MeshRenderer>().material = currentStyle;
+            }
+            else
+            {
+                MinIntervaleSpawn += 2;
+                MaxIntervaleSpawn += 2;
+            }
             //RightSpawn
             if (indexSide == 0)
             {

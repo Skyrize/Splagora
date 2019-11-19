@@ -16,6 +16,7 @@ public class SelectButton : MonoBehaviour
     {
         yield return null;
         EventSystem.current.SetSelectedGameObject(null);
+        if(selectFirst!=null)
         EventSystem.current.SetSelectedGameObject(selectFirst.gameObject);
     }
 }
